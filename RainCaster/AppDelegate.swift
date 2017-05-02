@@ -7,15 +7,31 @@
 //
 
 import UIKit
+import GoogleCast
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 
 	var window: UIWindow?
 
+	
+	// MARK: - GCKLoggerDelegate methods 
+	func logMessage(_ message: String, fromFunction function: String) {
+		print("Log: \(message)")
+	}
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+		let options = GCKCastOptions(receiverApplicationID: kGCKMediaDefaultReceiverApplicationID)
+		GCKCastContext.setSharedInstanceWith(options)
+		GCKLogger.sharedInstance().delegate = self
+		
+		
+		window = UIWindow(frame: UIScreen.main.bounds)
+		if let mainPlayerVC = Bundle.main.loadNibNamed("MainPlayerViewController", owner: self, options: nil)?.first as? MainPlayerViewController {
+			window?.rootViewController = mainPlayerVC
+			window?.makeKeyAndVisible()
+		}
+		
 		return true
 	}
 
