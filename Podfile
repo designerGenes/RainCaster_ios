@@ -6,5 +6,5 @@ target 'RainCaster' do
   use_frameworks!
 
   # Pods for RainCaster
-
+	pod 'google-cast-sdk'
 end
