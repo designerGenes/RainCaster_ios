@@ -15,62 +15,22 @@ import AVFoundation
 class MainPlayerViewController: UIViewController {
 	// MARK: - outlets
 	@IBOutlet weak var collectionView: UICollectionView!
+	@IBOutlet weak var systemMsgLabel: UILabel!
 	
 	
 	// MARK: - properties
-	var player: DJAudioController?
 	var castButton: GCKUICastButton?
-	var currentPlaybackTime: Double = 0
-	var mp3URL: URL?
+	var dataSource: TrackListCollectionViewDataSource?
 	var manager: GCKDeviceManager?
-	let bgQueue: DispatchQueue = DispatchQueue(label: "bgPlaybackTimeQueue", qos: .background)
 	
-	
-	
-	
-	// MARK: - GCKSessionManagerListener methods
-	func handleClickedPlayPauseButton(sender: UIButton) {
-//			let isPlaying = player.rate > 0
-//			if isPlaying {
-//				player.pause()
-//				GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.pause()
-//			} else {
-//				player.play()
-//				GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.play()
-//			}
-//			sender.setTitle(isPlaying ? "Pause" : "Play", for: .normal)
-//		}
-	}
+
 
 	func sessionManager(_ sessionManager: GCKSessionManager, willStart session: GCKCastSession) {
 		print("GCK Cast session will start")
 	}
 	
 	// MARK: - methods
-	func handleTimeBecame(time: CMTime) {
-		currentPlaybackTime = time.seconds
 
-	}
-	
-	func queueUpClip() {
-//		if let mp3URL = URL(string: "http://whoisjadennation.com/audio/rain_1h.mp3") {
-//			self.mp3URL = mp3URL
-//			do {
-//				print("loading player")
-//				let player = AVPlayer(url: mp3URL)
-//				self.player = player
-//				
-//				player.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: bgQueue) { time in
-//					self.handleTimeBecame(time: time)
-//				}
-//				
-//				
-//			} catch {
-//				print("could not load mp3 file")
-//			}
-//		}
-	}
-	
 	func setupCastButton() {
 		let castButton = GCKUICastButton()
 		self.castButton = castButton
@@ -86,9 +46,9 @@ class MainPlayerViewController: UIViewController {
 		super.viewDidLoad()
 //		queueUpClip()
 //		setupCastButton()
-		let dataSource = TrackListCollectionViewDataSource()
-		dataSource.adopt(collectionView: collectionView)
-		
+		dataSource = TrackListCollectionViewDataSource()
+		dataSource?.adopt(collectionView: collectionView)
+		collectionView.reloadData()
 		GCKCastContext.sharedInstance().sessionManager.add(self)
 		
 		

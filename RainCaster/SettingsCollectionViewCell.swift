@@ -18,8 +18,10 @@ class SettingsCollectionViewCell: UICollectionViewCell, AdoptiveCell {
 	// MARK: - properties
 	var data: SettingsCellData?
 	
+	
 	// MARK: - AdoptiveCell methods
 	func adopt(data: CellData) {
+		backgroundColor = UIColor.named(.black_2)
 		if let data = data as? SettingsCellData {
 			self.data = data
 		}

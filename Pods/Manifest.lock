@@ -1,14 +1,28 @@
 PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - google-cast-sdk (3.4.0):
     - google-cast-sdk/Core (= 3.4.0)
   - google-cast-sdk/Core (3.4.0)
 
 DEPENDENCIES:
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - google-cast-sdk
 
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: acc480fbe023c6e5fe40f68593f4a70a8c4c7ad5
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
 SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   google-cast-sdk: 35da95f568b50d72628014f3320e2f3240bf2a7a
 
-PODFILE CHECKSUM: 13d47617ffe7d2a11fbd2eb8d79ca80023973406
+PODFILE CHECKSUM: 9c28f553043e6c5229de4eff26222b6ee741c91b
 
 COCOAPODS: 1.2.1

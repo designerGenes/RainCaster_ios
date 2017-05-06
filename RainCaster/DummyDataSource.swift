@@ -25,7 +25,8 @@ class DummyDataSource: NSObject {
 			let newData = ThemedTrackData()
 			newData.sourceURLString = "http://whoisjadennation.com/audio/\(pair.value)"
 			newData.title = pair.key
-			var randomColor = DJColor.randomColor()
+			newData.hoursDuration = max(5, Int.random(max: 10))
+			var randomColor = DJColor.randomColor(avoidGray: true)
 			if !dataArr.isEmpty {
 				while randomColor == dataArr[z - 1].assocColor {
 					randomColor = DJColor.randomColor()

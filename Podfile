@@ -7,4 +7,5 @@ target 'RainCaster' do
 
   # Pods for RainCaster
 	pod 'google-cast-sdk'
+	pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
 end

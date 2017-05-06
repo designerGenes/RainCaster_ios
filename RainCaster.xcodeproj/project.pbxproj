@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5220CD4F78B806719BD9EA88 /* Pods_RainCaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */; };
+		FE3BB69E1EB9487000809F98 /* DJMediaPlayerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB69D1EB9487000809F98 /* DJMediaPlayerControl.swift */; };
+		FE3BB6A01EB9496600809F98 /* DJCachingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB69F1EB9496600809F98 /* DJCachingController.swift */; };
+		FE3BB6A21EB9554500809F98 /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */; };
 		FE6E510D1EABECCB00A62CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */; };
 		FE6E51141EABECCB00A62CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE6E51131EABECCB00A62CCB /* Assets.xcassets */; };
 		FE6E51171EABECCB00A62CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6E51151EABECCB00A62CCB /* LaunchScreen.storyboard */; };
@@ -31,12 +34,19 @@
 		FEA3B4B21EB807E800187EB0 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B11EB807E800187EB0 /* CellData.swift */; };
 		FEA3B4B51EB80E6900187EB0 /* DJAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B41EB80E6900187EB0 /* DJAudioController.swift */; };
 		FEA3B4B71EB80F0000187EB0 /* DummyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B61EB80F0000187EB0 /* DummyDataSource.swift */; };
+		FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */; };
+		FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */; };
+		FEDB63701EBD27E900F8FDF2 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEDB636F1EBD27E900F8FDF2 /* ChameleonFramework.framework */; };
+		FEDB63741EBD65CB00F8FDF2 /* DJCustomActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB63731EBD65CB00F8FDF2 /* DJCustomActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RainCaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		634002D169D85C96F267F6CF /* Pods-RainCaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.release.xcconfig"; sourceTree = "<group>"; };
 		9303DDAE6753518BA0A520D8 /* Pods-RainCaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.debug.xcconfig"; sourceTree = "<group>"; };
+		FE3BB69D1EB9487000809F98 /* DJMediaPlayerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJMediaPlayerControl.swift; sourceTree = "<group>"; };
+		FE3BB69F1EB9496600809F98 /* DJCachingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCachingController.swift; sourceTree = "<group>"; };
+		FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Convenience.swift"; sourceTree = "<group>"; };
 		FE6E51091EABECCB00A62CCB /* RainCaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainCaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE6E51131EABECCB00A62CCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +74,10 @@
 		FEA3B4B11EB807E800187EB0 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		FEA3B4B41EB80E6900187EB0 /* DJAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAudioController.swift; sourceTree = "<group>"; };
 		FEA3B4B61EB80F0000187EB0 /* DummyDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataSource.swift; sourceTree = "<group>"; };
+		FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Curve.swift"; sourceTree = "<group>"; };
+		FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Convenience.swift"; sourceTree = "<group>"; };
+		FEDB636F1EBD27E900F8FDF2 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphonesimulator/ChameleonFramework/ChameleonFramework.framework"; sourceTree = "<group>"; };
+		FEDB63731EBD65CB00F8FDF2 /* DJCustomActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCustomActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEDB63701EBD27E900F8FDF2 /* ChameleonFramework.framework in Frameworks */,
 				5220CD4F78B806719BD9EA88 /* Pods_RainCaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -90,11 +105,20 @@
 		D696942A72FE8B57ABC904D5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FEDB636F1EBD27E900F8FDF2 /* ChameleonFramework.framework */,
 				FE964CF41EAD61D700DF0035 /* Embassy.framework */,
 				FE964CF21EAD5E3D00DF0035 /* Swifter.framework */,
 				0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FE3BB69C1EB9485100809F98 /* MediaPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				FE3BB69D1EB9487000809F98 /* DJMediaPlayerControl.swift */,
+			);
+			name = MediaPlayer;
 			sourceTree = "<group>";
 		};
 		FE6E51001EABECCB00A62CCB = {
@@ -162,6 +186,8 @@
 			isa = PBXGroup;
 			children = (
 				FEA3B4AB1EB8061A00187EB0 /* Cells */,
+				FEDB63731EBD65CB00F8FDF2 /* DJCustomActivityView.swift */,
+				FE3BB69C1EB9485100809F98 /* MediaPlayer */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -198,10 +224,13 @@
 		FEA3B49D1EB8017100187EB0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */,
 				FEA3B4A21EB802C300187EB0 /* Numeric+Convenience.swift */,
 				FEA3B4A01EB8029900187EB0 /* UIColor+Convenience.swift */,
 				FEA3B49E1EB8028B00187EB0 /* UIColor+Design.swift */,
 				FEA3B4A41EB8033600187EB0 /* UIFont+Design.swift */,
+				FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */,
+				FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -238,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA3B4B41EB80E6900187EB0 /* DJAudioController.swift */,
+				FE3BB69F1EB9496600809F98 /* DJCachingController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -373,16 +403,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE964CFC1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.swift in Sources */,
+				FE3BB69E1EB9487000809F98 /* DJMediaPlayerControl.swift in Sources */,
+				FEDB63741EBD65CB00F8FDF2 /* DJCustomActivityView.swift in Sources */,
 				FEA3B4B71EB80F0000187EB0 /* DummyDataSource.swift in Sources */,
+				FE3BB6A01EB9496600809F98 /* DJCachingController.swift in Sources */,
 				FEA3B49F1EB8028B00187EB0 /* UIColor+Design.swift in Sources */,
 				FEA3B4A51EB8033600187EB0 /* UIFont+Design.swift in Sources */,
 				FEA3B49C1EB8015800187EB0 /* Enums.swift in Sources */,
 				FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */,
 				FEA3B4AF1EB8063700187EB0 /* SettingsCollectionViewCell.swift in Sources */,
 				FE964CEF1EAC259F00DF0035 /* MainPlayerVC+GCKDeviceManagerDelegate.swift in Sources */,
+				FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */,
 				FEA3B4B21EB807E800187EB0 /* CellData.swift in Sources */,
 				FEA3B4B51EB80E6900187EB0 /* DJAudioController.swift in Sources */,
+				FE3BB6A21EB9554500809F98 /* UIImage+Convenience.swift in Sources */,
 				FE6E510D1EABECCB00A62CCB /* AppDelegate.swift in Sources */,
+				FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */,
 				FEA3B4AA1EB8046E00187EB0 /* TrackListCollectionViewDataSource.swift in Sources */,
 				FEA3B4A11EB8029900187EB0 /* UIColor+Convenience.swift in Sources */,
 				FEA3B4A31EB802C300187EB0 /* Numeric+Convenience.swift in Sources */,

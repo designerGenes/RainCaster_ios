@@ -32,6 +32,25 @@ extension UIColor {
 		)
 	}
 	
+	func isLighter(than brightness: CGFloat) -> Bool {
+		return self.getBrightness() > brightness
+	}
+		
+	func isDarker(than brightness: CGFloat) -> Bool {
+		return self.getBrightness() < brightness
+	}
+	
+	func getBrightness() -> CGFloat {
+		if let componentColors = cgColor.components {
+			if componentColors.count > 2 {
+				let colorBrightness = ((componentColors[0] * 299) + (componentColors[1] * 587) + (componentColors[2] * 114)) / 1000
+				return colorBrightness
+			}
+		}
+		return 0
+	}
+	
+	
 	func toHexString() -> String {
 		var r:CGFloat = 0
 		var g:CGFloat = 0

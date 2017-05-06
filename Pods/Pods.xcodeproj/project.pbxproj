@@ -7,110 +7,203 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05C041B49F957F54CE568DE066624B26 /* Pods-RainCaster-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEF5B27295685C7FF3140699AAFECF /* Pods-RainCaster-dummy.m */; };
-		5D11BC79A5BDF63414723ECC9A4F23BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		D93016C2796975C8C845188E5BFF4708 /* Pods-RainCaster-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD08BD7B70FB58DB1DF559D95BB733F /* Pods-RainCaster-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		03DCD393DF69EE6DE4AD424B1192DD02 /* UIViewController+Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C35E9D1AB87EC25FDE130BD91FE7E2B /* UIViewController+Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D7F425CFB628271BFB6FCFF8201BF4F /* UIButton+Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D17912A0A140B8517A5A9D078B84389 /* UIButton+Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		139A9CEDE5163F58CBB1A3A135DAD6A3 /* UIImage+ChameleonPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8810A1F0C4096E7BBF962485B5922F /* UIImage+ChameleonPrivate.m */; };
+		1B704F3C816C4532F9B7FDFE0625732E /* ChameleonFramework-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 1010BBA73D8962F420C9ECF686079501 /* ChameleonFramework-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		29F74E8A334254C68C6720E3B247CE32 /* NSArray+Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D3C5C44C0B1075918CACA5B33524CBF /* NSArray+Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DDDE2C06FB4DCC639CFD100F224D6FD /* UIColor+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 75878FFB574B848D308E4769559CE1DF /* UIColor+Chameleon.m */; };
+		34D751AECD252A6F375328CB8BB48D4B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5F748DA8F98E61F788C3488D6BA25DD /* QuartzCore.framework */; };
+		3D08C4F4E2E65D192D317AED0A8237B3 /* UIColor+ChameleonPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6435BF5D64B7406846022976C3F34E08 /* UIColor+ChameleonPrivate.m */; };
+		44117424757A5E62D87B8BF4B41A4207 /* UIColor+ChameleonPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 97BDF9B6F54077334DDDC1A4012497A6 /* UIColor+ChameleonPrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		459048ECD9FAA42B77566EC56ECAD793 /* UINavigationController+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = CAE3C01708065DFD1327E8A2768C49BA /* UINavigationController+Chameleon.m */; };
+		5345D9F66D1DDF548A220409299EA23B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB56A22A987E846FF65248DA108CAD2 /* Foundation.framework */; };
+		5EA9F0ED011B06DEFA8542EEE72508C3 /* UIViewController+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E11F0397F6F0FE8D85574D97FEF00 /* UIViewController+Chameleon.m */; };
+		604286A8F8A2ACB063BDF97B09D4987C /* UILabel+Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = C109B4440ADA730F25BC7AA43A50D900 /* UILabel+Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		66593DF24629A34A3924FD57174065A2 /* Pods-RainCaster-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD08BD7B70FB58DB1DF559D95BB733F /* Pods-RainCaster-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6712100A2CCB9B987281A02F6778473C /* NSArray+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = A5C13CD915641CC1342BD76173FE6A8F /* NSArray+Chameleon.m */; };
+		6D9F0C77C6996D7FBC0F03AF8E706276 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDBA94A94B982885ECCA1662BE8CD7CF /* UIKit.framework */; };
+		78281D8673FC507089FCFDC439DEDC16 /* Chameleon_.h in Headers */ = {isa = PBXBuildFile; fileRef = 78D41A0470CD3C20D7713D207663572F /* Chameleon_.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		833F15A28A0D562548517BCA8EAF23B6 /* ChameleonShorthand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C561DCEF232F19D2ABCD1E7A4AFDCF /* ChameleonShorthand.swift */; };
+		83CFC8F573AD5B75191E162E64C7D039 /* UIButton+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DB806829E422385A9CDF0825252454A /* UIButton+Chameleon.m */; };
+		86F7D970F220974A0E26C3B632C5C74F /* UIImage+ChameleonPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C81CAAE25608B681F030A5342F5E7CE /* UIImage+ChameleonPrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8ECF929AC5E737EBEB542283886D5E07 /* UIView+ChameleonPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 88158ADA75A1834282F051E6BCD5A203 /* UIView+ChameleonPrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		95E542740750F827BE2EBE3DE6F62D0E /* ChameleonFramework-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D40456531A2D63DA5EE85CAA93CE40F /* ChameleonFramework-dummy.m */; };
+		9A3EAF15D3C58FD56A552FD703A9154C /* ChameleonConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 4450A1F81D5714C4F09BCDB8D4304454 /* ChameleonConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9B6AD39C81FAF37861FC0FEC41022146 /* UIAppearance+Swift.h in Headers */ = {isa = PBXBuildFile; fileRef = A7685D0822B2F61856680FE31BB7A9C1 /* UIAppearance+Swift.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A664D0A12D5F3DBD08A7E8DFE3AE83E2 /* UIView+ChameleonPrivate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68D1659F8E4D4ACFD56542E8B8E95CB1 /* UIView+ChameleonPrivate.m */; };
+		B26038F91C7C4CC322D7F25C5D16FE9E /* ChameleonConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D43F6DD109251E2D5A2A5133F969223 /* ChameleonConstants.m */; };
+		B4EA53699AA19822E674188743266B2B /* ChameleonMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 83A00049AF683BD94016EDE0A4849309 /* ChameleonMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BFA97401155C4E14893D9AA1E0D1EC80 /* UINavigationController+Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = CF9943160CDE9A2598A57815907A9F33 /* UINavigationController+Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3C8BB46937DD0BBC7FBE25E298052F8 /* UIAppearance+Swift.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C516276C964D075B7E3D931799B5E1C /* UIAppearance+Swift.m */; };
+		DB5FB611FB6EBF2F2BA7B78FE0CED535 /* UIColor+Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = D45B0C14EFFAB467B78245AE2F7AE24E /* UIColor+Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E7FA38FEAF957D69E92153FBAFB3DB40 /* Chameleon_.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EFE5A6AB5C3ACA5F2EEC48741B42F41 /* Chameleon_.m */; };
+		E87D2FB41E6EB857013EB020297C08DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB56A22A987E846FF65248DA108CAD2 /* Foundation.framework */; };
+		E91202612969D2BDB5A801F81AE96FFB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3292CC8DBF6352C2BF2B949CB548248F /* CoreGraphics.framework */; };
+		EC786817C5CEBCD51A4C9EC9B883ED6F /* ChameleonEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = DB0F25B3EE6EF149AC461E3ACC35151C /* ChameleonEnums.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		ED4DBD1E13182AA813DC1237FA6E3A42 /* Chameleon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FC66F021A6BB61D58AFE0C0C3CD4FB9 /* Chameleon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F378104F531F52F64066921701B1CBC6 /* Pods-RainCaster-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAEF5B27295685C7FF3140699AAFECF /* Pods-RainCaster-dummy.m */; };
+		FB82C1293D7DDE0D3E2E6D68CDD5852C /* UILabel+Chameleon.m in Sources */ = {isa = PBXBuildFile; fileRef = 57F74BE4AE041F16FEDEA7F1DE7F428F /* UILabel+Chameleon.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		00F40FD49F05D151F3DCD31648634F45 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76BD4592010354D6C23D6ECCA20D83A8;
+			remoteInfo = ChameleonFramework;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		00CF1F5F3665D7B7522612BE556D9779 /* GCKLobbyState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLobbyState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLobbyState.h"; sourceTree = "<group>"; };
-		043585D0BF1DC2689058ABC7E14D9A30 /* NSTimer+GCKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSTimer+GCKAdditions.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/NSTimer+GCKAdditions.h"; sourceTree = "<group>"; };
-		04977E19C5920872EFE1DC23060BBEDF /* GCKGameManagerState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameManagerState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameManagerState.h"; sourceTree = "<group>"; };
-		06E54FCB4CF78A44BC3C226C9DE48C5F /* GCKFilterCriteria.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKFilterCriteria.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKFilterCriteria.h"; sourceTree = "<group>"; };
-		08EFA1A3DB5A47BBA8B9E088CA2F2D60 /* GCKDeviceProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDeviceProvider.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceProvider.h"; sourceTree = "<group>"; };
+		0118BC0C0DAB95619AE43B50E64C9D80 /* GCKApplicationMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKApplicationMetadata.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKApplicationMetadata.h"; sourceTree = "<group>"; };
+		05D9A71D036E46A562F3E75DF73E64E1 /* GCKLoggerCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLoggerCommon.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLoggerCommon.h"; sourceTree = "<group>"; };
+		05F284DD9D85AC4E3BF1A51D147F7860 /* ChameleonFramework.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ChameleonFramework.modulemap; sourceTree = "<group>"; };
+		0751D764446A7E44D7C3EFFB27B078D1 /* GCKLoggerFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLoggerFilter.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLoggerFilter.h"; sourceTree = "<group>"; };
+		07C0932055E58C58E75149ADEFEE0957 /* GCKUIPlayPauseToggleController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIPlayPauseToggleController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIPlayPauseToggleController.h"; sourceTree = "<group>"; };
+		097C21A8606A848E692B797EB4A7AFD9 /* GCKSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSession.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSession.h"; sourceTree = "<group>"; };
 		0C024D0F998341C3FCA933816E136EBA /* Pods-RainCaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RainCaster.release.xcconfig"; sourceTree = "<group>"; };
-		0D0E535DE78B2144B53210E3F70682A8 /* GCKCastOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastOptions.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastOptions.h"; sourceTree = "<group>"; };
-		0E49396222F62151BFA75BAE26A7DFAE /* GCKUIButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIButton.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIButton.h"; sourceTree = "<group>"; };
-		0F7B7133D0FCABC1933BDF855892C1C3 /* GCKMediaInformation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaInformation.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaInformation.h"; sourceTree = "<group>"; };
-		12FBD0BABF078A6A0DCBDBE168CF130E /* GCKNSDictionary+TypedValueLookup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKNSDictionary+TypedValueLookup.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKNSDictionary+TypedValueLookup.h"; sourceTree = "<group>"; };
-		1B7CB12D37A8D9E25874483F436D9745 /* NSDictionary+GCKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+GCKAdditions.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/NSDictionary+GCKAdditions.h"; sourceTree = "<group>"; };
-		1C7A661A84B43725786FA820A377D5B3 /* GCKUICastContainerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUICastContainerViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUICastContainerViewController.h"; sourceTree = "<group>"; };
-		2857E38126EFE18257C1BD4DAC64A991 /* GCKGenericChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGenericChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGenericChannel.h"; sourceTree = "<group>"; };
-		311EE5850E321D0C9E14AD9C1DE2938D /* GCKRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKRequest.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKRequest.h"; sourceTree = "<group>"; };
-		32D3470E56308836E4AB0E2186AE52E9 /* GCKLoggerCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLoggerCommon.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLoggerCommon.h"; sourceTree = "<group>"; };
-		347A2DBAB4A3F9E83F821089B08B666A /* GCKPlayerInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKPlayerInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKPlayerInfo.h"; sourceTree = "<group>"; };
-		34D141CC16ACF2D7C161D0C4749D0422 /* GCKCastContext+UI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKCastContext+UI.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastContext+UI.h"; sourceTree = "<group>"; };
-		3BB441E6B80F08DC1CAE4D5183C9E28F /* GCKAdBreakClipInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKAdBreakClipInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKAdBreakClipInfo.h"; sourceTree = "<group>"; };
-		46732FBD60757A9F3F31109D6509EDF9 /* GCKMultizoneStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMultizoneStatus.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMultizoneStatus.h"; sourceTree = "<group>"; };
-		46CB0E66549FBBABC96B2840C3C0AAC7 /* GCKGameManagerResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameManagerResult.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameManagerResult.h"; sourceTree = "<group>"; };
-		47176C93FB4837F9AA85FF87222D70C7 /* GCKVideoInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKVideoInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKVideoInfo.h"; sourceTree = "<group>"; };
+		0D1C8E3DE72F5928100159586FA721EC /* GCKMediaMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaMetadata.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaMetadata.h"; sourceTree = "<group>"; };
+		0EFE5A6AB5C3ACA5F2EEC48741B42F41 /* Chameleon_.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = Chameleon_.m; path = "Pod/Classes/Objective-C/Chameleon_.m"; sourceTree = "<group>"; };
+		1010BBA73D8962F420C9ECF686079501 /* ChameleonFramework-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ChameleonFramework-umbrella.h"; sourceTree = "<group>"; };
+		11A32101877989C84F4F2FFC8989BB9B /* GCKGenericChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGenericChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGenericChannel.h"; sourceTree = "<group>"; };
+		12C561DCEF232F19D2ABCD1E7A4AFDCF /* ChameleonShorthand.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChameleonShorthand.swift; path = Pod/Classes/Swift/ChameleonShorthand.swift; sourceTree = "<group>"; };
+		1413975135155A1D31AEB1A0E27F294D /* GCKMediaStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaStatus.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaStatus.h"; sourceTree = "<group>"; };
+		17DE2725CBDFC0C7F46FB12D6A3A397B /* GCKGameplayState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameplayState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameplayState.h"; sourceTree = "<group>"; };
+		18792661F87D1763EC97B2CE74D25612 /* GCKGameManagerState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameManagerState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameManagerState.h"; sourceTree = "<group>"; };
+		1A7402C271F83359153ECCD131D272E6 /* GCKUIImageHints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIImageHints.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIImageHints.h"; sourceTree = "<group>"; };
+		1D22BBBC2474165CFDF494F4F8C13020 /* GCKSession+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKSession+Protected.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSession+Protected.h"; sourceTree = "<group>"; };
+		1DB806829E422385A9CDF0825252454A /* UIButton+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Chameleon.m"; path = "Pod/Classes/Objective-C/UIButton+Chameleon.m"; sourceTree = "<group>"; };
+		28914D6AA8B3DF560AE87A2B5FF25494 /* GCKMediaTextTrackStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaTextTrackStyle.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaTextTrackStyle.h"; sourceTree = "<group>"; };
+		316B80031B816C8618EA838DE5FE5339 /* GCKDeviceProvider+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKDeviceProvider+Protected.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceProvider+Protected.h"; sourceTree = "<group>"; };
+		3292CC8DBF6352C2BF2B949CB548248F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		3332286156094FE092E52F94E27DF3C6 /* GCKUIExpandedMediaControlsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIExpandedMediaControlsViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIExpandedMediaControlsViewController.h"; sourceTree = "<group>"; };
+		3C81CAAE25608B681F030A5342F5E7CE /* UIImage+ChameleonPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+ChameleonPrivate.h"; path = "Pod/Classes/Objective-C/UIImage+ChameleonPrivate.h"; sourceTree = "<group>"; };
+		3D17912A0A140B8517A5A9D078B84389 /* UIButton+Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+Chameleon.h"; path = "Pod/Classes/Objective-C/UIButton+Chameleon.h"; sourceTree = "<group>"; };
+		3D3C5C44C0B1075918CACA5B33524CBF /* NSArray+Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+Chameleon.h"; path = "Pod/Classes/Objective-C/NSArray+Chameleon.h"; sourceTree = "<group>"; };
+		3EB11FC9ADCFE20910A4533A19A1993B /* GCKUIMediaButtonBarProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMediaButtonBarProtocol.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMediaButtonBarProtocol.h"; sourceTree = "<group>"; };
+		3EC04769B387A6F2D57B86DC14245F72 /* GCKLaunchOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLaunchOptions.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLaunchOptions.h"; sourceTree = "<group>"; };
+		3EC2C93F51624257EA217C247D27AAD9 /* GCKVideoInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKVideoInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKVideoInfo.h"; sourceTree = "<group>"; };
+		3F299CE89008B2F905EBA2B3C5DDED62 /* ChameleonFramework-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ChameleonFramework-prefix.pch"; sourceTree = "<group>"; };
+		3FA5A889C10965E1499E5D0FA68F0B75 /* GCKNSDictionary+TypedValueLookup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKNSDictionary+TypedValueLookup.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKNSDictionary+TypedValueLookup.h"; sourceTree = "<group>"; };
+		4450A1F81D5714C4F09BCDB8D4304454 /* ChameleonConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ChameleonConstants.h; path = "Pod/Classes/Objective-C/ChameleonConstants.h"; sourceTree = "<group>"; };
 		47DBF80A245E18158980FAF3237B9185 /* Pods-RainCaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-RainCaster.debug.xcconfig"; sourceTree = "<group>"; };
-		493364D3259A45F96706B2FB8FA15E28 /* Pods_RainCaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RainCaster.framework; path = "Pods-RainCaster.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		49FAB3880BFE68C31A86CF76895C5640 /* GCKImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKImage.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKImage.h"; sourceTree = "<group>"; };
-		4C844241BAB794B18B6A3C2D3BEFF13E /* GCKUIImageHints.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIImageHints.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIImageHints.h"; sourceTree = "<group>"; };
-		4DD6B87BB54F7D5FB114EFB03F6B8894 /* GCKDeviceManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDeviceManager.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceManager.h"; sourceTree = "<group>"; };
-		531B417D66DD3AE944043BE4DA71021D /* GCKCastContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastContext.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastContext.h"; sourceTree = "<group>"; };
-		538C043FE53C8670898304586D76143C /* GCKLoggerFilter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLoggerFilter.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLoggerFilter.h"; sourceTree = "<group>"; };
+		4A6B4EF69EA39B69C9DB05430C74F725 /* NSTimer+GCKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSTimer+GCKAdditions.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/NSTimer+GCKAdditions.h"; sourceTree = "<group>"; };
+		4ECDE46FFE7A90051756EC8B15481136 /* GCKCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCommon.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCommon.h"; sourceTree = "<group>"; };
+		50E29E32F92F6CA74E1CBFFB28D7DE10 /* GCKRequest.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKRequest.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKRequest.h"; sourceTree = "<group>"; };
+		539ADCD0769A412941F048B573B2E550 /* GCKMediaCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaCommon.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaCommon.h"; sourceTree = "<group>"; };
+		551CB157E0986297CA68661C2FC00846 /* GCKGameManagerChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameManagerChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameManagerChannel.h"; sourceTree = "<group>"; };
+		5533175E2C199D1B6BB56E9A8A2A72BB /* GCKSessionTraits.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSessionTraits.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSessionTraits.h"; sourceTree = "<group>"; };
 		5617C6DD919D58A6B385B8E22FE93A0F /* Pods-RainCaster-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RainCaster-resources.sh"; sourceTree = "<group>"; };
-		595CC54DBCAE3367F9B01D74DAF61C13 /* GCKGlobalFlags.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGlobalFlags.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGlobalFlags.h"; sourceTree = "<group>"; };
-		59B0138AB2110D8B65CF1E735987D56D /* GCKUIStreamPositionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIStreamPositionController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIStreamPositionController.h"; sourceTree = "<group>"; };
-		655EE9D38624519E25AA989BD8D48637 /* GCKPlayerState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKPlayerState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKPlayerState.h"; sourceTree = "<group>"; };
-		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6A415FB96946493E8DE3853958C1AFAD /* GCKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKError.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKError.h"; sourceTree = "<group>"; };
-		72C7560BE5D1B21EB49E5F91668A6B48 /* GCKUIMediaButtonBarProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMediaButtonBarProtocol.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMediaButtonBarProtocol.h"; sourceTree = "<group>"; };
+		571DDEB2043D424D685CF1109B636B21 /* GCKAdBreakInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKAdBreakInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKAdBreakInfo.h"; sourceTree = "<group>"; };
+		57F74BE4AE041F16FEDEA7F1DE7F428F /* UILabel+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UILabel+Chameleon.m"; path = "Pod/Classes/Objective-C/UILabel+Chameleon.m"; sourceTree = "<group>"; };
+		58CA7652757F4B7CFF18969DFA9C9160 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5A0BE5015F9339F1C8ED1E52386B2692 /* GCKMultizoneStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMultizoneStatus.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMultizoneStatus.h"; sourceTree = "<group>"; };
+		5D43F6DD109251E2D5A2A5133F969223 /* ChameleonConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ChameleonConstants.m; path = "Pod/Classes/Objective-C/ChameleonConstants.m"; sourceTree = "<group>"; };
+		60280CEC0C6773B2CE30EA8C11AB0D5B /* GCKMediaQueueItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaQueueItem.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaQueueItem.h"; sourceTree = "<group>"; };
+		61153622AADA18628FC851B20C98986C /* GCKUICastContainerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUICastContainerViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUICastContainerViewController.h"; sourceTree = "<group>"; };
+		6435BF5D64B7406846022976C3F34E08 /* UIColor+ChameleonPrivate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+ChameleonPrivate.m"; path = "Pod/Classes/Objective-C/UIColor+ChameleonPrivate.m"; sourceTree = "<group>"; };
+		66581DA75D70DF7875159C5BEEDA0D09 /* GCKUIMediaTrackSelectionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMediaTrackSelectionViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMediaTrackSelectionViewController.h"; sourceTree = "<group>"; };
+		68D1659F8E4D4ACFD56542E8B8E95CB1 /* UIView+ChameleonPrivate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+ChameleonPrivate.m"; path = "Pod/Classes/Objective-C/UIView+ChameleonPrivate.m"; sourceTree = "<group>"; };
+		6C35E9D1AB87EC25FDE130BD91FE7E2B /* UIViewController+Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Chameleon.h"; path = "Pod/Classes/Objective-C/UIViewController+Chameleon.h"; sourceTree = "<group>"; };
+		6DA4251A0DE27E066DD0EF16FCCDD27E /* GCKRemoteMediaClient+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKRemoteMediaClient+Protected.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKRemoteMediaClient+Protected.h"; sourceTree = "<group>"; };
+		6FC66F021A6BB61D58AFE0C0C3CD4FB9 /* Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Chameleon.h; path = "Pod/Classes/Objective-C/Chameleon.h"; sourceTree = "<group>"; };
+		72179CF886F8F31ABF07D69A71291E7C /* GCKMultizoneDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMultizoneDevice.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMultizoneDevice.h"; sourceTree = "<group>"; };
 		737969F88395942FA94C52D4E3F7D295 /* Pods-RainCaster.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-RainCaster.modulemap"; sourceTree = "<group>"; };
-		79F5AF2CA89B5B46D1F1CB1B015DB1BC /* GCKUIImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIImageCache.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIImageCache.h"; sourceTree = "<group>"; };
-		7A867414C8F4605E2BAECB6F3962D95D /* GCKSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSessionManager.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSessionManager.h"; sourceTree = "<group>"; };
-		7AAB50916A8F2D78EEE19983E3484063 /* GCKUIStyleAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIStyleAttributes.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIStyleAttributes.h"; sourceTree = "<group>"; };
-		7B1DE9456188DC3885FC1184AE551339 /* GCKCastChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastChannel.h"; sourceTree = "<group>"; };
-		7C138620CFCE9347DB2F9F43AC4DD4B4 /* GCKUIMiniMediaControlsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMiniMediaControlsViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMiniMediaControlsViewController.h"; sourceTree = "<group>"; };
-		822AEBD954FD64BDE2B998408E4E1D9C /* GCKGameManagerChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameManagerChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameManagerChannel.h"; sourceTree = "<group>"; };
+		73C0737FD862DA0013F9EFCA3143CDC9 /* GCKDeviceManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDeviceManager.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceManager.h"; sourceTree = "<group>"; };
+		7402C39975712E98F99E2D8EF8C864D8 /* GCKPlayerState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKPlayerState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKPlayerState.h"; sourceTree = "<group>"; };
+		7452C9F09E793CEA3BEA09C6216682B2 /* GCKUICastButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUICastButton.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUICastButton.h"; sourceTree = "<group>"; };
+		75878FFB574B848D308E4769559CE1DF /* UIColor+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Chameleon.m"; path = "Pod/Classes/Objective-C/UIColor+Chameleon.m"; sourceTree = "<group>"; };
+		78D41A0470CD3C20D7713D207663572F /* Chameleon_.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Chameleon_.h; path = "Pod/Classes/Objective-C/Chameleon_.h"; sourceTree = "<group>"; };
+		7AE4B73AC749D8CAC7773BA9A6A6227F /* GCKUIImageCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIImageCache.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIImageCache.h"; sourceTree = "<group>"; };
+		7C516276C964D075B7E3D931799B5E1C /* UIAppearance+Swift.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIAppearance+Swift.m"; path = "Pod/Classes/Objective-C/UIAppearance+Swift.m"; sourceTree = "<group>"; };
+		7D7854E20D5B7B7175AD1A5945D53A0C /* GCKColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKColor.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKColor.h"; sourceTree = "<group>"; };
+		7E8ECAF6EADF999611F9CF77ABFB8B5D /* NSDictionary+GCKAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+GCKAdditions.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/NSDictionary+GCKAdditions.h"; sourceTree = "<group>"; };
+		7E909FE8209E15ED34FEF856477C504F /* GCKDeviceScanner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDeviceScanner.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceScanner.h"; sourceTree = "<group>"; };
+		80029C1F4C6398289E80F21087FB4B8D /* GCKUIDeviceVolumeController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIDeviceVolumeController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIDeviceVolumeController.h"; sourceTree = "<group>"; };
+		8217B25C7A77146A007CDA160648FDDF /* GCKError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKError.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKError.h"; sourceTree = "<group>"; };
 		83545E2E22115EFB53428739616A138C /* Pods-RainCaster-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-RainCaster-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8931FF7ED87B4D8FBBFA7B15521A9F7E /* GCKJSONUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKJSONUtils.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKJSONUtils.h"; sourceTree = "<group>"; };
-		8954A1716F361B327CF253426704FCC5 /* GCKMediaControlChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaControlChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaControlChannel.h"; sourceTree = "<group>"; };
-		89E80750E130C45EBC3E132159ABB5BA /* GCKAdBreakInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKAdBreakInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKAdBreakInfo.h"; sourceTree = "<group>"; };
-		8A5381EC2C8DCD75379B0275C6308111 /* GCKAdBreakStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKAdBreakStatus.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKAdBreakStatus.h"; sourceTree = "<group>"; };
-		8B4BA38F36BC88DFBB5B8C52040C2AA9 /* GCKMediaTextTrackStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaTextTrackStyle.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaTextTrackStyle.h"; sourceTree = "<group>"; };
-		8CA588351486E2E94ED1329106999F1B /* GCKMediaStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaStatus.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaStatus.h"; sourceTree = "<group>"; };
-		8D7546EF4AA6B376CDAE7B0DE679EC7B /* GCKSessionTraits.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSessionTraits.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSessionTraits.h"; sourceTree = "<group>"; };
+		8384BE3DED2C17D8226006524662396D /* Pods_RainCaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_RainCaster.framework; path = "Pods-RainCaster.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A00049AF683BD94016EDE0A4849309 /* ChameleonMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ChameleonMacros.h; path = "Pod/Classes/Objective-C/ChameleonMacros.h"; sourceTree = "<group>"; };
+		880E3EDC5309257373D4CF55F54530FA /* ChameleonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ChameleonFramework.framework; path = ChameleonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		88158ADA75A1834282F051E6BCD5A203 /* UIView+ChameleonPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIView+ChameleonPrivate.h"; path = "Pod/Classes/Objective-C/UIView+ChameleonPrivate.h"; sourceTree = "<group>"; };
+		8D40456531A2D63DA5EE85CAA93CE40F /* ChameleonFramework-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ChameleonFramework-dummy.m"; sourceTree = "<group>"; };
+		8F5C8A4EABD4A13D46D0300FCA650460 /* GCKRemoteMediaClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKRemoteMediaClient.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKRemoteMediaClient.h"; sourceTree = "<group>"; };
+		9139A92DAF4B7371F6C2AE9383CF1532 /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94C4A55E731A389E3F792ABFE18223DF /* GCKUIStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIStyle.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIStyle.h"; sourceTree = "<group>"; };
-		95A2728C4B349226F272A9F6099CECDA /* GCKMediaCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaCommon.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaCommon.h"; sourceTree = "<group>"; };
-		9A8FCB7D0E5B9937854D2A43473121F9 /* GCKMediaTrack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaTrack.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaTrack.h"; sourceTree = "<group>"; };
-		9E88BEB377911A9972588FF94D49ACA4 /* GCKGameplayState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameplayState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameplayState.h"; sourceTree = "<group>"; };
+		957F358BDFA098F7164673038FC72BD1 /* GCKMediaInformation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaInformation.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaInformation.h"; sourceTree = "<group>"; };
+		97BDF9B6F54077334DDDC1A4012497A6 /* UIColor+ChameleonPrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+ChameleonPrivate.h"; path = "Pod/Classes/Objective-C/UIColor+ChameleonPrivate.h"; sourceTree = "<group>"; };
+		97FFE889E1BD8BD857940BD71A11F12B /* GCKUIMediaController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMediaController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMediaController.h"; sourceTree = "<group>"; };
+		9CE9E17B37E8424C7E76B9171BDE485E /* GCKCastOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastOptions.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastOptions.h"; sourceTree = "<group>"; };
+		9EBA5D29FD8BC7F1C8BD8B772EFFC71F /* GCKLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLogger.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLogger.h"; sourceTree = "<group>"; };
 		A385470D31882DB7255C819D68B8EF86 /* Pods-RainCaster-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RainCaster-acknowledgements.plist"; sourceTree = "<group>"; };
-		A3F5F04D1A01575EFF14031BD51AC2E7 /* GCKUIExpandedMediaControlsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIExpandedMediaControlsViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIExpandedMediaControlsViewController.h"; sourceTree = "<group>"; };
-		A44E69F856A1587C70002A28B799C8AF /* GCKMediaMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaMetadata.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaMetadata.h"; sourceTree = "<group>"; };
-		A7610BDF3878F37C5FC85117EA919570 /* GCKLaunchOptions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLaunchOptions.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLaunchOptions.h"; sourceTree = "<group>"; };
-		AF2CFE2C5BE16AEB6116B4CFDBAC2673 /* GCKDiscoveryManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDiscoveryManager.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDiscoveryManager.h"; sourceTree = "<group>"; };
-		B7218121053EF1D48E6F1A815077257A /* GCKCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCommon.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCommon.h"; sourceTree = "<group>"; };
+		A391C2334F4C0B9993AE3B4CCEC6B72D /* GCKImage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKImage.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKImage.h"; sourceTree = "<group>"; };
+		A5C13CD915641CC1342BD76173FE6A8F /* NSArray+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+Chameleon.m"; path = "Pod/Classes/Objective-C/NSArray+Chameleon.m"; sourceTree = "<group>"; };
+		A7685D0822B2F61856680FE31BB7A9C1 /* UIAppearance+Swift.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIAppearance+Swift.h"; path = "Pod/Classes/Objective-C/UIAppearance+Swift.h"; sourceTree = "<group>"; };
+		A9FFC79DC16CE0D3B9BF6DB0D8AFE1C8 /* GCKUIStyleAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIStyleAttributes.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIStyleAttributes.h"; sourceTree = "<group>"; };
+		AD569F659A8BCB0F78792913221E1407 /* GCKUIStreamPositionController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIStreamPositionController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIStreamPositionController.h"; sourceTree = "<group>"; };
+		AD658C6495EF8B59B9FEF461518D263A /* GCKUIUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIUtils.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIUtils.h"; sourceTree = "<group>"; };
+		AFE82741CC2FDC02F786C7EC2C9572F8 /* GCKPlayerInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKPlayerInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKPlayerInfo.h"; sourceTree = "<group>"; };
+		B310CAF4C4A7B0A447599E21061A0C7F /* GCKCastSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastSession.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastSession.h"; sourceTree = "<group>"; };
+		B5303DBB7EC310B7BFFEB7AA85E307AD /* GCKSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSessionManager.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSessionManager.h"; sourceTree = "<group>"; };
+		B58630073678933B162C8EAB6B4F437C /* GCKCastContext+UI.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKCastContext+UI.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastContext+UI.h"; sourceTree = "<group>"; };
 		B9531C69E589CD0D9902D5898CE29AA9 /* Pods-RainCaster-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-RainCaster-frameworks.sh"; sourceTree = "<group>"; };
-		BE4049F5C725DDFECB7F69F7B3A1F50B /* GCKSession+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKSession+Protected.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSession+Protected.h"; sourceTree = "<group>"; };
-		C0D0390FDBC68E96B70CCED1522BFF87 /* GCKUIPlayPauseToggleController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIPlayPauseToggleController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIPlayPauseToggleController.h"; sourceTree = "<group>"; };
-		C232235E5B55758590FBAA4F665A8E27 /* GCKColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKColor.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKColor.h"; sourceTree = "<group>"; };
-		C660A92A7CCADEA66F9B66BFA695028C /* GCKUIImagePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIImagePicker.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIImagePicker.h"; sourceTree = "<group>"; };
-		C8FB4F9F8513F903146375E316CAF571 /* GCKDynamicFrameworkSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDynamicFrameworkSupport.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDynamicFrameworkSupport.h"; sourceTree = "<group>"; };
-		CBE679A3F30AE13C5586165C130512C8 /* GCKSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSession.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSession.h"; sourceTree = "<group>"; };
-		D00DDC3B1C0251224BA0ABA11C6A76AB /* GoogleCast.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleCast.framework; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework"; sourceTree = "<group>"; };
-		D338C19E8B36C72189574ABFE365C3AF /* GCKDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDevice.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDevice.h"; sourceTree = "<group>"; };
-		D51C92F7410CE3EDCDD3977F1E5855CF /* GCKMultizoneDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMultizoneDevice.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMultizoneDevice.h"; sourceTree = "<group>"; };
-		D62185E8DA76DCF4FC6A7058D56E967A /* GCKUIMediaTrackSelectionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMediaTrackSelectionViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMediaTrackSelectionViewController.h"; sourceTree = "<group>"; };
-		D68E710BAA0E8B77FAEC770EBBC7E14E /* GCKSenderApplicationInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSenderApplicationInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSenderApplicationInfo.h"; sourceTree = "<group>"; };
-		D6B5D07213F93846AF875D94269049F7 /* GCKLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLogger.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLogger.h"; sourceTree = "<group>"; };
+		BCBF46B1B72D55F8A3D482832562A332 /* GCKGlobalFlags.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGlobalFlags.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGlobalFlags.h"; sourceTree = "<group>"; };
+		BE7415AAA8C38E370406E2C96C1A2977 /* GCKMediaTrack.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaTrack.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaTrack.h"; sourceTree = "<group>"; };
+		C109B4440ADA730F25BC7AA43A50D900 /* UILabel+Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UILabel+Chameleon.h"; path = "Pod/Classes/Objective-C/UILabel+Chameleon.h"; sourceTree = "<group>"; };
+		C5B03AEED8B6E080942C19F10B2F6314 /* GCKMediaControlChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaControlChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaControlChannel.h"; sourceTree = "<group>"; };
+		C68B8DABA732A42EF9EB53075ED0C694 /* GCKCastChannel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastChannel.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastChannel.h"; sourceTree = "<group>"; };
+		C6A0989F759FF8D8387764DB38E4F3ED /* GCKUIMiniMediaControlsViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMiniMediaControlsViewController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMiniMediaControlsViewController.h"; sourceTree = "<group>"; };
+		C8644A80654A63C2377DFF42C519EEB6 /* GCKGameManagerResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKGameManagerResult.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKGameManagerResult.h"; sourceTree = "<group>"; };
+		CAE3C01708065DFD1327E8A2768C49BA /* UINavigationController+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationController+Chameleon.m"; path = "Pod/Classes/Objective-C/UINavigationController+Chameleon.m"; sourceTree = "<group>"; };
+		CC861EE65EBD61524ACE0F90B68AAB64 /* GCKLobbyState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKLobbyState.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKLobbyState.h"; sourceTree = "<group>"; };
+		CDD6B3751A66887B7E3E1A1B45CBC681 /* GCKUIImagePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIImagePicker.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIImagePicker.h"; sourceTree = "<group>"; };
+		CEB146C82F48D5820BBBCACA44EA64AC /* GoogleCast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GoogleCast.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GoogleCast.h"; sourceTree = "<group>"; };
+		CF9943160CDE9A2598A57815907A9F33 /* UINavigationController+Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UINavigationController+Chameleon.h"; path = "Pod/Classes/Objective-C/UINavigationController+Chameleon.h"; sourceTree = "<group>"; };
+		D45B0C14EFFAB467B78245AE2F7AE24E /* UIColor+Chameleon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIColor+Chameleon.h"; path = "Pod/Classes/Objective-C/UIColor+Chameleon.h"; sourceTree = "<group>"; };
+		D5D9DCFA12AD6DFD0A34E9685298A4AA /* GCKCastContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastContext.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastContext.h"; sourceTree = "<group>"; };
 		D6DE3D1CE747A39F418606BCD819DDE7 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DC6D70D8D7C4AD2315CCE22E1BB8287B /* GCKUIDeviceVolumeController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIDeviceVolumeController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIDeviceVolumeController.h"; sourceTree = "<group>"; };
-		DC972FD05F489EC05CBCEDA124A1CC51 /* GoogleCast.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GoogleCast.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GoogleCast.h"; sourceTree = "<group>"; };
+		D97E11F0397F6F0FE8D85574D97FEF00 /* UIViewController+Chameleon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Chameleon.m"; path = "Pod/Classes/Objective-C/UIViewController+Chameleon.m"; sourceTree = "<group>"; };
+		DB0F25B3EE6EF149AC461E3ACC35151C /* ChameleonEnums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ChameleonEnums.h; path = "Pod/Classes/Objective-C/ChameleonEnums.h"; sourceTree = "<group>"; };
 		DCD08BD7B70FB58DB1DF559D95BB733F /* Pods-RainCaster-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-RainCaster-umbrella.h"; sourceTree = "<group>"; };
+		DD911885800768C7D050AEA040F1469D /* GCKUIStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIStyle.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIStyle.h"; sourceTree = "<group>"; };
+		DDB093F5B311888448EDE40D54E33B28 /* GCKDeviceProvider.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDeviceProvider.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceProvider.h"; sourceTree = "<group>"; };
 		DEAEF5B27295685C7FF3140699AAFECF /* Pods-RainCaster-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-RainCaster-dummy.m"; sourceTree = "<group>"; };
-		E3DBE7F6205A2DB4E2CFE37F093C79EF /* GCKRemoteMediaClient+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKRemoteMediaClient+Protected.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKRemoteMediaClient+Protected.h"; sourceTree = "<group>"; };
-		E50602149D6DA2FFF694F5B53755C2B8 /* GCKUIMediaController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIMediaController.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIMediaController.h"; sourceTree = "<group>"; };
-		E61ABDC2A4580CD8D931D32A942308D1 /* GCKCastSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKCastSession.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKCastSession.h"; sourceTree = "<group>"; };
-		EA541555C1BDF229155E8C960E7017B8 /* GCKMediaQueueItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKMediaQueueItem.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKMediaQueueItem.h"; sourceTree = "<group>"; };
-		EA5700F7479D5CCD80703F61882093B3 /* GCKUIUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIUtils.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIUtils.h"; sourceTree = "<group>"; };
-		EAC1E554589F01E7F580D154E6186E52 /* GCKDeviceScanner.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDeviceScanner.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceScanner.h"; sourceTree = "<group>"; };
-		EAF47ECF4EF2ADB98DF456C08DD38FD4 /* GCKRemoteMediaClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKRemoteMediaClient.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKRemoteMediaClient.h"; sourceTree = "<group>"; };
-		F4BBF690B60E713E59451B42151E74C5 /* GCKDeviceProvider+Protected.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "GCKDeviceProvider+Protected.h"; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDeviceProvider+Protected.h"; sourceTree = "<group>"; };
-		F71FA5C3A887F6059101DB644468C95E /* GCKUICastButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUICastButton.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUICastButton.h"; sourceTree = "<group>"; };
-		FB41635624B502248D337CC4652DB6FB /* GCKDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDefines.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDefines.h"; sourceTree = "<group>"; };
-		FD86D84041FE9EF7904526735C1EEA67 /* GCKApplicationMetadata.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKApplicationMetadata.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKApplicationMetadata.h"; sourceTree = "<group>"; };
+		DF44C3A3261231C66FDE88FDA9352F12 /* ChameleonFramework.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ChameleonFramework.xcconfig; sourceTree = "<group>"; };
+		E07E78D0686ABA0C2779D0F165AD0E7C /* GCKAdBreakStatus.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKAdBreakStatus.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKAdBreakStatus.h"; sourceTree = "<group>"; };
+		E2516D9468439E34346225DA237131C7 /* GCKSenderApplicationInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKSenderApplicationInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKSenderApplicationInfo.h"; sourceTree = "<group>"; };
+		E5F748DA8F98E61F788C3488D6BA25DD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		E70E8E87E5FE9FC20734C8CEDA989B3B /* GCKDynamicFrameworkSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDynamicFrameworkSupport.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDynamicFrameworkSupport.h"; sourceTree = "<group>"; };
+		EA8810A1F0C4096E7BBF962485B5922F /* UIImage+ChameleonPrivate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ChameleonPrivate.m"; path = "Pod/Classes/Objective-C/UIImage+ChameleonPrivate.m"; sourceTree = "<group>"; };
+		ECB56A22A987E846FF65248DA108CAD2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F0622B0066A4736B97D5627E30BAFDDD /* GCKJSONUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKJSONUtils.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKJSONUtils.h"; sourceTree = "<group>"; };
+		F68E14AB3589D53632AA36829BC1F8D5 /* GCKFilterCriteria.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKFilterCriteria.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKFilterCriteria.h"; sourceTree = "<group>"; };
+		FC6D084364ECA3EA869EEF564C84D835 /* GCKAdBreakClipInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKAdBreakClipInfo.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKAdBreakClipInfo.h"; sourceTree = "<group>"; };
+		FCA76A51896377C0291E808738E4AA58 /* GCKUIButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKUIButton.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKUIButton.h"; sourceTree = "<group>"; };
+		FCCAD2FA990BDD8398676B52973EB5C3 /* GCKDefines.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDefines.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDefines.h"; sourceTree = "<group>"; };
+		FD89C950EFB6FCE2C2FD221A580637D8 /* GCKDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDevice.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDevice.h"; sourceTree = "<group>"; };
+		FDBA94A94B982885ECCA1662BE8CD7CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		FE1621EB53AD453F46079A81D86AB675 /* GCKDiscoveryManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCKDiscoveryManager.h; path = "GoogleCastSDK-Public-3.4.0-Release/GoogleCast.framework/Headers/GCKDiscoveryManager.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F19F9C1EC980E018CB0A48B767216E8D /* Frameworks */ = {
+		05D9FFCCF076356E1982A7AAACB6D79B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D11BC79A5BDF63414723ECC9A4F23BF /* Foundation.framework in Frameworks */,
+				5345D9F66D1DDF548A220409299EA23B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E3FD70AC579E74592E2EAC475ADFB8D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E91202612969D2BDB5A801F81AE96FFB /* CoreGraphics.framework in Frameworks */,
+				E87D2FB41E6EB857013EB020297C08DF /* Foundation.framework in Frameworks */,
+				34D751AECD252A6F375328CB8BB48D4B /* QuartzCore.framework in Frameworks */,
+				6D9F0C77C6996D7FBC0F03AF8E706276 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,40 +228,77 @@
 			path = "Target Support Files/Pods-RainCaster";
 			sourceTree = "<group>";
 		};
-		28281B6DD5A6A9993025592456D6AFBA /* google-cast-sdk */ = {
+		14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BBBF03CCF16421927A76DB7DD1FB4FFB /* Core */,
+				8F8FEF3140598EAB2B3D56BB84B5389A /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		161A28C71CC78189402FB9427BB124C6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				05F284DD9D85AC4E3BF1A51D147F7860 /* ChameleonFramework.modulemap */,
+				DF44C3A3261231C66FDE88FDA9352F12 /* ChameleonFramework.xcconfig */,
+				8D40456531A2D63DA5EE85CAA93CE40F /* ChameleonFramework-dummy.m */,
+				3F299CE89008B2F905EBA2B3C5DDED62 /* ChameleonFramework-prefix.pch */,
+				1010BBA73D8962F420C9ECF686079501 /* ChameleonFramework-umbrella.h */,
+				58CA7652757F4B7CFF18969DFA9C9160 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ChameleonFramework";
+			sourceTree = "<group>";
+		};
+		2BD8077266116FAE8F460A461FB71FBD /* ChameleonFramework */ = {
+			isa = PBXGroup;
+			children = (
+				98F56FCD91666F07D2C8BFD3AB46A3B0 /* Default */,
+				161A28C71CC78189402FB9427BB124C6 /* Support Files */,
+				FBC3C92DF918DC30D8D04BC140C07951 /* Swift */,
+			);
+			name = ChameleonFramework;
+			path = ChameleonFramework;
+			sourceTree = "<group>";
+		};
+		44258F62C17112E837226F0502C9B292 /* google-cast-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				C4C48C8CAEC037C29D9BA1EC486450A1 /* Core */,
 			);
 			name = "google-cast-sdk";
 			path = "google-cast-sdk";
-			sourceTree = "<group>";
-		};
-		36797012C3BA7FBEC7045B9699209A9C /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				28281B6DD5A6A9993025592456D6AFBA /* google-cast-sdk */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		6916FF419406781EBE7AE984AB72AE82 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				493364D3259A45F96706B2FB8FA15E28 /* Pods_RainCaster.framework */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				36797012C3BA7FBEC7045B9699209A9C /* Pods */,
-				6916FF419406781EBE7AE984AB72AE82 /* Products */,
+				14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */,
+				D8759115742FEDA0F0F26CF2C9D3523B /* Pods */,
+				958537800A1ECE6CBF285AEBBB4ECE29 /* Products */,
 				97687B1727AFD94F045C2B25BC88683B /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		8F8FEF3140598EAB2B3D56BB84B5389A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3292CC8DBF6352C2BF2B949CB548248F /* CoreGraphics.framework */,
+				ECB56A22A987E846FF65248DA108CAD2 /* Foundation.framework */,
+				E5F748DA8F98E61F788C3488D6BA25DD /* QuartzCore.framework */,
+				FDBA94A94B982885ECCA1662BE8CD7CF /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		958537800A1ECE6CBF285AEBBB4ECE29 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				880E3EDC5309257373D4CF55F54530FA /* ChameleonFramework.framework */,
+				8384BE3DED2C17D8226006524662396D /* Pods_RainCaster.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		97687B1727AFD94F045C2B25BC88683B /* Targets Support Files */ = {
@@ -179,143 +309,219 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		99218D6F4BB48FE40E5497100CAB8597 /* Frameworks */ = {
+		98F56FCD91666F07D2C8BFD3AB46A3B0 /* Default */ = {
 			isa = PBXGroup;
 			children = (
-				D00DDC3B1C0251224BA0ABA11C6A76AB /* GoogleCast.framework */,
+				6FC66F021A6BB61D58AFE0C0C3CD4FB9 /* Chameleon.h */,
+				78D41A0470CD3C20D7713D207663572F /* Chameleon_.h */,
+				0EFE5A6AB5C3ACA5F2EEC48741B42F41 /* Chameleon_.m */,
+				4450A1F81D5714C4F09BCDB8D4304454 /* ChameleonConstants.h */,
+				5D43F6DD109251E2D5A2A5133F969223 /* ChameleonConstants.m */,
+				DB0F25B3EE6EF149AC461E3ACC35151C /* ChameleonEnums.h */,
+				83A00049AF683BD94016EDE0A4849309 /* ChameleonMacros.h */,
+				3D3C5C44C0B1075918CACA5B33524CBF /* NSArray+Chameleon.h */,
+				A5C13CD915641CC1342BD76173FE6A8F /* NSArray+Chameleon.m */,
+				A7685D0822B2F61856680FE31BB7A9C1 /* UIAppearance+Swift.h */,
+				7C516276C964D075B7E3D931799B5E1C /* UIAppearance+Swift.m */,
+				3D17912A0A140B8517A5A9D078B84389 /* UIButton+Chameleon.h */,
+				1DB806829E422385A9CDF0825252454A /* UIButton+Chameleon.m */,
+				D45B0C14EFFAB467B78245AE2F7AE24E /* UIColor+Chameleon.h */,
+				75878FFB574B848D308E4769559CE1DF /* UIColor+Chameleon.m */,
+				97BDF9B6F54077334DDDC1A4012497A6 /* UIColor+ChameleonPrivate.h */,
+				6435BF5D64B7406846022976C3F34E08 /* UIColor+ChameleonPrivate.m */,
+				3C81CAAE25608B681F030A5342F5E7CE /* UIImage+ChameleonPrivate.h */,
+				EA8810A1F0C4096E7BBF962485B5922F /* UIImage+ChameleonPrivate.m */,
+				C109B4440ADA730F25BC7AA43A50D900 /* UILabel+Chameleon.h */,
+				57F74BE4AE041F16FEDEA7F1DE7F428F /* UILabel+Chameleon.m */,
+				CF9943160CDE9A2598A57815907A9F33 /* UINavigationController+Chameleon.h */,
+				CAE3C01708065DFD1327E8A2768C49BA /* UINavigationController+Chameleon.m */,
+				88158ADA75A1834282F051E6BCD5A203 /* UIView+ChameleonPrivate.h */,
+				68D1659F8E4D4ACFD56542E8B8E95CB1 /* UIView+ChameleonPrivate.m */,
+				6C35E9D1AB87EC25FDE130BD91FE7E2B /* UIViewController+Chameleon.h */,
+				D97E11F0397F6F0FE8D85574D97FEF00 /* UIViewController+Chameleon.m */,
 			);
-			name = Frameworks;
+			name = Default;
 			sourceTree = "<group>";
 		};
-		BBBF03CCF16421927A76DB7DD1FB4FFB /* Core */ = {
+		C4C48C8CAEC037C29D9BA1EC486450A1 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				3BB441E6B80F08DC1CAE4D5183C9E28F /* GCKAdBreakClipInfo.h */,
-				89E80750E130C45EBC3E132159ABB5BA /* GCKAdBreakInfo.h */,
-				8A5381EC2C8DCD75379B0275C6308111 /* GCKAdBreakStatus.h */,
-				FD86D84041FE9EF7904526735C1EEA67 /* GCKApplicationMetadata.h */,
-				7B1DE9456188DC3885FC1184AE551339 /* GCKCastChannel.h */,
-				531B417D66DD3AE944043BE4DA71021D /* GCKCastContext.h */,
-				34D141CC16ACF2D7C161D0C4749D0422 /* GCKCastContext+UI.h */,
-				0D0E535DE78B2144B53210E3F70682A8 /* GCKCastOptions.h */,
-				E61ABDC2A4580CD8D931D32A942308D1 /* GCKCastSession.h */,
-				C232235E5B55758590FBAA4F665A8E27 /* GCKColor.h */,
-				B7218121053EF1D48E6F1A815077257A /* GCKCommon.h */,
-				FB41635624B502248D337CC4652DB6FB /* GCKDefines.h */,
-				D338C19E8B36C72189574ABFE365C3AF /* GCKDevice.h */,
-				4DD6B87BB54F7D5FB114EFB03F6B8894 /* GCKDeviceManager.h */,
-				08EFA1A3DB5A47BBA8B9E088CA2F2D60 /* GCKDeviceProvider.h */,
-				F4BBF690B60E713E59451B42151E74C5 /* GCKDeviceProvider+Protected.h */,
-				EAC1E554589F01E7F580D154E6186E52 /* GCKDeviceScanner.h */,
-				AF2CFE2C5BE16AEB6116B4CFDBAC2673 /* GCKDiscoveryManager.h */,
-				C8FB4F9F8513F903146375E316CAF571 /* GCKDynamicFrameworkSupport.h */,
-				6A415FB96946493E8DE3853958C1AFAD /* GCKError.h */,
-				06E54FCB4CF78A44BC3C226C9DE48C5F /* GCKFilterCriteria.h */,
-				822AEBD954FD64BDE2B998408E4E1D9C /* GCKGameManagerChannel.h */,
-				46CB0E66549FBBABC96B2840C3C0AAC7 /* GCKGameManagerResult.h */,
-				04977E19C5920872EFE1DC23060BBEDF /* GCKGameManagerState.h */,
-				9E88BEB377911A9972588FF94D49ACA4 /* GCKGameplayState.h */,
-				2857E38126EFE18257C1BD4DAC64A991 /* GCKGenericChannel.h */,
-				595CC54DBCAE3367F9B01D74DAF61C13 /* GCKGlobalFlags.h */,
-				49FAB3880BFE68C31A86CF76895C5640 /* GCKImage.h */,
-				8931FF7ED87B4D8FBBFA7B15521A9F7E /* GCKJSONUtils.h */,
-				A7610BDF3878F37C5FC85117EA919570 /* GCKLaunchOptions.h */,
-				00CF1F5F3665D7B7522612BE556D9779 /* GCKLobbyState.h */,
-				D6B5D07213F93846AF875D94269049F7 /* GCKLogger.h */,
-				32D3470E56308836E4AB0E2186AE52E9 /* GCKLoggerCommon.h */,
-				538C043FE53C8670898304586D76143C /* GCKLoggerFilter.h */,
-				95A2728C4B349226F272A9F6099CECDA /* GCKMediaCommon.h */,
-				8954A1716F361B327CF253426704FCC5 /* GCKMediaControlChannel.h */,
-				0F7B7133D0FCABC1933BDF855892C1C3 /* GCKMediaInformation.h */,
-				A44E69F856A1587C70002A28B799C8AF /* GCKMediaMetadata.h */,
-				EA541555C1BDF229155E8C960E7017B8 /* GCKMediaQueueItem.h */,
-				8CA588351486E2E94ED1329106999F1B /* GCKMediaStatus.h */,
-				8B4BA38F36BC88DFBB5B8C52040C2AA9 /* GCKMediaTextTrackStyle.h */,
-				9A8FCB7D0E5B9937854D2A43473121F9 /* GCKMediaTrack.h */,
-				D51C92F7410CE3EDCDD3977F1E5855CF /* GCKMultizoneDevice.h */,
-				46732FBD60757A9F3F31109D6509EDF9 /* GCKMultizoneStatus.h */,
-				12FBD0BABF078A6A0DCBDBE168CF130E /* GCKNSDictionary+TypedValueLookup.h */,
-				347A2DBAB4A3F9E83F821089B08B666A /* GCKPlayerInfo.h */,
-				655EE9D38624519E25AA989BD8D48637 /* GCKPlayerState.h */,
-				EAF47ECF4EF2ADB98DF456C08DD38FD4 /* GCKRemoteMediaClient.h */,
-				E3DBE7F6205A2DB4E2CFE37F093C79EF /* GCKRemoteMediaClient+Protected.h */,
-				311EE5850E321D0C9E14AD9C1DE2938D /* GCKRequest.h */,
-				D68E710BAA0E8B77FAEC770EBBC7E14E /* GCKSenderApplicationInfo.h */,
-				CBE679A3F30AE13C5586165C130512C8 /* GCKSession.h */,
-				BE4049F5C725DDFECB7F69F7B3A1F50B /* GCKSession+Protected.h */,
-				7A867414C8F4605E2BAECB6F3962D95D /* GCKSessionManager.h */,
-				8D7546EF4AA6B376CDAE7B0DE679EC7B /* GCKSessionTraits.h */,
-				0E49396222F62151BFA75BAE26A7DFAE /* GCKUIButton.h */,
-				F71FA5C3A887F6059101DB644468C95E /* GCKUICastButton.h */,
-				1C7A661A84B43725786FA820A377D5B3 /* GCKUICastContainerViewController.h */,
-				DC6D70D8D7C4AD2315CCE22E1BB8287B /* GCKUIDeviceVolumeController.h */,
-				A3F5F04D1A01575EFF14031BD51AC2E7 /* GCKUIExpandedMediaControlsViewController.h */,
-				79F5AF2CA89B5B46D1F1CB1B015DB1BC /* GCKUIImageCache.h */,
-				4C844241BAB794B18B6A3C2D3BEFF13E /* GCKUIImageHints.h */,
-				C660A92A7CCADEA66F9B66BFA695028C /* GCKUIImagePicker.h */,
-				72C7560BE5D1B21EB49E5F91668A6B48 /* GCKUIMediaButtonBarProtocol.h */,
-				E50602149D6DA2FFF694F5B53755C2B8 /* GCKUIMediaController.h */,
-				D62185E8DA76DCF4FC6A7058D56E967A /* GCKUIMediaTrackSelectionViewController.h */,
-				7C138620CFCE9347DB2F9F43AC4DD4B4 /* GCKUIMiniMediaControlsViewController.h */,
-				C0D0390FDBC68E96B70CCED1522BFF87 /* GCKUIPlayPauseToggleController.h */,
-				59B0138AB2110D8B65CF1E735987D56D /* GCKUIStreamPositionController.h */,
-				94C4A55E731A389E3F792ABFE18223DF /* GCKUIStyle.h */,
-				7AAB50916A8F2D78EEE19983E3484063 /* GCKUIStyleAttributes.h */,
-				EA5700F7479D5CCD80703F61882093B3 /* GCKUIUtils.h */,
-				47176C93FB4837F9AA85FF87222D70C7 /* GCKVideoInfo.h */,
-				DC972FD05F489EC05CBCEDA124A1CC51 /* GoogleCast.h */,
-				1B7CB12D37A8D9E25874483F436D9745 /* NSDictionary+GCKAdditions.h */,
-				043585D0BF1DC2689058ABC7E14D9A30 /* NSTimer+GCKAdditions.h */,
-				99218D6F4BB48FE40E5497100CAB8597 /* Frameworks */,
+				FC6D084364ECA3EA869EEF564C84D835 /* GCKAdBreakClipInfo.h */,
+				571DDEB2043D424D685CF1109B636B21 /* GCKAdBreakInfo.h */,
+				E07E78D0686ABA0C2779D0F165AD0E7C /* GCKAdBreakStatus.h */,
+				0118BC0C0DAB95619AE43B50E64C9D80 /* GCKApplicationMetadata.h */,
+				C68B8DABA732A42EF9EB53075ED0C694 /* GCKCastChannel.h */,
+				D5D9DCFA12AD6DFD0A34E9685298A4AA /* GCKCastContext.h */,
+				B58630073678933B162C8EAB6B4F437C /* GCKCastContext+UI.h */,
+				9CE9E17B37E8424C7E76B9171BDE485E /* GCKCastOptions.h */,
+				B310CAF4C4A7B0A447599E21061A0C7F /* GCKCastSession.h */,
+				7D7854E20D5B7B7175AD1A5945D53A0C /* GCKColor.h */,
+				4ECDE46FFE7A90051756EC8B15481136 /* GCKCommon.h */,
+				FCCAD2FA990BDD8398676B52973EB5C3 /* GCKDefines.h */,
+				FD89C950EFB6FCE2C2FD221A580637D8 /* GCKDevice.h */,
+				73C0737FD862DA0013F9EFCA3143CDC9 /* GCKDeviceManager.h */,
+				DDB093F5B311888448EDE40D54E33B28 /* GCKDeviceProvider.h */,
+				316B80031B816C8618EA838DE5FE5339 /* GCKDeviceProvider+Protected.h */,
+				7E909FE8209E15ED34FEF856477C504F /* GCKDeviceScanner.h */,
+				FE1621EB53AD453F46079A81D86AB675 /* GCKDiscoveryManager.h */,
+				E70E8E87E5FE9FC20734C8CEDA989B3B /* GCKDynamicFrameworkSupport.h */,
+				8217B25C7A77146A007CDA160648FDDF /* GCKError.h */,
+				F68E14AB3589D53632AA36829BC1F8D5 /* GCKFilterCriteria.h */,
+				551CB157E0986297CA68661C2FC00846 /* GCKGameManagerChannel.h */,
+				C8644A80654A63C2377DFF42C519EEB6 /* GCKGameManagerResult.h */,
+				18792661F87D1763EC97B2CE74D25612 /* GCKGameManagerState.h */,
+				17DE2725CBDFC0C7F46FB12D6A3A397B /* GCKGameplayState.h */,
+				11A32101877989C84F4F2FFC8989BB9B /* GCKGenericChannel.h */,
+				BCBF46B1B72D55F8A3D482832562A332 /* GCKGlobalFlags.h */,
+				A391C2334F4C0B9993AE3B4CCEC6B72D /* GCKImage.h */,
+				F0622B0066A4736B97D5627E30BAFDDD /* GCKJSONUtils.h */,
+				3EC04769B387A6F2D57B86DC14245F72 /* GCKLaunchOptions.h */,
+				CC861EE65EBD61524ACE0F90B68AAB64 /* GCKLobbyState.h */,
+				9EBA5D29FD8BC7F1C8BD8B772EFFC71F /* GCKLogger.h */,
+				05D9A71D036E46A562F3E75DF73E64E1 /* GCKLoggerCommon.h */,
+				0751D764446A7E44D7C3EFFB27B078D1 /* GCKLoggerFilter.h */,
+				539ADCD0769A412941F048B573B2E550 /* GCKMediaCommon.h */,
+				C5B03AEED8B6E080942C19F10B2F6314 /* GCKMediaControlChannel.h */,
+				957F358BDFA098F7164673038FC72BD1 /* GCKMediaInformation.h */,
+				0D1C8E3DE72F5928100159586FA721EC /* GCKMediaMetadata.h */,
+				60280CEC0C6773B2CE30EA8C11AB0D5B /* GCKMediaQueueItem.h */,
+				1413975135155A1D31AEB1A0E27F294D /* GCKMediaStatus.h */,
+				28914D6AA8B3DF560AE87A2B5FF25494 /* GCKMediaTextTrackStyle.h */,
+				BE7415AAA8C38E370406E2C96C1A2977 /* GCKMediaTrack.h */,
+				72179CF886F8F31ABF07D69A71291E7C /* GCKMultizoneDevice.h */,
+				5A0BE5015F9339F1C8ED1E52386B2692 /* GCKMultizoneStatus.h */,
+				3FA5A889C10965E1499E5D0FA68F0B75 /* GCKNSDictionary+TypedValueLookup.h */,
+				AFE82741CC2FDC02F786C7EC2C9572F8 /* GCKPlayerInfo.h */,
+				7402C39975712E98F99E2D8EF8C864D8 /* GCKPlayerState.h */,
+				8F5C8A4EABD4A13D46D0300FCA650460 /* GCKRemoteMediaClient.h */,
+				6DA4251A0DE27E066DD0EF16FCCDD27E /* GCKRemoteMediaClient+Protected.h */,
+				50E29E32F92F6CA74E1CBFFB28D7DE10 /* GCKRequest.h */,
+				E2516D9468439E34346225DA237131C7 /* GCKSenderApplicationInfo.h */,
+				097C21A8606A848E692B797EB4A7AFD9 /* GCKSession.h */,
+				1D22BBBC2474165CFDF494F4F8C13020 /* GCKSession+Protected.h */,
+				B5303DBB7EC310B7BFFEB7AA85E307AD /* GCKSessionManager.h */,
+				5533175E2C199D1B6BB56E9A8A2A72BB /* GCKSessionTraits.h */,
+				FCA76A51896377C0291E808738E4AA58 /* GCKUIButton.h */,
+				7452C9F09E793CEA3BEA09C6216682B2 /* GCKUICastButton.h */,
+				61153622AADA18628FC851B20C98986C /* GCKUICastContainerViewController.h */,
+				80029C1F4C6398289E80F21087FB4B8D /* GCKUIDeviceVolumeController.h */,
+				3332286156094FE092E52F94E27DF3C6 /* GCKUIExpandedMediaControlsViewController.h */,
+				7AE4B73AC749D8CAC7773BA9A6A6227F /* GCKUIImageCache.h */,
+				1A7402C271F83359153ECCD131D272E6 /* GCKUIImageHints.h */,
+				CDD6B3751A66887B7E3E1A1B45CBC681 /* GCKUIImagePicker.h */,
+				3EB11FC9ADCFE20910A4533A19A1993B /* GCKUIMediaButtonBarProtocol.h */,
+				97FFE889E1BD8BD857940BD71A11F12B /* GCKUIMediaController.h */,
+				66581DA75D70DF7875159C5BEEDA0D09 /* GCKUIMediaTrackSelectionViewController.h */,
+				C6A0989F759FF8D8387764DB38E4F3ED /* GCKUIMiniMediaControlsViewController.h */,
+				07C0932055E58C58E75149ADEFEE0957 /* GCKUIPlayPauseToggleController.h */,
+				AD569F659A8BCB0F78792913221E1407 /* GCKUIStreamPositionController.h */,
+				DD911885800768C7D050AEA040F1469D /* GCKUIStyle.h */,
+				A9FFC79DC16CE0D3B9BF6DB0D8AFE1C8 /* GCKUIStyleAttributes.h */,
+				AD658C6495EF8B59B9FEF461518D263A /* GCKUIUtils.h */,
+				3EC2C93F51624257EA217C247D27AAD9 /* GCKVideoInfo.h */,
+				CEB146C82F48D5820BBBCACA44EA64AC /* GoogleCast.h */,
+				7E8ECAF6EADF999611F9CF77ABFB8B5D /* NSDictionary+GCKAdditions.h */,
+				4A6B4EF69EA39B69C9DB05430C74F725 /* NSTimer+GCKAdditions.h */,
+				E75937FCC53063F7EA535F5480B9815B /* Frameworks */,
 			);
 			name = Core;
 			sourceTree = "<group>";
 		};
-		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+		D8759115742FEDA0F0F26CF2C9D3523B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+				2BD8077266116FAE8F460A461FB71FBD /* ChameleonFramework */,
+				44258F62C17112E837226F0502C9B292 /* google-cast-sdk */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E75937FCC53063F7EA535F5480B9815B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9139A92DAF4B7371F6C2AE9383CF1532 /* GoogleCast.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+		FBC3C92DF918DC30D8D04BC140C07951 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+				12C561DCEF232F19D2ABCD1E7A4AFDCF /* ChameleonShorthand.swift */,
 			);
-			name = iOS;
+			name = Swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		5EA71489E693281280B456CD0AE744FF /* Headers */ = {
+		4D98D31C0AB4E25B1297E8D59FBC96EB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D93016C2796975C8C845188E5BFF4708 /* Pods-RainCaster-umbrella.h in Headers */,
+				66593DF24629A34A3924FD57174065A2 /* Pods-RainCaster-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D4457F7F2F28A0B99FF8F1B98219F8E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ED4DBD1E13182AA813DC1237FA6E3A42 /* Chameleon.h in Headers */,
+				78281D8673FC507089FCFDC439DEDC16 /* Chameleon_.h in Headers */,
+				9A3EAF15D3C58FD56A552FD703A9154C /* ChameleonConstants.h in Headers */,
+				EC786817C5CEBCD51A4C9EC9B883ED6F /* ChameleonEnums.h in Headers */,
+				1B704F3C816C4532F9B7FDFE0625732E /* ChameleonFramework-umbrella.h in Headers */,
+				B4EA53699AA19822E674188743266B2B /* ChameleonMacros.h in Headers */,
+				29F74E8A334254C68C6720E3B247CE32 /* NSArray+Chameleon.h in Headers */,
+				9B6AD39C81FAF37861FC0FEC41022146 /* UIAppearance+Swift.h in Headers */,
+				0D7F425CFB628271BFB6FCFF8201BF4F /* UIButton+Chameleon.h in Headers */,
+				DB5FB611FB6EBF2F2BA7B78FE0CED535 /* UIColor+Chameleon.h in Headers */,
+				44117424757A5E62D87B8BF4B41A4207 /* UIColor+ChameleonPrivate.h in Headers */,
+				86F7D970F220974A0E26C3B632C5C74F /* UIImage+ChameleonPrivate.h in Headers */,
+				604286A8F8A2ACB063BDF97B09D4987C /* UILabel+Chameleon.h in Headers */,
+				BFA97401155C4E14893D9AA1E0D1EC80 /* UINavigationController+Chameleon.h in Headers */,
+				8ECF929AC5E737EBEB542283886D5E07 /* UIView+ChameleonPrivate.h in Headers */,
+				03DCD393DF69EE6DE4AD424B1192DD02 /* UIViewController+Chameleon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		09374C0D56FD8A0BEF1A2DC714E572E5 /* Pods-RainCaster */ = {
+		4B05318B57A7B6C4E35FBD014ED877C2 /* Pods-RainCaster */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DD7DAB94AC13F2A6EF716F62D84FDEE /* Build configuration list for PBXNativeTarget "Pods-RainCaster" */;
+			buildConfigurationList = 49B8A2C24508AC5EA11B08EA96A30CA1 /* Build configuration list for PBXNativeTarget "Pods-RainCaster" */;
 			buildPhases = (
-				FCC9525F316CC64D75B2ED8EE52FB9F4 /* Sources */,
-				F19F9C1EC980E018CB0A48B767216E8D /* Frameworks */,
-				5EA71489E693281280B456CD0AE744FF /* Headers */,
+				56757FD246636520F834C11D41207172 /* Sources */,
+				05D9FFCCF076356E1982A7AAACB6D79B /* Frameworks */,
+				4D98D31C0AB4E25B1297E8D59FBC96EB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F9F099C8DE4CEE3F9000FA78B9BB76F9 /* PBXTargetDependency */,
+			);
+			name = "Pods-RainCaster";
+			productName = "Pods-RainCaster";
+			productReference = 8384BE3DED2C17D8226006524662396D /* Pods_RainCaster.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		76BD4592010354D6C23D6ECCA20D83A8 /* ChameleonFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07398A672F3D6D682C4B2E94C83E2A0D /* Build configuration list for PBXNativeTarget "ChameleonFramework" */;
+			buildPhases = (
+				FA68695022B7C8DC3A47D6DF81079652 /* Sources */,
+				E3FD70AC579E74592E2EAC475ADFB8D9 /* Frameworks */,
+				8D4457F7F2F28A0B99FF8F1B98219F8E /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Pods-RainCaster";
-			productName = "Pods-RainCaster";
-			productReference = 493364D3259A45F96706B2FB8FA15E28 /* Pods_RainCaster.framework */;
+			name = ChameleonFramework;
+			productName = ChameleonFramework;
+			productReference = 880E3EDC5309257373D4CF55F54530FA /* ChameleonFramework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -335,63 +541,58 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 6916FF419406781EBE7AE984AB72AE82 /* Products */;
+			productRefGroup = 958537800A1ECE6CBF285AEBBB4ECE29 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				09374C0D56FD8A0BEF1A2DC714E572E5 /* Pods-RainCaster */,
+				76BD4592010354D6C23D6ECCA20D83A8 /* ChameleonFramework */,
+				4B05318B57A7B6C4E35FBD014ED877C2 /* Pods-RainCaster */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		FCC9525F316CC64D75B2ED8EE52FB9F4 /* Sources */ = {
+		56757FD246636520F834C11D41207172 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05C041B49F957F54CE568DE066624B26 /* Pods-RainCaster-dummy.m in Sources */,
+				F378104F531F52F64066921701B1CBC6 /* Pods-RainCaster-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA68695022B7C8DC3A47D6DF81079652 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7FA38FEAF957D69E92153FBAFB3DB40 /* Chameleon_.m in Sources */,
+				B26038F91C7C4CC322D7F25C5D16FE9E /* ChameleonConstants.m in Sources */,
+				95E542740750F827BE2EBE3DE6F62D0E /* ChameleonFramework-dummy.m in Sources */,
+				833F15A28A0D562548517BCA8EAF23B6 /* ChameleonShorthand.swift in Sources */,
+				6712100A2CCB9B987281A02F6778473C /* NSArray+Chameleon.m in Sources */,
+				C3C8BB46937DD0BBC7FBE25E298052F8 /* UIAppearance+Swift.m in Sources */,
+				83CFC8F573AD5B75191E162E64C7D039 /* UIButton+Chameleon.m in Sources */,
+				2DDDE2C06FB4DCC639CFD100F224D6FD /* UIColor+Chameleon.m in Sources */,
+				3D08C4F4E2E65D192D317AED0A8237B3 /* UIColor+ChameleonPrivate.m in Sources */,
+				139A9CEDE5163F58CBB1A3A135DAD6A3 /* UIImage+ChameleonPrivate.m in Sources */,
+				FB82C1293D7DDE0D3E2E6D68CDD5852C /* UILabel+Chameleon.m in Sources */,
+				459048ECD9FAA42B77566EC56ECAD793 /* UINavigationController+Chameleon.m in Sources */,
+				A664D0A12D5F3DBD08A7E8DFE3AE83E2 /* UIView+ChameleonPrivate.m in Sources */,
+				5EA9F0ED011B06DEFA8542EEE72508C3 /* UIViewController+Chameleon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin XCBuildConfiguration section */
-		025876739EDED03036DFFA851CF2148C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47DBF80A245E18158980FAF3237B9185 /* Pods-RainCaster.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-RainCaster/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-RainCaster/Pods-RainCaster.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_RainCaster;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
+/* Begin PBXTargetDependency section */
+		F9F099C8DE4CEE3F9000FA78B9BB76F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ChameleonFramework;
+			target = 76BD4592010354D6C23D6ECCA20D83A8 /* ChameleonFramework */;
+			targetProxy = 00F40FD49F05D151F3DCD31648634F45 /* PBXContainerItemProxy */;
 		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
 		163D87BE96A63549B0EACF1CC31A2E90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -440,6 +641,45 @@
 			};
 			name = Debug;
 		};
+		406F598D172081DB0529E14443D18CF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47DBF80A245E18158980FAF3237B9185 /* Pods-RainCaster.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-RainCaster/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-RainCaster/Pods-RainCaster.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_RainCaster;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		707B86CFB21B645E37109F39754D4051 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -484,7 +724,76 @@
 			};
 			name = Release;
 		};
-		B4BF45D11E1DDCCF84FE10FD2B0D3F12 /* Release */ = {
+		81698B2FD31295CA410B091C79817E01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF44C3A3261231C66FDE88FDA9352F12 /* ChameleonFramework.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ChameleonFramework/ChameleonFramework-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ChameleonFramework/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ChameleonFramework/ChameleonFramework.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = ChameleonFramework;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		83A86BE868D0716DAAC9DBBF0125F742 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF44C3A3261231C66FDE88FDA9352F12 /* ChameleonFramework.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/ChameleonFramework/ChameleonFramework-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/ChameleonFramework/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/ChameleonFramework/ChameleonFramework.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = ChameleonFramework;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C6374E79632A1E8B4957B8603851AA90 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0C024D0F998341C3FCA933816E136EBA /* Pods-RainCaster.release.xcconfig */;
 			buildSettings = {
@@ -514,6 +823,8 @@
 				PRODUCT_NAME = Pods_RainCaster;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -523,11 +834,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DD7DAB94AC13F2A6EF716F62D84FDEE /* Build configuration list for PBXNativeTarget "Pods-RainCaster" */ = {
+		07398A672F3D6D682C4B2E94C83E2A0D /* Build configuration list for PBXNativeTarget "ChameleonFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				025876739EDED03036DFFA851CF2148C /* Debug */,
-				B4BF45D11E1DDCCF84FE10FD2B0D3F12 /* Release */,
+				81698B2FD31295CA410B091C79817E01 /* Debug */,
+				83A86BE868D0716DAAC9DBBF0125F742 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -537,6 +848,15 @@
 			buildConfigurations = (
 				163D87BE96A63549B0EACF1CC31A2E90 /* Debug */,
 				707B86CFB21B645E37109F39754D4051 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		49B8A2C24508AC5EA11B08EA96A30CA1 /* Build configuration list for PBXNativeTarget "Pods-RainCaster" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				406F598D172081DB0529E14443D18CF9 /* Debug */,
+				C6374E79632A1E8B4957B8603851AA90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
