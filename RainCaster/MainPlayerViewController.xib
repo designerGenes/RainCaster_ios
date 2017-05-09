@@ -6,13 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="FilsonSoftRegular.otf">
-            <string>FilsonSoftRegular</string>
+        <array key="SanFranciscoDisplay-Regular.otf">
+            <string>SanFranciscoDisplay-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -28,7 +29,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NeQ-y5-ae4">
-                        <rect key="frame" x="0.0" y="200" width="375" height="433.5"/>
+                        <rect key="frame" x="0.0" y="140" width="375" height="433.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DmZ-8s-gv7">
@@ -38,20 +39,45 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="system msg" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYz-cb-cEY">
-                        <rect key="frame" x="218" y="36" width="141" height="24"/>
-                        <fontDescription key="fontDescription" name="FilsonSoftRegular" family="Filson Soft" pointSize="25"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYz-cb-cEY">
+                        <rect key="frame" x="359" y="36" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" name="SanFranciscoDisplay-Regular" family="San Francisco Display" pointSize="23"/>
                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYP-TC-KgC">
+                        <rect key="frame" x="93" y="598" width="53" height="53"/>
+                        <state key="normal" image="repeatButton"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeF-Sy-ye3">
+                        <rect key="frame" x="16" y="598" width="53" height="53"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="aeF-Sy-ye3" secondAttribute="height" multiplier="1:1" id="KEx-RU-aaw"/>
+                            <constraint firstAttribute="width" constant="53" id="ZFU-f0-Ojg"/>
+                        </constraints>
+                        <state key="normal" image="alarmButton"/>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="vjf-5D-eBa">
+                        <rect key="frame" x="170" y="598" width="53" height="53"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.090196078431372548" green="0.090196078431372548" blue="0.090196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="aeF-Sy-ye3" firstAttribute="leading" secondItem="x0V-aX-jBd" secondAttribute="leadingMargin" id="0Qm-Jr-U1F"/>
+                    <constraint firstItem="qYP-TC-KgC" firstAttribute="width" secondItem="aeF-Sy-ye3" secondAttribute="width" id="FmE-FH-Dwl"/>
+                    <constraint firstItem="vjf-5D-eBa" firstAttribute="width" secondItem="aeF-Sy-ye3" secondAttribute="width" id="KRB-bA-VME"/>
                     <constraint firstAttribute="trailing" secondItem="NeQ-y5-ae4" secondAttribute="trailing" id="RAV-B7-hYo"/>
-                    <constraint firstItem="NeQ-y5-ae4" firstAttribute="bottom" secondItem="Jqg-wI-U3f" secondAttribute="top" multiplier="0.95" id="b49-Mw-Nt5"/>
+                    <constraint firstItem="vjf-5D-eBa" firstAttribute="leading" secondItem="qYP-TC-KgC" secondAttribute="trailing" constant="24" id="XSo-gw-T5U"/>
+                    <constraint firstItem="qYP-TC-KgC" firstAttribute="height" secondItem="aeF-Sy-ye3" secondAttribute="height" id="XiA-zX-yqE"/>
+                    <constraint firstItem="NeQ-y5-ae4" firstAttribute="bottom" secondItem="Jqg-wI-U3f" secondAttribute="top" multiplier="0.86" id="b49-Mw-Nt5"/>
                     <constraint firstItem="NeQ-y5-ae4" firstAttribute="leading" secondItem="x0V-aX-jBd" secondAttribute="leading" id="lLq-cT-aoO"/>
                     <constraint firstItem="NeQ-y5-ae4" firstAttribute="height" secondItem="x0V-aX-jBd" secondAttribute="height" multiplier="0.65" id="phx-4S-Xbe"/>
+                    <constraint firstItem="vjf-5D-eBa" firstAttribute="centerY" secondItem="qYP-TC-KgC" secondAttribute="centerY" id="rqJ-P4-ck3"/>
+                    <constraint firstItem="vjf-5D-eBa" firstAttribute="height" secondItem="aeF-Sy-ye3" secondAttribute="height" id="s0K-my-uRa"/>
+                    <constraint firstItem="Jqg-wI-U3f" firstAttribute="top" secondItem="aeF-Sy-ye3" secondAttribute="bottom" constant="16" id="ss1-W6-xGP"/>
                     <constraint firstItem="hYz-cb-cEY" firstAttribute="trailing" secondItem="x0V-aX-jBd" secondAttribute="trailingMargin" id="t5W-lu-F7K"/>
+                    <constraint firstItem="qYP-TC-KgC" firstAttribute="centerY" secondItem="aeF-Sy-ye3" secondAttribute="centerY" id="w6Y-hK-Q8Y"/>
+                    <constraint firstItem="qYP-TC-KgC" firstAttribute="leading" secondItem="aeF-Sy-ye3" secondAttribute="trailing" constant="24" id="wry-ZX-ljX"/>
                     <constraint firstItem="hYz-cb-cEY" firstAttribute="top" secondItem="dgk-za-QMx" secondAttribute="bottom" constant="16" id="yyD-dY-don"/>
                 </constraints>
             </view>
@@ -62,4 +88,9 @@
             <point key="canvasLocation" x="-202.5" y="-198.5"/>
         </viewController>
     </objects>
+    <resources>
+        <image name="alarmButton" width="122" height="122"/>
+        <image name="logo" width="98" height="98"/>
+        <image name="repeatButton" width="122" height="122"/>
+    </resources>
 </document>

@@ -16,8 +16,8 @@
 		FE6E51171EABECCB00A62CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6E51151EABECCB00A62CCB /* LaunchScreen.storyboard */; };
 		FE6E51251EABEFF300A62CCB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FE6E51241EABEFF300A62CCB /* Podfile */; };
 		FE964CEF1EAC259F00DF0035 /* MainPlayerVC+GCKDeviceManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE964CEE1EAC259F00DF0035 /* MainPlayerVC+GCKDeviceManagerDelegate.swift */; };
-		FE964CFC1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE964CFA1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.swift */; };
-		FE964CFD1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE964CFB1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.xib */; };
+		FE964CFC1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE964CFA1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift */; };
+		FE964CFD1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FE964CFB1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib */; };
 		FE964D011EB7B43600DF0035 /* FilsonSoft-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE964CFF1EB7B43600DF0035 /* FilsonSoft-Bold.otf */; };
 		FE964D021EB7B43600DF0035 /* FilsonSoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE964D001EB7B43600DF0035 /* FilsonSoftRegular.otf */; };
 		FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4961EB7FAD600187EB0 /* MainPlayerViewController.swift */; };
@@ -36,7 +36,6 @@
 		FEA3B4B71EB80F0000187EB0 /* DummyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B61EB80F0000187EB0 /* DummyDataSource.swift */; };
 		FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */; };
 		FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */; };
-		FEDB63701EBD27E900F8FDF2 /* ChameleonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEDB636F1EBD27E900F8FDF2 /* ChameleonFramework.framework */; };
 		FEDB63741EBD65CB00F8FDF2 /* DJCustomActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB63731EBD65CB00F8FDF2 /* DJCustomActivityView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +55,8 @@
 		FE964CEE1EAC259F00DF0035 /* MainPlayerVC+GCKDeviceManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainPlayerVC+GCKDeviceManagerDelegate.swift"; sourceTree = "<group>"; };
 		FE964CF21EAD5E3D00DF0035 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphonesimulator/Swifter/Swifter.framework"; sourceTree = "<group>"; };
 		FE964CF41EAD61D700DF0035 /* Embassy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Embassy.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphonesimulator/Embassy/Embassy.framework"; sourceTree = "<group>"; };
-		FE964CFA1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemedTrackCollectionViewCell.swift; sourceTree = "<group>"; };
-		FE964CFB1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThemedTrackCollectionViewCell.xib; sourceTree = "<group>"; };
+		FE964CFA1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackCollectionViewCell.swift; sourceTree = "<group>"; };
+		FE964CFB1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmbientTrackCollectionViewCell.xib; sourceTree = "<group>"; };
 		FE964CFF1EB7B43600DF0035 /* FilsonSoft-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FilsonSoft-Bold.otf"; sourceTree = "<group>"; };
 		FE964D001EB7B43600DF0035 /* FilsonSoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FilsonSoftRegular.otf; sourceTree = "<group>"; };
 		FEA3B4961EB7FAD600187EB0 /* MainPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPlayerViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEDB63701EBD27E900F8FDF2 /* ChameleonFramework.framework in Frameworks */,
 				5220CD4F78B806719BD9EA88 /* Pods_RainCaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +143,7 @@
 			children = (
 				FEA3B4B31EB80E5F00187EB0 /* Controllers */,
 				FEA3B4A81EB8044F00187EB0 /* Data Sources */,
+				FE994B161EC133AB006A7D33 /* Models */,
 				FE6E511E1EABEDF300A62CCB /* Storyboards */,
 				FE6E51201EABEE0300A62CCB /* Supporting Files */,
 				FE6E511F1EABEDFC00A62CCB /* View Controllers */,
@@ -205,10 +204,18 @@
 		FE964CFE1EB7AF4000DF0035 /* Themed Track */ = {
 			isa = PBXGroup;
 			children = (
-				FE964CFA1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.swift */,
-				FE964CFB1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.xib */,
+				FE964CFA1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift */,
+				FE964CFB1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib */,
 			);
 			name = "Themed Track";
+			sourceTree = "<group>";
+		};
+		FE994B161EC133AB006A7D33 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FEA3B4B11EB807E800187EB0 /* CellData.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		FEA3B49A1EB7FB0800187EB0 /* MainPlayer */ = {
@@ -249,7 +256,6 @@
 			children = (
 				FEA3B4AC1EB8062400187EB0 /* Settings */,
 				FE964CFE1EB7AF4000DF0035 /* Themed Track */,
-				FEA3B4B11EB807E800187EB0 /* CellData.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -343,7 +349,7 @@
 				FE964D011EB7B43600DF0035 /* FilsonSoft-Bold.otf in Resources */,
 				FEA3B4A71EB8039F00187EB0 /* SanFranciscoDisplay-Regular.otf in Resources */,
 				FEA3B4991EB7FAD600187EB0 /* MainPlayerViewController.xib in Resources */,
-				FE964CFD1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.xib in Resources */,
+				FE964CFD1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +408,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE964CFC1EB7AF3D00DF0035 /* ThemedTrackCollectionViewCell.swift in Sources */,
+				FE964CFC1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift in Sources */,
 				FE3BB69E1EB9487000809F98 /* DJMediaPlayerControl.swift in Sources */,
 				FEDB63741EBD65CB00F8FDF2 /* DJCustomActivityView.swift in Sources */,
 				FEA3B4B71EB80F0000187EB0 /* DummyDataSource.swift in Sources */,

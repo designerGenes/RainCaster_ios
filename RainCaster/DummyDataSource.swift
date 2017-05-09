@@ -12,18 +12,18 @@ import UIKit
 class DummyDataSource: NSObject {
 	static var sharedInstance = DummyDataSource()
 	
-	class func themedTrackCells() -> [ThemedTrackData] {
-		var dataArr = [ThemedTrackData]()
+	class func themedTrackCells() -> [AmbientTrackData] {
+		var dataArr = [AmbientTrackData]()
 		let urlTitleDict: [String: String] = [
+			"Space": "space_5h.mp3",
 			"Rainforest": "rainforest_5h.mp3",
 			"Smoky Mountain": "smokymountain_5h.mp3",
-			"Space": "space_5h.mp3",
 			"Underwater": "underwater_5h.mp3",
 		]
 		
 		for (z, pair) in urlTitleDict.enumerated() {
-			let newData = ThemedTrackData()
-			newData.sourceURLString = "http://whoisjadennation.com/audio/\(pair.value)"
+			let newData = AmbientTrackData()
+			newData.sourceURL = URL(string: "http://whoisjadennation.com/audio/\(pair.value)")
 			newData.title = pair.key
 			newData.hoursDuration = max(5, Int.random(max: 10))
 			var randomColor = DJColor.randomColor(avoidGray: true)

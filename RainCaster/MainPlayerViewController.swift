@@ -44,13 +44,11 @@ class MainPlayerViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		queueUpClip()
-//		setupCastButton()
 		dataSource = TrackListCollectionViewDataSource()
 		dataSource?.adopt(collectionView: collectionView)
 		collectionView.reloadData()
 		GCKCastContext.sharedInstance().sessionManager.add(self)
-		
+		setupCastButton()
 		
 	}
 	

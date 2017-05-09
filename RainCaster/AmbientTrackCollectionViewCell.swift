@@ -1,5 +1,5 @@
 //
-//  ThemedTrackCollectionViewCell.swift
+//  AmbientTrackCollectionViewCell.swift
 //  RainCaster
 //
 //  Created by Jaden Nation on 5/1/17.
@@ -9,12 +9,9 @@ import Foundation
 import UIKit
 
 
-class ThemedTrackData: CellData {
-	var hoursDuration: Int?
-	var sourceURLString: String?
-}
 
-class ThemedTrackCollectionViewCell: UICollectionViewCell, AdoptiveCell {
+
+class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegate, AdoptiveCell {
 	// MARK: - outlets
 	
 	
@@ -24,8 +21,25 @@ class ThemedTrackCollectionViewCell: UICollectionViewCell, AdoptiveCell {
 	var mediaPlayer = DJMediaPlayerControl()
 	var playbackProgressView = UIView()
 	private var playbackHeightConstraint: NSLayoutConstraint?
-	var data: ThemedTrackData?
 	
+	
+	// MARK: - AudioPlaybackDelegate methods
+	func didPlayTime(to seconds: Double) {
+//		print(seconds.rounded(toPlaces: 3))
+		guard seconds > 0 else {
+			return
+		}
+		
+			
+			
+		let adjustedSeconds = Double( Int(seconds) % (3600))
+		let sig = CGFloat(adjustedSeconds / 3600)
+		
+		let computedConstant = frame.height * max(0, min(1, sig))
+		playbackHeightConstraint?.constant = computedConstant
+			
+		
+	}
 	
 	// MARK: - AdoptiveCell methods
 	func addSimpleGradient(ofColor color: UIColor) {
@@ -42,8 +56,6 @@ class ThemedTrackCollectionViewCell: UICollectionViewCell, AdoptiveCell {
 	}
 	
 	override func prepareForReuse() {
-		
-		
 		super.prepareForReuse()
 		gradientLayer?.removeFromSuperlayer()
 	}
@@ -54,32 +66,32 @@ class ThemedTrackCollectionViewCell: UICollectionViewCell, AdoptiveCell {
 	}
 	
 	func adopt(data: CellData) {
-		if let data = data as? ThemedTrackData {
-			self.data = data
-			
+		if let data = data as? AmbientTrackData {
 			
 			if let assocColor = data.assocColor {
 				backgroundColor = assocColor
 				addSimpleGradient(ofColor: assocColor)
 				
-				var progressBarColor = assocColor.lightenBy(percent: 0.15)
-				if assocColor.isLighter(than: 0.5) {
-					progressBarColor = assocColor.darkenBy(percent: 0.25)
-				}
+				let progressBarColor = UIColor.named(.black_1)
 				playbackProgressView.backgroundColor = progressBarColor
 			}
 			
 			// add media player
-			
 			mediaPlayer.adopt(trackData: data)
-			
+			mediaPlayer.playbackListener = self
 			
 		}
 	}
 	
 	// MARK: - methods
+	func tappedCell() {
+		let color = DJColor.randomColor(avoidGray: true)
+		backgroundColor = color
+	}
+	
 	func manifest() {
 		mediaPlayer.manifest(in: self)
+		
 		insertSubview(playbackProgressView, belowSubview: mediaPlayer)
 		playbackProgressView.translatesAutoresizingMaskIntoConstraints = false
 		playbackProgressView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -90,6 +102,9 @@ class ThemedTrackCollectionViewCell: UICollectionViewCell, AdoptiveCell {
 		
 		layer.masksToBounds = true
 		layer.cornerRadius = 8
+		
+		
+		
 	}
 	
     override func awakeFromNib() {

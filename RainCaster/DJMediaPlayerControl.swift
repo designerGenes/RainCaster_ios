@@ -21,7 +21,7 @@ protocol AudioPlayerControlType: class {
 	func pause()
 	func restart()
 	func getAudioPlayerState() -> MediaPlayerState
-	func loadTrack(at url: URL, immediately: Bool)
+	func loadTrack(from data: AmbientTrackData, immediately: Bool)
 }
 
 // receives messages concerning media playback events
@@ -29,6 +29,11 @@ protocol AudioPlaybackDelegate: class {
 	func playerBecameStuckInBufferingState()
 	func playbackStateBecame(state: MediaPlayerState)
 	func didPlayTime(to seconds: Double)
+}
+
+extension AudioPlaybackDelegate {
+	func playerBecameStuckInBufferingState() {}
+	func playbackStateBecame(state: MediaPlayerState) {}
 }
 
 class DJMediaPlayerControl: UIView, AudioPlaybackDelegate {
@@ -39,50 +44,62 @@ class DJMediaPlayerControl: UIView, AudioPlaybackDelegate {
 	private var titleLabel = UILabel()
 	private var durationLabel = UILabel()
 	private var playbackTimeObserver: Any?
-	private var assocMediaURL: URL?
-	private var lastKnownMediaState: MediaPlayerState = .unknown
-	private var activityIndicator = DJCustomActivityView()
+	private var assocAmbientTrackData: AmbientTrackData?
+	private var lastKnownMediaState: MediaPlayerState = .unstarted
+	private var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+	weak var playbackListener: AudioPlaybackDelegate?
 	
 	func playbackStateBecame(state: MediaPlayerState) {
 		reflectPlaybackState(state: state)
 	}
 	
 	func playerBecameStuckInBufferingState() {
-		// pinwheel code
-		reflectPlaybackState(state: .buffering)
+
 	}
 	
 	func didPlayTime(to seconds: Double) {
-		if lastKnownMediaState == .playing {
+//		print("time: \(seconds)")
+		if lastKnownMediaState != .paused {
+			playbackListener?.didPlayTime(to: seconds)
 			reflectPlaybackState(state: .playing)
 		}
+		
+		
 	}
 	
 	func reflectPlaybackState(state: MediaPlayerState) {
 		if state != lastKnownMediaState {
+			print(state.rawValue)
 			lastKnownMediaState = state
-			playPauseButton.isHidden = false
+		}
+		
+			
+			
 			switch state {
 			case .playing:
 //				print("\(titleLabel.text ?? "unknown track") began playing")
-				playPauseButton.setImage(UIImage(fromAssetNamed: .playing), for: .normal)
 				activityIndicator.stopAnimating()
-			case .paused, .stopped:
+				playPauseButton.setImage(UIImage(fromAssetNamed: .playing), for: .normal)
+
+			case .paused, .stopped, .unstarted:
 //				print("\(titleLabel.text ?? "unknown track") was suspended")
 				playPauseButton.setImage(UIImage(fromAssetNamed: .suspended), for: .normal)
 				activityIndicator.stopAnimating()
+				
 			case .buffering:
-				addSubview(activityIndicator)
-				activityIndicator.translatesAutoresizingMaskIntoConstraints =  false
-				activityIndicator.centerXAnchor.constraint(equalTo: playPauseButton.centerXAnchor).isActive = true
-				activityIndicator.centerYAnchor.constraint(equalTo: playPauseButton.centerYAnchor).isActive = true
+				if let superview = superview {
+					if superview.subviews.filter({$0 is UIActivityIndicatorView}).isEmpty {
+						activityIndicator.frame.size = playPauseButton.frame.size
+						activityIndicator.center = CGPoint(x: superview.bounds.midX, y: superview.bounds.midY)
+						superview.addSubview(activityIndicator)
+					}
+				}
+				
 				activityIndicator.startAnimating()
-//				print("playback stuck, likely buffering")
-				playPauseButton.isHidden = true
 			default:
 				break
 			}
-		}
+//		}
 	}
 	
 	
@@ -91,29 +108,32 @@ class DJMediaPlayerControl: UIView, AudioPlaybackDelegate {
 	
 	
 	func tappedPlayPauseBtn(sender: UIButton) {
-		if let assocMediaURL = assocMediaURL {
-			if audioController.focusURL != assocMediaURL  { // take charge
-//				print("taking command!")
-				audioController.pause()
-				audioController.focusAttention(on: self)
+		if let assocAmbientTrackData = assocAmbientTrackData {
+//			print(audioController.getAudioPlayerState().rawValue)
+			if audioController.isFocusedOn(item: assocAmbientTrackData) {
+				let playerState = audioController.getAudioPlayerState()
 				
-				audioController.loadTrack(at: assocMediaURL, immediately: true)
-				
-				reflectPlaybackState(state: .playing)
-			} else { // we're already in charge
-				audioController.focusAttention(on: self)
-				if audioController.getAudioPlayerState() == .playing {
-//					print("sending command to pause")
-					reflectPlaybackState(state: .paused)
+				switch playerState {
+				case .playing, .buffering:
+					print("\ntrying to pause")
 					audioController.pause()
-				} else {
-//					print("sending command to play")
-					reflectPlaybackState(state: .playing)
+					reflectPlaybackState(state: .paused)
+				
+				
+				case .paused, .stopped, .unstarted:
+					print("\ntrying to play")
 					audioController.play()
+					reflectPlaybackState(state: .playing)
+				default:
+					break
 				}
+
+			} else { // another track is loaded, or no track is loaded
+				print("\nreplacing existing track")
+				audioController.focusAttention(on: self)
+				reflectPlaybackState(state: .playing)
+				audioController.loadTrack(from: assocAmbientTrackData, immediately: true)
 			}
-		} else {
-			
 		}
 	}
 	
@@ -121,20 +141,15 @@ class DJMediaPlayerControl: UIView, AudioPlaybackDelegate {
 	
 	
 	// MARK: - init and config methods
-	func adopt(trackData: ThemedTrackData) {
-		
+	func adopt(trackData: AmbientTrackData) {
+		self.assocAmbientTrackData = trackData
 		titleLabel.text = trackData.title?.lowercased()
 		
 		titleLabel.sizeToFit()
+		durationLabel.text = "\(trackData.hoursDuration ?? 0)h"
 		
-//		if let assocColor = trackData.assocColor {
-//			playbackProgressBar.backgroundColor = assocColor
-//			backgroundColor = assocColor.lightenBy(percent: 0.25)
-//		}
-		
-		if let sourceUrlString = trackData.sourceURLString, let sourceURL = URL(string: sourceUrlString) {
-			assocMediaURL = sourceURL
-			audioController.loadTrack(at: sourceURL)
+		if let sourceURL = trackData.sourceURL {
+			audioController.loadTrack(from: trackData, immediately: false)
 		}
 	}
 	
@@ -149,7 +164,7 @@ class DJMediaPlayerControl: UIView, AudioPlaybackDelegate {
 		heightAnchor.constraint(equalToConstant: UIImage(fromAssetNamed: .suspended).size.height).isActive = true
 		topAnchor.constraint(equalTo: view.topAnchor, constant: 24).isActive = true
 		
-		for view in [titleLabel, playbackProgressBar, playPauseButton] {
+		for view in [titleLabel, durationLabel, playbackProgressBar, playPauseButton] {
 			view.translatesAutoresizingMaskIntoConstraints = false
 			addSubview(view)
 		}
@@ -170,8 +185,15 @@ class DJMediaPlayerControl: UIView, AudioPlaybackDelegate {
 		titleLabel.lineBreakMode = .byWordWrapping
 		titleLabel.numberOfLines = 2
 		titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 24).isActive = true
-		titleLabel.centerYAnchor.constraint(equalTo: playPauseButton.centerYAnchor).isActive = true
+		titleLabel.bottomAnchor.constraint(equalTo: playPauseButton.centerYAnchor, constant: -5).isActive = true
 		titleLabel.widthAnchor.constraint(lessThanOrEqualTo: widthAnchor, multiplier: 0.5).isActive = true
+		
+		durationLabel.font = titleLabel.font.withSize(18)
+		durationLabel.textColor = titleLabel.textColor.darkenBy(percent: 0.15)
+		durationLabel.text = "10h"
+		durationLabel.sizeToFit()
+		durationLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor).isActive = true
+		durationLabel.topAnchor.constraint(equalTo: playPauseButton.centerYAnchor, constant: 5).isActive = true
 	}
 	
 }

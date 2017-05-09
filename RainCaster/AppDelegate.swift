@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 		
 		return true
 	}
+	
+	
 
 	func applicationWillResignActive(_ application: UIApplication) {
 		DJAudioController.sharedInstance.setGlobalAudioSession(to: false)

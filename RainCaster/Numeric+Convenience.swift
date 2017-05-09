@@ -27,9 +27,15 @@ extension Int {
 	}
 }
 
+extension Double {
+	func rounded(toPlaces places: Int) -> Double {
+		return Double(CGFloat(self).rounded(toPlaces: places))
+	}
+}
+
 extension CGFloat {
-	func rounded(toPlaces places: Int) -> CGFloat? {
+	func rounded(toPlaces places: Int) -> CGFloat {
 		let magnitude = CGFloat(NSDecimalNumber(decimal: pow(10, places)).floatValue)
-		return (self * magnitude) / magnitude
+		return (self * magnitude).rounded() / magnitude
 	}
 }

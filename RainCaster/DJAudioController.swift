@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import AVKit
+import GoogleCast
 
 class DJAudioController: NSObject, AudioPlayerControlType {
 	static var sharedInstance = DJAudioController()
@@ -20,18 +21,33 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 	var focusURL: URL?
 	
 	// MARK: - AudioPlayerControlType methods
+	func isFocusedOn(item: AmbientTrackData) -> Bool {
+		// sophisticate this
+		return item.sourceURL == focusURL
+	}
+	
 	func play() {
+		if let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient {
+			remoteMediaClient.play()
+		}
+		
 		audioPlayer.play()
 	}
 	
 	func pause() {
+		if let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient {
+			remoteMediaClient.pause()
+		}
 		audioPlayer.pause()
-		
 	}
 	
 	func restart() {
 		audioPlayer.pause()
 		audioPlayer.seek(to: CMTime(seconds: 0, preferredTimescale: 1))
+		if let remoteMediaClient = GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient {
+			remoteMediaClient.pause()
+			remoteMediaClient.seek(toTimeInterval: 0)
+		}
 	}
 	
 	func focusAttention(on mediaPlayerControl: AudioPlaybackDelegate) {
@@ -43,34 +59,48 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 		delegate = mediaPlayerControl
 	}
 	
-	func loadTrack(at url: URL, immediately: Bool = false) {
+	
+	// MARK: - loading media
+
+	func loadTrack(from data: AmbientTrackData, immediately: Bool) {
 //		print("loading track with url \(url.absoluteString)")
-		let newItem = AVPlayerItem(url: url)
-		// put buffering code here
-		
-		if let _ = audioPlayer.currentItem {
+		if let url = data.sourceURL, let duration = data.hoursDuration {
+			let newItem = AVPlayerItem(url: url)
+
 			if immediately {
-				stopObserving(onlyRemoveTimeObserver: true)
-//				print("loading track immediately")
-				pause()
 				focusURL = url
+				if let _ = audioPlayer.currentItem {
+					stopObserving(onlyRemoveTimeObserver: true)
+					pause()
+					
+				}
+				
 				audioPlayer.replaceCurrentItem(with: newItem)
 				beginObservingPlaybackTime(for: newItem)
 				audioPlayer.play()
 				
+				let metaData = GCKMediaMetadata(metadataType: .generic)
+				metaData.setString(data.title ?? "unknown", forKey: kGCKMetadataKeyTitle)
+				let mediaInfo = GCKMediaInformation(
+					contentID: url.absoluteString,
+					streamType: .unknown,
+					contentType: "audio/mpg",
+					metadata: metaData,
+					streamDuration: Double(duration * 60 * 60),
+					customData: nil)
+				
+				if let session = GCKCastContext.sharedInstance().sessionManager.currentCastSession {
+					session.remoteMediaClient?.loadMedia(mediaInfo, autoplay: true, playPosition: 0)	
+				}
+				
 			} else {
-//				print("saving track to buffer")
+				// put buffering code here
 			}
 			
-			// TODO: buffering
-		} else {
-//			print("no current track loaded.  loading track")
-			focusURL = url
-			audioPlayer.replaceCurrentItem(with: newItem)
 		}
-		
-		
 	}
+	
+	
 	
 	
 	func beginObservingAudioPlayback() {
@@ -82,12 +112,18 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 		audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.initial, .new], context: nil)
 	}
 	
+	func playbackTimeBecame(seconds: Double) {
+//		if ![MediaPlayerState.paused, .buffering].contains(self.getAudioPlayerState())   {
+			self.delegate?.didPlayTime(to: seconds)
+//		}
+	}
+	
 	func beginObservingPlaybackTime(for item: AVPlayerItem) {
 //		print("began observing playback time")
-		stopObserving(onlyRemoveTimeObserver: true)
-		playbackTimeObserver = audioPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: playbackBGQueue, using: { [unowned self] time in
+//		stopObserving(onlyRemoveTimeObserver: true)
+		playbackTimeObserver = audioPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 2), queue: playbackBGQueue, using: { [unowned self] time in
 			DispatchQueue.main.async {
-				self.delegate?.didPlayTime(to: time.seconds)
+				self.playbackTimeBecame(seconds: time.seconds)
 			}
 		})
 		
@@ -112,32 +148,37 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 	}
 	
 	
+	
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		
 		if let keyPath = keyPath, let change = change, let newVal = change[.newKey] {
 			switch keyPath {
 			case #keyPath(AVPlayer.rate):
 				if let newVal = newVal as? Int {
-					if newVal == 1 { // attempting to play
+					let oldVal = (change[.oldKey] as? Int) ?? 0
+//					print("newVal: \(newVal) oldVal: \(oldVal)")
+					let playbackIsBuffering = self.isBuffering()
+					
+					// check for buffering state
+					
+					
+					
+					if newVal == 1 && !playbackIsBuffering { // attempting to play
 						DispatchQueue.main.async {
 							self.delegate?.playbackStateBecame(state: .playing)
 						}
-					} else if newVal == 0 { // suspended
-						if let oldVal = change[.oldKey] as? Int {
-							DispatchQueue.main.async {
-								self.delegate?.playbackStateBecame(state: .paused)
-								if oldVal == 1 {
-									if let item = self.audioPlayer.currentItem, let loadedRange = item.loadedTimeRanges.first as? CMTimeRange {
-										let curTime = item.currentTime().seconds
-										if curTime < loadedRange.start.seconds || curTime > loadedRange.end.seconds {
-											self.delegate?.playerBecameStuckInBufferingState()
-										}
-									}
-								}
-							}
+					} else if newVal == 0 && newVal != oldVal  { // suspended
+						self.delegate?.playbackStateBecame(state: .paused)
+					}
+					
+					if playbackIsBuffering {
+						DispatchQueue.main.async {
+							self.delegate?.playbackStateBecame(state: .buffering)
 						}
 					}
 				}
+				
+				
 				
 			case #keyPath(AVPlayer.status): break
 			case #keyPath(AVPlayerItem.loadedTimeRanges): break
@@ -152,14 +193,28 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 	}
 	
 	// guesswork
+	func isBuffering() -> Bool {
+		
+		if let item = self.audioPlayer.currentItem {
+			let curTime = item.currentTime().seconds
+			let loadedRange = item.loadedTimeRanges.first as? CMTimeRange
+			let start = loadedRange?.start.seconds ?? 0
+			let end = loadedRange?.end.seconds ?? 0
+			
+			if curTime <= start || curTime > end {
+				return true
+			}
+		}
+		return false
+	}
+	
 	func getAudioPlayerState() -> MediaPlayerState {
-		if audioPlayer.rate == 0 && audioPlayer.currentItem != nil {
-			return .paused
-		} else if let item = audioPlayer.currentItem {
-			if item.isPlaybackLikelyToKeepUp {
-				return .playing
-			} else {
-				return .buffering
+		if let item = audioPlayer.currentItem {
+			if audioPlayer.rate == 0 {
+				return isBuffering() ? .buffering : .paused
+				
+			} else if audioPlayer.rate == 1 {
+				return isBuffering() ? .buffering : .playing
 			}
 		}
 		return .unknown

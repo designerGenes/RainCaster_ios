@@ -57,8 +57,8 @@ class TrackListCollectionViewDataSource: NSObject, UICollectionViewDataSource, U
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cellData = trackDataArr[indexPath.section]
-		if cellData is ThemedTrackData {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackCell", for: indexPath) as! ThemedTrackCollectionViewCell
+		if cellData is AmbientTrackData {
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackCell", for: indexPath) as! AmbientTrackCollectionViewCell
 			cell.manifest()
 			cell.adopt(data: cellData)
 			return cell
@@ -95,7 +95,7 @@ class TrackListCollectionViewDataSource: NSObject, UICollectionViewDataSource, U
 	func adopt(collectionView: UICollectionView) {
 		collectionView.dataSource = self
 		collectionView.delegate = self
-		collectionView.register(UINib(nibName: "ThemedTrackCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "TrackCell")
+		collectionView.register(UINib(nibName: "AmbientTrackCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "TrackCell")
 		collectionView.register(UINib(nibName: "SettingsCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "SettingsCell")
 		collectionView.isPagingEnabled = true
 		self.collectionView = collectionView
