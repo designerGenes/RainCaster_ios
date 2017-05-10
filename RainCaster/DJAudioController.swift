@@ -11,7 +11,7 @@ import AVFoundation
 import AVKit
 import GoogleCast
 
-class DJAudioController: NSObject, AudioPlayerControlType {
+class DJAudioController: NSObject, AudioPlayerControlType, GCKSessionManagerListener {
 	static var sharedInstance = DJAudioController()
 	var audioPlayer = AVPlayer()
 	let playbackBGQueue = DispatchQueue(label: "playbackBGQueue", qos: .background)
@@ -19,6 +19,7 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 	private var playbackTimeObserver: Any?
 	let audioBGQueue = DispatchQueue(label: "audioBGQueue", qos: .background)
 	var focusURL: URL?
+	var loadedMediaInfo: GCKMediaInformation?
 	
 	// MARK: - AudioPlayerControlType methods
 	func isFocusedOn(item: AmbientTrackData) -> Bool {
@@ -59,6 +60,25 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 		delegate = mediaPlayerControl
 	}
 	
+	// MARK: - Session Manager delegate methods
+	func sessionManager(_ sessionManager: GCKSessionManager, willStart session: GCKCastSession) {
+		
+	}
+	
+	func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKSession) {
+		if let loadedMediaInfo = loadedMediaInfo, let currentItem = audioPlayer.currentItem {
+			let currentPlayTime = currentItem.currentTime().seconds
+			if let remoteMediaClient = sessionManager.currentCastSession?.remoteMediaClient {
+				print("found remote media client")
+				let shouldAutoPlay: Bool = audioPlayer.rate > 0  // TODO: sophisticate
+				remoteMediaClient.loadMedia(loadedMediaInfo, autoplay: shouldAutoPlay, playPosition: currentPlayTime)
+			
+			}
+		}
+	}
+	
+	
+	
 	
 	// MARK: - loading media
 
@@ -79,6 +99,7 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 				beginObservingPlaybackTime(for: newItem)
 				audioPlayer.play()
 				
+				
 				let metaData = GCKMediaMetadata(metadataType: .generic)
 				metaData.setString(data.title ?? "unknown", forKey: kGCKMetadataKeyTitle)
 				let mediaInfo = GCKMediaInformation(
@@ -88,8 +109,12 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 					metadata: metaData,
 					streamDuration: Double(duration * 60 * 60),
 					customData: nil)
+				loadedMediaInfo = mediaInfo
+				
 				
 				if let session = GCKCastContext.sharedInstance().sessionManager.currentCastSession {
+					
+					print("session is active")
 					session.remoteMediaClient?.loadMedia(mediaInfo, autoplay: true, playPosition: 0)	
 				}
 				
@@ -104,12 +129,14 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 	
 	
 	func beginObservingAudioPlayback() {
-//		print("began observing playback status")
+		print("began observing playback status")
 		if audioPlayer.currentItem != nil {
 			stopObserving() // clean slate
 		}
 		audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.rate), options: [.initial, .old, .new], context: nil)
 		audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.initial, .new], context: nil)
+		
+		GCKCastContext.sharedInstance().sessionManager.add(self)
 	}
 	
 	func playbackTimeBecame(seconds: Double) {
@@ -178,13 +205,21 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 					}
 				}
 				
-				
+			case #keyPath(AVAudioSession.outputVolume):
+				if let newVal = newVal as? Float {
+					setSessionVolume(to: newVal)
+				}
 				
 			case #keyPath(AVPlayer.status): break
 			case #keyPath(AVPlayerItem.loadedTimeRanges): break
 			default: break
 			}
 		}
+	}
+	
+	func setSessionVolume(to volume: Float) {
+		print("changing remote client volume to \(volume)")
+		GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient?.setStreamVolume(volume)
 	}
 	
 	
@@ -246,9 +281,13 @@ class DJAudioController: NSObject, AudioPlayerControlType {
 		
 	}
 	
+	
+	
 	override init() {
 		super.init()
 		beginObservingAudioPlayback()
+		let audioSession = AVAudioSession.sharedInstance()
+		audioSession.addObserver(self, forKeyPath: #keyPath(AVAudioSession.outputVolume), options: .new, context: nil)
 	}
 	
 }
