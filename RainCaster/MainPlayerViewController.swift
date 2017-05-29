@@ -16,18 +16,29 @@ class MainPlayerViewController: UIViewController {
 	// MARK: - outlets
 	@IBOutlet weak var collectionView: UICollectionView!
 	@IBOutlet weak var systemMsgLabel: UILabel!
+	@IBOutlet weak var loopModeToggleButton: UIButton!
+	@IBOutlet weak var slowFadeModeToggleButton: UIButton!
+	
+	@IBAction func clickedFadeModeButton(_ sender: UIButton) {
+		DJAudioController.sharedInstance.shouldFadeOverTime = !DJAudioController.sharedInstance.shouldFadeOverTime
+	}
+	
+	@IBAction func clickedLoopModeButton(_ sender: UIButton) {
+		DJAudioController.sharedInstance.shouldLoop = !DJAudioController.sharedInstance.shouldLoop
+	}
 	
 	
 	// MARK: - properties
 	var castButton: GCKUICastButton?
-	var dataSource: TrackListCollectionViewDataSource?
+	let dataSource = TrackListCollectionViewDataSource.sharedInstance
 	var manager: GCKDeviceManager?
-	
-
+	var miniMediaControlsContainerView = UIView()
+	var miniControlVC: GCKUIMiniMediaControlsViewController?
 
 	func sessionManager(_ sessionManager: GCKSessionManager, willStart session: GCKCastSession) {
 		print("GCK Cast session will start")
 	}
+
 	
 	// MARK: - methods
 
@@ -44,18 +55,10 @@ class MainPlayerViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		dataSource = TrackListCollectionViewDataSource()
-		dataSource?.adopt(collectionView: collectionView)
+		dataSource.adopt(collectionView: collectionView)
 		collectionView.reloadData()
 		GCKCastContext.sharedInstance().sessionManager.add(self)
 		setupCastButton()
-		
 	}
-	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		
-	}
-	
 }
 

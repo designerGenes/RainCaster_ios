@@ -10,6 +10,7 @@ import UIKit
 import GoogleCast
 import AVFoundation
 import AVKit
+import SwiftyJSON
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
@@ -32,6 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 		if let mainPlayerVC = Bundle.main.loadNibNamed("MainPlayerViewController", owner: self, options: nil)?.first as? MainPlayerViewController {
 			window?.rootViewController = mainPlayerVC
 			window?.makeKeyAndVisible()
+		}
+		
+		DJRemoteDataSourceController.sharedInstance.pullRemoteManifest() { res in
+			if let resJSON = res as? JSON {
+				print("Successfully pulled manifest from server")
+				
+			}
 		}
 		
 		return true

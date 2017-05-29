@@ -21,6 +21,11 @@ class DJAudioController: NSObject, AudioPlayerControlType, GCKSessionManagerList
 	var focusURL: URL?
 	var loadedMediaInfo: GCKMediaInformation?
 	
+	var shouldLoop: Bool = false
+	var shouldFadeOverTime: Bool = false
+	private var hoursFadeDuration: Int = 6
+	
+	
 	// MARK: - AudioPlayerControlType methods
 	func isFocusedOn(item: AmbientTrackData) -> Bool {
 		// sophisticate this
@@ -85,43 +90,58 @@ class DJAudioController: NSObject, AudioPlayerControlType, GCKSessionManagerList
 	func loadTrack(from data: AmbientTrackData, immediately: Bool) {
 //		print("loading track with url \(url.absoluteString)")
 		if let url = data.sourceURL, let duration = data.hoursDuration {
-			let newItem = AVPlayerItem(url: url)
-
-			if immediately {
-				focusURL = url
-				if let _ = audioPlayer.currentItem {
-					stopObserving(onlyRemoveTimeObserver: true)
-					pause()
+			let key = "\(AmbientTrackPlayerItem.namingConvention)\(data.title ?? "")"
+			DJCachingController.cache.object(key) { (item: AmbientTrackPlayerItem?) in
+				if let item = item {
 					
+				} else {  // nothing found in cache
+				print("nothing found in cache for url \(url.absoluteString)")
+				let newItem = AmbientTrackPlayerItem(url: url)
+				
+				if immediately {
+					self.focusURL = url
+					if self.audioPlayer.currentItem != nil {
+						self.stopObserving(onlyRemoveTimeObserver: true)
+						self.pause()
+						
+					}
+					newItem.saveToCache() { err in
+						guard err == nil else {
+							print(err!.localizedDescription)
+							return
+						}
+						print("saving item to cache")
+					}
+					self.audioPlayer.replaceCurrentItem(with: newItem)
+					self.beginObservingPlaybackTime(for: newItem)
+					self.audioPlayer.play()
+					
+					
+					let metaData = GCKMediaMetadata(metadataType: .generic)
+					metaData.setString(data.title ?? "unknown", forKey: kGCKMetadataKeyTitle)
+					let mediaInfo = GCKMediaInformation(
+						contentID: url.absoluteString,
+						streamType: .unknown,
+						contentType: "audio/mpg",
+						metadata: metaData,
+						streamDuration: Double(duration * 60 * 60),
+						customData: nil)
+					self.loadedMediaInfo = mediaInfo
+					
+					
+					if let session = GCKCastContext.sharedInstance().sessionManager.currentCastSession {
+						
+						print("session is active")
+						session.remoteMediaClient?.loadMedia(mediaInfo, autoplay: true, playPosition: 0)	
+					}
+					
+				} else {
+					// put buffering code here
 				}
 				
-				audioPlayer.replaceCurrentItem(with: newItem)
-				beginObservingPlaybackTime(for: newItem)
-				audioPlayer.play()
-				
-				
-				let metaData = GCKMediaMetadata(metadataType: .generic)
-				metaData.setString(data.title ?? "unknown", forKey: kGCKMetadataKeyTitle)
-				let mediaInfo = GCKMediaInformation(
-					contentID: url.absoluteString,
-					streamType: .unknown,
-					contentType: "audio/mpg",
-					metadata: metaData,
-					streamDuration: Double(duration * 60 * 60),
-					customData: nil)
-				loadedMediaInfo = mediaInfo
-				
-				
-				if let session = GCKCastContext.sharedInstance().sessionManager.currentCastSession {
-					
-					print("session is active")
-					session.remoteMediaClient?.loadMedia(mediaInfo, autoplay: true, playPosition: 0)	
-				}
-				
-			} else {
-				// put buffering code here
 			}
-			
+				
+			}
 		}
 	}
 	
@@ -135,14 +155,27 @@ class DJAudioController: NSObject, AudioPlayerControlType, GCKSessionManagerList
 		}
 		audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.rate), options: [.initial, .old, .new], context: nil)
 		audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.initial, .new], context: nil)
-		
+		NotificationCenter.default.addObserver(self, selector: #selector(playbackDidFinish),
+		                                       name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: audioPlayer.currentItem)
 		GCKCastContext.sharedInstance().sessionManager.add(self)
 	}
 	
+	func playbackDidFinish() {
+		print("playback has reached end of loaded track")
+		if shouldLoop {
+			print("looping back to start of loaded track")
+			restart()
+		} else {
+			// display reload screen
+		}
+	}
+	
 	func playbackTimeBecame(seconds: Double) {
-//		if ![MediaPlayerState.paused, .buffering].contains(self.getAudioPlayerState())   {
-			self.delegate?.didPlayTime(to: seconds)
-//		}
+		self.delegate?.didPlayTime(to: seconds)
+		if shouldFadeOverTime {
+			let computedVolume = max(0.5, 1 * (Double(hoursFadeDuration) / (seconds * 60)))
+			audioPlayer.setValue(computedVolume, forKey: #keyPath(AVPlayer.volume))
+		}
 	}
 	
 	func beginObservingPlaybackTime(for item: AVPlayerItem) {
@@ -171,7 +204,7 @@ class DJAudioController: NSObject, AudioPlayerControlType, GCKSessionManagerList
 			audioPlayer.removeTimeObserver(playbackTimeObserver)
 			playbackTimeObserver = nil
 		}
-		
+		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: audioPlayer.currentItem)
 	}
 	
 	
@@ -187,8 +220,6 @@ class DJAudioController: NSObject, AudioPlayerControlType, GCKSessionManagerList
 					let playbackIsBuffering = self.isBuffering()
 					
 					// check for buffering state
-					
-					
 					
 					if newVal == 1 && !playbackIsBuffering { // attempting to play
 						DispatchQueue.main.async {

@@ -48,6 +48,9 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYP-TC-KgC">
                         <rect key="frame" x="93" y="598" width="53" height="53"/>
                         <state key="normal" image="repeatButton"/>
+                        <connections>
+                            <action selector="clickedLoopModeButton:" destination="AaT-cH-7Qf" eventType="touchUpInside" id="fwz-rz-V13"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeF-Sy-ye3">
                         <rect key="frame" x="16" y="598" width="53" height="53"/>
@@ -56,6 +59,9 @@
                             <constraint firstAttribute="width" constant="53" id="ZFU-f0-Ojg"/>
                         </constraints>
                         <state key="normal" image="alarmButton"/>
+                        <connections>
+                            <action selector="clickedFadeModeButton:" destination="AaT-cH-7Qf" eventType="touchUpInside" id="IAP-Uc-6E0"/>
+                        </connections>
                     </button>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="vjf-5D-eBa">
                         <rect key="frame" x="170" y="598" width="53" height="53"/>
@@ -83,6 +89,8 @@
             </view>
             <connections>
                 <outlet property="collectionView" destination="NeQ-y5-ae4" id="24E-KA-BjM"/>
+                <outlet property="loopModeToggleButton" destination="qYP-TC-KgC" id="dLL-nx-JRv"/>
+                <outlet property="slowFadeModeToggleButton" destination="aeF-Sy-ye3" id="m2a-fx-oEQ"/>
                 <outlet property="systemMsgLabel" destination="hYz-cb-cEY" id="oyM-sZ-dIV"/>
             </connections>
             <point key="canvasLocation" x="-202.5" y="-198.5"/>

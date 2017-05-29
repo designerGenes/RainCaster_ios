@@ -24,6 +24,10 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
 	
 	
 	// MARK: - AudioPlaybackDelegate methods
+	func didFinishEntirePlayback() {
+		
+	}
+	
 	func didPlayTime(to seconds: Double) {
 //		print(seconds.rounded(toPlaces: 3))
 		guard seconds > 0 else {
@@ -106,10 +110,5 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
 		
 		
 	}
-	
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
 
 }

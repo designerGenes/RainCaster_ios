@@ -130,6 +130,7 @@ class DJMediaPlayerControl: UIView, AudioPlaybackDelegate {
 
 			} else { // another track is loaded, or no track is loaded
 				print("\nreplacing existing track")
+				audioController.pause()
 				audioController.focusAttention(on: self)
 				reflectPlaybackState(state: .playing)
 				audioController.loadTrack(from: assocAmbientTrackData, immediately: true)

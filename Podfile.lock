@@ -1,14 +1,22 @@
 PODS:
+  - Alamofire (4.4.0)
+  - Cache (2.2.2):
+    - CryptoSwift
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - google-cast-sdk (3.4.0):
-    - google-cast-sdk/Core (= 3.4.0)
-  - google-cast-sdk/Core (3.4.0)
+  - CryptoSwift (0.6.9)
+  - google-cast-sdk (3.5.0):
+    - google-cast-sdk/Core (= 3.5.0)
+  - google-cast-sdk/Core (3.5.0)
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - Alamofire
+  - Cache
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - google-cast-sdk
+  - SwiftyJSON
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -20,9 +28,13 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Cache: b00196618af3facf17986fadda228cc77b5a5a10
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  google-cast-sdk: 35da95f568b50d72628014f3320e2f3240bf2a7a
+  CryptoSwift: a22f6ba238e9ce4d26ee7bf45b9ed82e7122d4a0
+  google-cast-sdk: fc3728ead66150ac746e001ba03a44e4b10e359e
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 9c28f553043e6c5229de4eff26222b6ee741c91b
+PODFILE CHECKSUM: e625dab7fe685b13e2bdee8a58abc172f3ec37e3
 
 COCOAPODS: 1.2.1

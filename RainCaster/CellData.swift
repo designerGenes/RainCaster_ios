@@ -14,7 +14,6 @@ protocol AdoptiveCell {
 }
 
 
-
 class CellData: NSObject {
 	var title: String?
 	var assocColor: UIColor?
@@ -38,9 +37,6 @@ class CellData: NSObject {
 }
 
 
-class AmbientTrackData: CellData {
-	var hoursDuration: Int?
-	var sourceURL: URL?
-}
+
 
 

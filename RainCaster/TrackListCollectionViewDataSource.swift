@@ -8,11 +8,13 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 class TrackListCollectionViewDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 	
 	// MARK: - properties
-	var trackDataArr = [CellData]()
+	static var sharedInstance = TrackListCollectionViewDataSource()
+	var cellDataArr = [CellData]()
 	var settingsCellIdx: Int = 0
 	weak var collectionView: UICollectionView?
 	var cellWidth: CGFloat {
@@ -35,13 +37,6 @@ class TrackListCollectionViewDataSource: NSObject, UICollectionViewDataSource, U
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		let lateralPadding = (collectionView.frame.width * 0.2) / 2
 		return UIEdgeInsets(top: 8, left: lateralPadding, bottom: 8, right: lateralPadding)
-//		if section == 0 {
-//			return UIEdgeInsets(top: 8, left: lateralPadding, bottom: 8, right: lateralPadding - (cellWidth * 0.15))
-//		} else {
-//			return UIEdgeInsets(top: 8, left: lateralPadding, bottom: 8, right: lateralPadding)
-//		}
-		
-		
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -53,10 +48,8 @@ class TrackListCollectionViewDataSource: NSObject, UICollectionViewDataSource, U
 		return 40
 	}
 	
-
-	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let cellData = trackDataArr[indexPath.section]
+		let cellData = cellDataArr[indexPath.section]
 		if cellData is AmbientTrackData {
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackCell", for: indexPath) as! AmbientTrackCollectionViewCell
 			cell.manifest()
@@ -71,25 +64,35 @@ class TrackListCollectionViewDataSource: NSObject, UICollectionViewDataSource, U
 	}
 	
 	func numberOfSections(in collectionView: UICollectionView) -> Int {
-		let count = trackDataArr.count
+		let count = cellDataArr.count
 		collectionView.contentSize = CGSize(width: CGFloat(count) * collectionView.frame.width, height: collectionView.frame.height)
 		return count
 	}
 	
 	// MARK: - methods
 	func insertSettingsCell(atIdx idx: Int? = nil) {
-		let idx = idx ?? trackDataArr.count
-		guard idx >= 0 && idx <= trackDataArr.count else {
+		let idx = idx ?? cellDataArr.count
+		guard idx >= 0 && idx <= cellDataArr.count else {
 			return
 		}
 		let settingsCell = SettingsCellData()
-		trackDataArr.insert(settingsCell, at: idx)
+		cellDataArr.insert(settingsCell, at: idx)
 		
 	}
 	
-	func fillWithFakeData() {
-		trackDataArr = DummyDataSource.themedTrackCells()
-		insertSettingsCell() // at end
+	
+	func absorbTrackData(fromJSON json: JSON) {
+		var outList = [CellData]()
+		if let trackArr = json.array {
+			for track in trackArr {
+				let newTrackData = AmbientTrackData(fromJSON: track)
+				outList.append(newTrackData)
+			}
+		}
+		cellDataArr = outList
+		insertSettingsCell()
+		
+		collectionView?.reloadData()
 	}
 	
 	func adopt(collectionView: UICollectionView) {
@@ -99,9 +102,6 @@ class TrackListCollectionViewDataSource: NSObject, UICollectionViewDataSource, U
 		collectionView.register(UINib(nibName: "SettingsCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "SettingsCell")
 		collectionView.isPagingEnabled = true
 		self.collectionView = collectionView
-		
-		// TODO: remove
-		fillWithFakeData()
 	}
 	
 }
