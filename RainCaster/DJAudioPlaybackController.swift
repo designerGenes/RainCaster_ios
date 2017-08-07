@@ -266,7 +266,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 			case #keyPath(AVPlayerItem.loadedTimeRanges):
 				if let newVal = newVal as? [CMTimeRange]  {
 					for val in newVal {
-						print(val)
+						
 					}
 				}
 			default: break
