@@ -12,20 +12,31 @@ import Alamofire
 
 
 class DJRemoteDataSourceController: NSObject {
+	// MARK: - Properties
 	static var sharedInstance = DJRemoteDataSourceController()
+
 	var baseURLResourceString = "https://s3-us-west-2.amazonaws.com/raincasterapp/"
+	var mostRecentManifestVersion: String?
 	let permanentManifestURLString = "manifest.json"
-	private let sessionManager = Alamofire.SessionManager.default
+	
 	var manifestURL: URL {
 		let out = URL(string: "\(baseURLResourceString)\(permanentManifestURLString)")
 		return out!
 	}
 	
+	let afSessionManager: SessionManager = {
+		let configuration = URLSessionConfiguration.default
+		configuration.timeoutIntervalForRequest = 15
+		configuration.requestCachePolicy = .returnCacheDataElseLoad
+		configuration.urlCache = nil // debug
+		return SessionManager(configuration: configuration)
+	}()
 	
+	// MARK: - Methods
 	func pullRemoteManifest(callback: @escaping ((JSON?) -> Void)) {
-		print("\n\n\(manifestURL.absoluteString)")
 		
-		sessionManager.request(manifestURL.absoluteString).responseJSON { response in
+		afSessionManager.request(manifestURL.absoluteString).responseJSON { response in
+			
 			guard response.error == nil else {
 				print("err: \(response.error!.localizedDescription)")
 			 	return callback(nil)
@@ -33,12 +44,23 @@ class DJRemoteDataSourceController: NSObject {
 			
 			if let result = response.result.value {
 				let resultJSON = JSON(result)
+//				print("Manifest: ")
+//				print(resultJSON)
 				self.baseURLResourceString = resultJSON["baseURL"].string ?? self.baseURLResourceString
-				//if let itemsJSON = .array {
-				TrackListCollectionViewDataSource.sharedInstance.absorbTrackData(fromJSON: resultJSON["items"])
-				//}
+				self.mostRecentManifestVersion = resultJSON["version"].string
+				
+				let items = resultJSON["items"]
+				if let itemsArr = items.array {
+					if !itemsArr.isEmpty {
+						AmbientTrackDataSource.sharedInstance.absorbTrackData(fromJSON: resultJSON["items"])
+					} else {
+						AmbientTrackDataSource.sharedInstance.handleNoDataAvailable()
+					}
+				}
+
 				return callback(resultJSON)
 			}
+			return callback(nil)
 		}
 	}
 	

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FilsonSoftRegular.otf">
+            <string>FilsonSoftRegular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="RainCaster" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController id="pYN-z3-AUE" customClass="SettingsViewController" customModule="RainCaster" customModuleProvider="target">
+            <layoutGuides>
+                <viewControllerLayoutGuide type="top" id="GJo-Ks-ATq"/>
+                <viewControllerLayoutGuide type="bottom" id="LFf-nk-qfK"/>
+            </layoutGuides>
+            <view key="view" contentMode="scaleToFill" id="cAv-d6-Cdj">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="raincstr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqX-Zc-Iup">
+                        <rect key="frame" x="20" y="44" width="131" height="34.5"/>
+                        <fontDescription key="fontDescription" name="FilsonSoftRegular" family="Filson Soft" pointSize="36"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CM4-Q0-Vll">
+                        <rect key="frame" x="0.0" y="102.5" width="375" height="400"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </tableView>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcO-Md-Efu">
+                        <rect key="frame" x="299" y="31.5" width="60" height="60"/>
+                        <state key="normal" image="back"/>
+                        <connections>
+                            <action selector="tappedExitButton:" destination="pYN-z3-AUE" eventType="touchUpInside" id="jwu-JB-GZS"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.08235294118" green="0.074509803920000006" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="dcO-Md-Efu" secondAttribute="trailing" id="7tK-Kx-9BI"/>
+                    <constraint firstItem="zqX-Zc-Iup" firstAttribute="top" secondItem="GJo-Ks-ATq" secondAttribute="bottom" constant="24" id="LSM-2n-XBS"/>
+                    <constraint firstItem="CM4-Q0-Vll" firstAttribute="height" secondItem="cAv-d6-Cdj" secondAttribute="height" multiplier="0.6" id="RXT-Fg-b1K"/>
+                    <constraint firstItem="CM4-Q0-Vll" firstAttribute="top" secondItem="zqX-Zc-Iup" secondAttribute="bottom" constant="24" id="RfD-bn-KIg"/>
+                    <constraint firstItem="zqX-Zc-Iup" firstAttribute="leading" secondItem="cAv-d6-Cdj" secondAttribute="leadingMargin" constant="4" id="VkY-be-SN5"/>
+                    <constraint firstItem="CM4-Q0-Vll" firstAttribute="width" secondItem="cAv-d6-Cdj" secondAttribute="width" id="e08-Rf-1nd"/>
+                    <constraint firstItem="dcO-Md-Efu" firstAttribute="centerY" secondItem="zqX-Zc-Iup" secondAttribute="centerY" id="qBg-Te-twW"/>
+                    <constraint firstItem="CM4-Q0-Vll" firstAttribute="centerX" secondItem="cAv-d6-Cdj" secondAttribute="centerX" id="yRN-ZL-OUH"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="exitButton" destination="dcO-Md-Efu" id="ec5-CM-pCZ"/>
+                <outlet property="settingsTableView" destination="CM4-Q0-Vll" id="ufK-Zy-hCZ"/>
+            </connections>
+            <point key="canvasLocation" x="-102" y="-164"/>
+        </viewController>
+    </objects>
+    <resources>
+        <image name="back" width="60" height="60"/>
+    </resources>
+</document>

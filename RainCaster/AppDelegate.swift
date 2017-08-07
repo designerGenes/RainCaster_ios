@@ -11,6 +11,7 @@ import GoogleCast
 import AVFoundation
 import AVKit
 import SwiftyJSON
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
@@ -18,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 	var window: UIWindow?
 	
 	
-	// MARK: - GCKLoggerDelegate methods 
+	
+	// MARK: - GCKLoggerDelegate methods
+	func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+		return UIInterfaceOrientationMask.portrait
+	}
+	
+	
 	func logMessage(_ message: String, fromFunction function: String) {
 		print("Log: \(message)")
 	}
@@ -41,14 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 				
 			}
 		}
-		
+
 		return true
 	}
 	
 	
 
 	func applicationWillResignActive(_ application: UIApplication) {
-		DJAudioController.sharedInstance.setGlobalAudioSession(to: false)
+		DJAudioPlaybackController.sharedInstance.setGlobalAudioSession(to: false)
+//		DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(true)
 	}
 
 	func applicationDidEnterBackground(_ application: UIApplication) {
@@ -57,17 +65,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 	}
 
 	func applicationWillEnterForeground(_ application: UIApplication) {
-		DJAudioController.sharedInstance.setGlobalAudioSession(to: true)
+		DJAudioPlaybackController.sharedInstance.setGlobalAudioSession(to: true)
+		DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(false)
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
+		
+		
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
-		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+		DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(true)
 	}
 
-
+	
 }
 

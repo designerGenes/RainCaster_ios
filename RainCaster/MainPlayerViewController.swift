@@ -12,29 +12,29 @@ import AVKit
 import AVFoundation
 
 
-class MainPlayerViewController: UIViewController {
+class MainPlayerViewController: DJViewController {
 	// MARK: - outlets
 	@IBOutlet weak var collectionView: UICollectionView!
-	@IBOutlet weak var systemMsgLabel: UILabel!
-	@IBOutlet weak var loopModeToggleButton: UIButton!
-	@IBOutlet weak var slowFadeModeToggleButton: UIButton!
-	
-	@IBAction func clickedFadeModeButton(_ sender: UIButton) {
-		DJAudioController.sharedInstance.shouldFadeOverTime = !DJAudioController.sharedInstance.shouldFadeOverTime
-	}
-	
-	@IBAction func clickedLoopModeButton(_ sender: UIButton) {
-		DJAudioController.sharedInstance.shouldLoop = !DJAudioController.sharedInstance.shouldLoop
-	}
+	@IBOutlet weak var settingsButton: UIButton!
+	@IBOutlet weak var logoLabel: UILabel! // TMP
+	@IBAction func clickedSettingsButton(_ sender: UIButton) { didClickSettingsButton() }
+	@IBOutlet weak var navigationContainerView: UIView!
 	
 	
 	// MARK: - properties
+	private let topRowButtonsYConstant: CGFloat = 24
 	var castButton: GCKUICastButton?
-	let dataSource = TrackListCollectionViewDataSource.sharedInstance
+	let dataSource = AmbientTrackDataSource.sharedInstance
 	var manager: GCKDeviceManager?
 	var miniMediaControlsContainerView = UIView()
 	var miniControlVC: GCKUIMiniMediaControlsViewController?
 
+	func didClickSettingsButton() {
+		if let settingsVC = Bundle.main.loadNibNamed("SettingsViewController", owner: self, options: nil)?.first as? SettingsViewController {
+			present(settingsVC, animated: true, completion: nil)
+		}
+	}
+	
 	func sessionManager(_ sessionManager: GCKSessionManager, willStart session: GCKCastSession) {
 		print("GCK Cast session will start")
 	}
@@ -46,11 +46,13 @@ class MainPlayerViewController: UIViewController {
 		let castButton = GCKUICastButton()
 		self.castButton = castButton
 		view.addSubview(castButton)
-		castButton.tintColor = .white
-		castButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+		castButton.tintColor = UIColor.named(.whiteText)
+		castButton.frame.size = settingsButton.frame.size
 		castButton.translatesAutoresizingMaskIntoConstraints = false
-		castButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -24).isActive = true
-		castButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -24).isActive = true
+		castButton.rightAnchor.constraint(equalTo: settingsButton.leftAnchor, constant: -24).isActive = true
+		castButton.centerYAnchor.constraint(equalTo: settingsButton.centerYAnchor).isActive = true
+		
+		castButton.setInactiveIcon(UIImage(fromAssetNamed: .castButton), activeIcon: UIImage(fromAssetNamed: .castButtonActive), animationIcons: [UIImage(fromAssetNamed: .castButton), UIImage(fromAssetNamed: .castButtonActive)])
 	}
 	
 	override func viewDidLoad() {
@@ -59,6 +61,7 @@ class MainPlayerViewController: UIViewController {
 		collectionView.reloadData()
 		GCKCastContext.sharedInstance().sessionManager.add(self)
 		setupCastButton()
+		navigationContainerView.backgroundColor = UIColor.named(.nearly_black)
 	}
 }
 

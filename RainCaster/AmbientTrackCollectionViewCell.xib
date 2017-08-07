@@ -6,21 +6,83 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AmbientTrackCollectionViewCell" customModule="RainCaster" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="244" height="408"/>
+            <rect key="frame" x="0.0" y="0.0" width="244" height="324"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="244" height="408"/>
+                <rect key="frame" x="0.0" y="0.0" width="244" height="324"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5z-Hf-Zhg">
+                        <rect key="frame" x="0.0" y="97" width="244" height="227"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="hk0-Sy-wTD">
+                        <rect key="frame" x="0.0" y="0.0" width="244" height="97"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArD-eZ-LNu">
+                                <rect key="frame" x="84" y="16" width="136" height="25"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="lighthouse">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="26" name="FilsonSoft-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqP-GE-IMn">
+                                <rect key="frame" x="49" y="47" width="171" height="32.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="downpour">
+                                        <attributes>
+                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="34" name="FilsonSoft-Bold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ArD-eZ-LNu" secondAttribute="trailing" constant="24" id="3jN-qt-qRY"/>
+                            <constraint firstItem="jqP-GE-IMn" firstAttribute="trailing" secondItem="ArD-eZ-LNu" secondAttribute="trailing" id="ElL-sX-hWc"/>
+                            <constraint firstItem="jqP-GE-IMn" firstAttribute="top" secondItem="ArD-eZ-LNu" secondAttribute="bottom" constant="6" id="dib-ra-SHc"/>
+                            <constraint firstItem="ArD-eZ-LNu" firstAttribute="top" secondItem="hk0-Sy-wTD" secondAttribute="top" constant="16" id="oLm-aS-Paz"/>
+                        </constraints>
+                    </view>
+                </subviews>
             </view>
             <color key="backgroundColor" red="0.094117647060000004" green="0.094117647060000004" blue="0.094117647060000004" alpha="1" colorSpace="calibratedRGB"/>
-            <size key="customSize" width="244" height="408"/>
-            <point key="canvasLocation" x="-42" y="97"/>
+            <constraints>
+                <constraint firstItem="d5z-Hf-Zhg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3nU-2Z-MFp"/>
+                <constraint firstItem="hk0-Sy-wTD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QKJ-ho-uVU"/>
+                <constraint firstItem="d5z-Hf-Zhg" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.7" id="Sl8-pK-sQH"/>
+                <constraint firstItem="hk0-Sy-wTD" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="VBF-c0-n2g"/>
+                <constraint firstAttribute="bottom" secondItem="d5z-Hf-Zhg" secondAttribute="bottom" id="XGf-3B-pcn"/>
+                <constraint firstItem="hk0-Sy-wTD" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="a6p-U5-vBH"/>
+                <constraint firstItem="d5z-Hf-Zhg" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="jLG-3V-LWH"/>
+                <constraint firstItem="hk0-Sy-wTD" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.3" id="jji-Xh-W91"/>
+                <constraint firstAttribute="trailing" secondItem="d5z-Hf-Zhg" secondAttribute="trailing" id="tOd-JV-DGa"/>
+            </constraints>
+            <size key="customSize" width="244" height="324"/>
+            <connections>
+                <outlet property="infoAreaView" destination="hk0-Sy-wTD" id="iVP-Vg-TXv"/>
+                <outlet property="interactionAreaView" destination="d5z-Hf-Zhg" id="M6l-Ar-9xF"/>
+                <outlet property="titleBulkLabel" destination="ArD-eZ-LNu" id="P9W-2t-1vZ"/>
+                <outlet property="titleImpactLabel" destination="jqP-GE-IMn" id="g1i-Jn-Btf"/>
+            </connections>
+            <point key="canvasLocation" x="-42" y="55"/>
         </collectionViewCell>
     </objects>
 </document>

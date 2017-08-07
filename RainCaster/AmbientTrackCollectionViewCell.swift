@@ -8,104 +8,228 @@
 import Foundation
 import UIKit
 
-
+class FloatingTriangleView: UIView {
+	enum CellPosition: Int {
+		case left, right
+	}
+	
+	var triangleLayer: CAShapeLayer?
+	var position: CellPosition?
+	var color: UIColor?
+	
+	
+	func fade(out: Bool, time: Double, callback: BoolCallback? = nil) {
+		let alpha: CGFloat = out ? 0 : 1
+		UIView.animate(withDuration: time) {
+			self.alpha = alpha
+		}
+		DispatchQueue.main.asyncAfter(deadline: .now() + time) {
+			callback?(out)
+		}
+	}
+	
+	override func layoutSubviews() {
+		drawTriangleLayer(in: self)
+	}
+	
+	func drawTriangleLayer(in view: UIView) {
+		if let position = position, let color = color {
+			self.triangleLayer?.removeFromSuperlayer()
+			let triangleLayer = CAShapeLayer()
+			self.triangleLayer = triangleLayer
+			triangleLayer.frame = bounds
+			layer.addSublayer(triangleLayer)
+			
+			
+			
+			let coordDict: [Int: [CGPoint]] = [
+				0: [CGPoint(x: 0, y: 0),
+					CGPoint(x: view.bounds.maxX, y: 0),
+					CGPoint(x: 0, y: view.bounds.maxY),
+				],
+				1: [
+					CGPoint(x: view.bounds.maxX, y: 0),
+					CGPoint(x: view.bounds.maxX, y: view.bounds.maxY),
+					CGPoint(x: 0, y: view.bounds.maxY),
+				]
+			]
+		
+			let trianglePath = UIBezierPath()
+		
+			let points = coordDict[position.rawValue]!
+			
+			trianglePath.move(to: points[0])
+			trianglePath.addLine(to: points[1])
+			trianglePath.addLine(to: points[2])
+			trianglePath.close()
+			triangleLayer.path = trianglePath.cgPath
+			triangleLayer.fillColor = color.cgColor
+		}
+	}
+	
+	
+	func manifest(in view: UIView, position: CellPosition, color: UIColor) {
+		view.insertSubview(self, at: 0)
+		view.coverSelfEntirely(with: self)
+		
+		self.position = position
+		self.color = color
+		
+	}
+	
+}
 
 
 class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegate, AdoptiveCell {
 	// MARK: - outlets
 	
+	@IBOutlet weak var titleBulkLabel: UILabel!
+	@IBOutlet weak var titleImpactLabel: UILabel!
+	@IBOutlet weak var interactionAreaView: UIView!
 	
+	@IBOutlet weak var infoAreaView: UIView!
+	@IBOutlet weak var controlModeSwitchButton: UIButton!
+	@IBOutlet weak var playbackControlBarZone: UIView!
+
 	
 	// MARK: - properties
-	private var gradientLayer: CAGradientLayer?
-	var mediaPlayer = DJMediaPlayerControl()
-	var playbackProgressView = UIView()
-	private var playbackHeightConstraint: NSLayoutConstraint?
+	var controlCycler: DJControlSetCycler?
+	private var triangleView: UIView?
+	weak var assocTrackData: AmbientTrackData?
+	private var triggerSwitch: DJCycleSwitchButton?
+	private var triangleViews = [FloatingTriangleView]()
 	
+	override func layoutSubviews() {
+		for triangle in triangleViews {
+			triangle.drawTriangleLayer(in: interactionAreaView)
+		}
+	}
 	
+	func focusControlSetBecame(name: ControlSetName, instant: Bool = false) {
+		var colors = name.associatedColors()
+		let leftTriangle = FloatingTriangleView()
+		let rightTriangle = FloatingTriangleView()
+	
+		if name == .playbackTravel {
+			colors[.primary] = assocTrackData?.category?.associatedColor()
+			colors[.secondary] = assocTrackData?.category?.associatedColor(beta: true)
+		}
+		
+		leftTriangle.manifest(in: interactionAreaView, position: .left, color: colors[.primary]!)
+		rightTriangle.manifest(in: interactionAreaView, position: .right, color: colors[.secondary]!)
+		
+		if let playPauseBtn = controlCycler?.playPauseBtn {
+			bringSubview(toFront: playPauseBtn)
+		}
+		
+		var newTriangles: [FloatingTriangleView] = [leftTriangle, rightTriangle]
+		
+		var totalDelay: Double = 0
+		for (z, triangleGroup) in [self.triangleViews, newTriangles].enumerated() {
+			for (y, triangle) in triangleGroup.enumerated() {
+				let duration = instant ? 0 : 0.35
+				
+				DispatchQueue.main.asyncAfter(deadline: .now() + totalDelay) {
+					totalDelay += duration
+					print(totalDelay)
+					triangle.fade(out: z < 1, time: duration) { out in
+						if let out = out, out == true {
+							triangle.removeFromSuperview()
+						}
+					}
+				}
+			}
+		}
+		self.triangleViews = newTriangles
+
+		
+	}
+
 	// MARK: - AudioPlaybackDelegate methods
 	func didFinishEntirePlayback() {
 		
 	}
-	
+
 	func didPlayTime(to seconds: Double) {
-//		print(seconds.rounded(toPlaces: 3))
-		guard seconds > 0 else {
-			return
-		}
 		
-			
-			
-		let adjustedSeconds = Double( Int(seconds) % (3600))
-		let sig = CGFloat(adjustedSeconds / 3600)
 		
-		let computedConstant = frame.height * max(0, min(1, sig))
-		playbackHeightConstraint?.constant = computedConstant
-			
-		
+	}
+
+	func playbackStateBecame(state: MediaPlayerState) {
+		//
 	}
 	
 	// MARK: - AdoptiveCell methods
-	func addSimpleGradient(ofColor color: UIColor) {
-		let gradientLayer = CAGradientLayer()
-		self.gradientLayer = gradientLayer
-		gradientLayer.colors = [color.lightenBy(percent: 0.1).withAlphaComponent(0.9), color.lightenBy(percent: 0.2).withAlphaComponent(0.8)].map({$0.cgColor})
-		gradientLayer.startPoint = CGPoint(x: 0.3, y: 0)
-		gradientLayer.endPoint = CGPoint(x: 0.9, y: 1)
-		gradientLayer.frame = bounds
-		layer.addSublayer(gradientLayer)
-		for view in subviews {
-			bringSubview(toFront: view)
-		}
-	}
-	
-	override func prepareForReuse() {
-		super.prepareForReuse()
-		gradientLayer?.removeFromSuperlayer()
-	}
-	
-	override func layoutSubviews() {
-		super.layoutSubviews()
-		gradientLayer?.frame = bounds
-	}
 	
 	func adopt(data: CellData) {
 		if let data = data as? AmbientTrackData {
 			
-			if let assocColor = data.assocColor {
-				backgroundColor = assocColor
-				addSimpleGradient(ofColor: assocColor)
+			assocTrackData = data
+			interactionAreaView.backgroundColor = data.assocColor
+			
+			
+			var titleArr = data.title?.components(separatedBy: " ")
+			if titleArr != nil {
+				let finalWord = titleArr!.removeLast()
 				
-				let progressBarColor = UIColor.named(.black_1)
-				playbackProgressView.backgroundColor = progressBarColor
+				var titleString = ""
+				for word in titleArr! {
+					titleString += word + " "
+				}
+				titleBulkLabel.text = titleString.lowercased()
+				titleImpactLabel.text = finalWord.lowercased()
+				
 			}
-			
-			// add media player
-			mediaPlayer.adopt(trackData: data)
-			mediaPlayer.playbackListener = self
-			
 		}
 	}
 	
-	// MARK: - methods
-	func tappedCell() {
-		let color = DJColor.randomColor(avoidGray: true)
-		backgroundColor = color
+	override func prepareForReuse() {
+		controlCycler?.die()
+		controlCycler = nil
+		triggerSwitch?.die()
+		
+		super.prepareForReuse()
 	}
 	
-	func manifest() {
-		mediaPlayer.manifest(in: self)
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		contentView.frame = bounds
+		contentView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, .flexibleWidth]
+		autoresizingMask = [UIViewAutoresizing.flexibleHeight, .flexibleWidth]
 		
-		insertSubview(playbackProgressView, belowSubview: mediaPlayer)
-		playbackProgressView.translatesAutoresizingMaskIntoConstraints = false
-		playbackProgressView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-		playbackProgressView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-		playbackHeightConstraint = playbackProgressView.heightAnchor.constraint(equalToConstant: 0)
-		playbackHeightConstraint?.isActive = true
-		playbackProgressView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+	}
+	
+	// MARK: - methods
+	func manifest() {
+		print("manifesting in cell")
+		
+		let controlSet: [DJCyclableControl] = [
+			DJPlayPauseControl(),
+			DJStepperControl(marginBetweenVerticalElements: interactionAreaView.frame.height / 6, marginBetweenHorizontalElements: 60),
+			DJInfoSheetControl(withHeadline: "Fun Fact #44", body: "A large majority of fun facts are not, in fact, fun at all.")
+		]
+		
+		interactionAreaView.backgroundColor = .clear
+		infoAreaView.backgroundColor = UIColor.named(.gray_0)
+		
 		
 		layer.masksToBounds = true
 		layer.cornerRadius = 8
+		controlCycler = DJControlSetCycler()
+		let triggerSwitch = DJCycleSwitchButton(withSize: CGSize(width: 50, height: 50), withBarCount: controlSet.count, listener: controlCycler!)
+		self.triggerSwitch = triggerSwitch
+		
+		triggerSwitch.manifest(in: infoAreaView, hidden: false)
+		
+		
+		
+		controlCycler?.cell = self
+		controlCycler?.manifest(in: interactionAreaView, with: controlSet)
+		
+		
+		
+		
+		
 		
 		
 		

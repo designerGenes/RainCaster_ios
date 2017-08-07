@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		5220CD4F78B806719BD9EA88 /* Pods_RainCaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */; };
-		FE3BB69E1EB9487000809F98 /* DJMediaPlayerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB69D1EB9487000809F98 /* DJMediaPlayerControl.swift */; };
+		FE3059881EE57A850010F242 /* DJControlSetCycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059871EE57A850010F242 /* DJControlSetCycler.swift */; };
+		FE30598A1EE5A3EB0010F242 /* DJPlayPauseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */; };
+		FE30598C1EE5A4070010F242 /* DJStepperControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30598B1EE5A4070010F242 /* DJStepperControl.swift */; };
+		FE30598E1EE5A41D0010F242 /* DJCycleSwitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30598D1EE5A41D0010F242 /* DJCycleSwitchButton.swift */; };
+		FE3059901EE5C07F0010F242 /* DJInfoSheetControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30598F1EE5C07F0010F242 /* DJInfoSheetControl.swift */; };
+		FE3059921EE5F62D0010F242 /* DJCyclableControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059911EE5F62D0010F242 /* DJCyclableControl.swift */; };
+		FE3BB69E1EB9487000809F98 /* AudioPlaybackProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB69D1EB9487000809F98 /* AudioPlaybackProtocols.swift */; };
 		FE3BB6A21EB9554500809F98 /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */; };
 		FE5504F21ED3738000C2722A /* DJCachingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5504F11ED3738000C2722A /* DJCachingController.swift */; };
+		FE5E266C1F0AF06900B94E24 /* ClosureNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E266B1F0AF06900B94E24 /* ClosureNames.swift */; };
 		FE618D131EC3AE7900BA7E46 /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE618D121EC3AE7900BA7E46 /* Cache.framework */; };
 		FE618D171EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE618D161EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift */; };
 		FE6E510D1EABECCB00A62CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */; };
@@ -24,32 +31,42 @@
 		FE964D021EB7B43600DF0035 /* FilsonSoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE964D001EB7B43600DF0035 /* FilsonSoftRegular.otf */; };
 		FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4961EB7FAD600187EB0 /* MainPlayerViewController.swift */; };
 		FEA3B4991EB7FAD600187EB0 /* MainPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA3B4971EB7FAD600187EB0 /* MainPlayerViewController.xib */; };
-		FEA3B49C1EB8015800187EB0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B49B1EB8015800187EB0 /* Enums.swift */; };
+		FEA3B49C1EB8015800187EB0 /* DJAssetNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B49B1EB8015800187EB0 /* DJAssetNames.swift */; };
 		FEA3B49F1EB8028B00187EB0 /* UIColor+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B49E1EB8028B00187EB0 /* UIColor+Design.swift */; };
 		FEA3B4A11EB8029900187EB0 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4A01EB8029900187EB0 /* UIColor+Convenience.swift */; };
 		FEA3B4A31EB802C300187EB0 /* Numeric+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4A21EB802C300187EB0 /* Numeric+Convenience.swift */; };
 		FEA3B4A51EB8033600187EB0 /* UIFont+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4A41EB8033600187EB0 /* UIFont+Design.swift */; };
 		FEA3B4A71EB8039F00187EB0 /* SanFranciscoDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FEA3B4A61EB8039F00187EB0 /* SanFranciscoDisplay-Regular.otf */; };
-		FEA3B4AA1EB8046E00187EB0 /* TrackListCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4A91EB8046E00187EB0 /* TrackListCollectionViewDataSource.swift */; };
-		FEA3B4AF1EB8063700187EB0 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4AD1EB8063700187EB0 /* SettingsCollectionViewCell.swift */; };
-		FEA3B4B01EB8063700187EB0 /* SettingsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA3B4AE1EB8063700187EB0 /* SettingsCollectionViewCell.xib */; };
+		FEA3B4AA1EB8046E00187EB0 /* AmbientTrackDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4A91EB8046E00187EB0 /* AmbientTrackDataSource.swift */; };
 		FEA3B4B21EB807E800187EB0 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B11EB807E800187EB0 /* CellData.swift */; };
-		FEA3B4B51EB80E6900187EB0 /* DJAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B41EB80E6900187EB0 /* DJAudioController.swift */; };
-		FEA3B4B71EB80F0000187EB0 /* DummyDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B61EB80F0000187EB0 /* DummyDataSource.swift */; };
+		FEA3B4B51EB80E6900187EB0 /* DJAudioPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */; };
 		FEA72AB71EDCDFCD00A2B76F /* AmbientTrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */; };
+		FEAFDBB11F27C92400194062 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFDBAF1F27C92400194062 /* SettingsViewController.swift */; };
+		FEAFDBB21F27C92400194062 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDBB01F27C92400194062 /* SettingsViewController.xib */; };
+		FEAFDBB61F27D04C00194062 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */; };
+		FEAFDBB71F27D04C00194062 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDBB51F27D04C00194062 /* SettingsTableViewCell.xib */; };
 		FEBF1A821EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBF1A811EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift */; };
 		FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */; };
 		FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */; };
-		FEDB63741EBD65CB00F8FDF2 /* DJCustomActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB63731EBD65CB00F8FDF2 /* DJCustomActivityView.swift */; };
+		FEFC7A2A1F37C13D003100E8 /* DebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A291F37C13D003100E8 /* DebugController.swift */; };
+		FEFC7A2C1F37C370003100E8 /* Dispatch+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */; };
+		FEFC7A2E1F37D57F003100E8 /* DJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A2D1F37D57F003100E8 /* DJViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RainCaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		634002D169D85C96F267F6CF /* Pods-RainCaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.release.xcconfig"; sourceTree = "<group>"; };
 		9303DDAE6753518BA0A520D8 /* Pods-RainCaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.debug.xcconfig"; sourceTree = "<group>"; };
-		FE3BB69D1EB9487000809F98 /* DJMediaPlayerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJMediaPlayerControl.swift; sourceTree = "<group>"; };
+		FE3059871EE57A850010F242 /* DJControlSetCycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJControlSetCycler.swift; sourceTree = "<group>"; };
+		FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJPlayPauseControl.swift; sourceTree = "<group>"; };
+		FE30598B1EE5A4070010F242 /* DJStepperControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJStepperControl.swift; sourceTree = "<group>"; };
+		FE30598D1EE5A41D0010F242 /* DJCycleSwitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCycleSwitchButton.swift; sourceTree = "<group>"; };
+		FE30598F1EE5C07F0010F242 /* DJInfoSheetControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJInfoSheetControl.swift; sourceTree = "<group>"; };
+		FE3059911EE5F62D0010F242 /* DJCyclableControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCyclableControl.swift; sourceTree = "<group>"; };
+		FE3BB69D1EB9487000809F98 /* AudioPlaybackProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlaybackProtocols.swift; sourceTree = "<group>"; };
 		FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Convenience.swift"; sourceTree = "<group>"; };
 		FE5504F11ED3738000C2722A /* DJCachingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCachingController.swift; sourceTree = "<group>"; };
+		FE5E266B1F0AF06900B94E24 /* ClosureNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureNames.swift; sourceTree = "<group>"; };
 		FE618D121EC3AE7900BA7E46 /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cache.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphoneos/Cache/Cache.framework"; sourceTree = "<group>"; };
 		FE618D161EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackPlayerItem.swift; sourceTree = "<group>"; };
 		FE6E51091EABECCB00A62CCB /* RainCaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainCaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -67,24 +84,27 @@
 		FE964D001EB7B43600DF0035 /* FilsonSoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FilsonSoftRegular.otf; sourceTree = "<group>"; };
 		FEA3B4961EB7FAD600187EB0 /* MainPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPlayerViewController.swift; sourceTree = "<group>"; };
 		FEA3B4971EB7FAD600187EB0 /* MainPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPlayerViewController.xib; sourceTree = "<group>"; };
-		FEA3B49B1EB8015800187EB0 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		FEA3B49B1EB8015800187EB0 /* DJAssetNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAssetNames.swift; sourceTree = "<group>"; };
 		FEA3B49E1EB8028B00187EB0 /* UIColor+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Design.swift"; sourceTree = "<group>"; };
 		FEA3B4A01EB8029900187EB0 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
 		FEA3B4A21EB802C300187EB0 /* Numeric+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Numeric+Convenience.swift"; sourceTree = "<group>"; };
 		FEA3B4A41EB8033600187EB0 /* UIFont+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Design.swift"; sourceTree = "<group>"; };
 		FEA3B4A61EB8039F00187EB0 /* SanFranciscoDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SanFranciscoDisplay-Regular.otf"; sourceTree = "<group>"; };
-		FEA3B4A91EB8046E00187EB0 /* TrackListCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackListCollectionViewDataSource.swift; sourceTree = "<group>"; };
-		FEA3B4AD1EB8063700187EB0 /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
-		FEA3B4AE1EB8063700187EB0 /* SettingsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsCollectionViewCell.xib; sourceTree = "<group>"; };
+		FEA3B4A91EB8046E00187EB0 /* AmbientTrackDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackDataSource.swift; sourceTree = "<group>"; };
 		FEA3B4B11EB807E800187EB0 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
-		FEA3B4B41EB80E6900187EB0 /* DJAudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAudioController.swift; sourceTree = "<group>"; };
-		FEA3B4B61EB80F0000187EB0 /* DummyDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyDataSource.swift; sourceTree = "<group>"; };
+		FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAudioPlaybackController.swift; sourceTree = "<group>"; };
 		FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackData.swift; sourceTree = "<group>"; };
+		FEAFDBAF1F27C92400194062 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FEAFDBB01F27C92400194062 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
+		FEAFDBB51F27D04C00194062 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		FEBF1A811EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJRemoteDataSourceController.swift; sourceTree = "<group>"; };
 		FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Curve.swift"; sourceTree = "<group>"; };
 		FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Convenience.swift"; sourceTree = "<group>"; };
 		FEDB636F1EBD27E900F8FDF2 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphonesimulator/ChameleonFramework/ChameleonFramework.framework"; sourceTree = "<group>"; };
-		FEDB63731EBD65CB00F8FDF2 /* DJCustomActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCustomActivityView.swift; sourceTree = "<group>"; };
+		FEFC7A291F37C13D003100E8 /* DebugController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugController.swift; sourceTree = "<group>"; };
+		FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+Convenience.swift"; sourceTree = "<group>"; };
+		FEFC7A2D1F37D57F003100E8 /* DJViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,14 +139,6 @@
 				0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FE3BB69C1EB9485100809F98 /* MediaPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				FE3BB69D1EB9487000809F98 /* DJMediaPlayerControl.swift */,
-			);
-			name = MediaPlayer;
 			sourceTree = "<group>";
 		};
 		FE6E51001EABECCB00A62CCB = {
@@ -174,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA3B49A1EB7FB0800187EB0 /* MainPlayer */,
+				FEAFDBB31F27C92C00194062 /* Settings */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -183,7 +196,7 @@
 			children = (
 				FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */,
 				FE6E51131EABECCB00A62CCB /* Assets.xcassets */,
-				FEA3B49B1EB8015800187EB0 /* Enums.swift */,
+				FEA3B49B1EB8015800187EB0 /* DJAssetNames.swift */,
 				FEA3B49D1EB8017100187EB0 /* Extensions */,
 				FE6E51221EABEE1100A62CCB /* Fonts */,
 				FE6E51181EABECCB00A62CCB /* Info.plist */,
@@ -195,8 +208,12 @@
 			isa = PBXGroup;
 			children = (
 				FEA3B4AB1EB8061A00187EB0 /* Cells */,
-				FEDB63731EBD65CB00F8FDF2 /* DJCustomActivityView.swift */,
-				FE3BB69C1EB9485100809F98 /* MediaPlayer */,
+				FE3059871EE57A850010F242 /* DJControlSetCycler.swift */,
+				FE3059911EE5F62D0010F242 /* DJCyclableControl.swift */,
+				FE30598D1EE5A41D0010F242 /* DJCycleSwitchButton.swift */,
+				FE30598F1EE5C07F0010F242 /* DJInfoSheetControl.swift */,
+				FE30598B1EE5A4070010F242 /* DJStepperControl.swift */,
+				FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -211,21 +228,23 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
-		FE964CFE1EB7AF4000DF0035 /* Themed Track */ = {
+		FE964CFE1EB7AF4000DF0035 /* Ambient Track */ = {
 			isa = PBXGroup;
 			children = (
 				FE964CFA1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift */,
 				FE964CFB1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib */,
 			);
-			name = "Themed Track";
+			name = "Ambient Track";
 			sourceTree = "<group>";
 		};
 		FE994B161EC133AB006A7D33 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FE3BB69D1EB9487000809F98 /* AudioPlaybackProtocols.swift */,
 				FE618D161EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift */,
 				FEA3B4B11EB807E800187EB0 /* CellData.swift */,
 				FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */,
+				FEFC7A2D1F37D57F003100E8 /* DJViewController.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -250,6 +269,8 @@
 				FEA3B4A41EB8033600187EB0 /* UIFont+Design.swift */,
 				FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */,
 				FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */,
+				FE5E266B1F0AF06900B94E24 /* ClosureNames.swift */,
+				FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -257,8 +278,7 @@
 		FEA3B4A81EB8044F00187EB0 /* Data Sources */ = {
 			isa = PBXGroup;
 			children = (
-				FEA3B4A91EB8046E00187EB0 /* TrackListCollectionViewDataSource.swift */,
-				FEA3B4B61EB80F0000187EB0 /* DummyDataSource.swift */,
+				FEA3B4A91EB8046E00187EB0 /* AmbientTrackDataSource.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -267,7 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				FEA3B4AC1EB8062400187EB0 /* Settings */,
-				FE964CFE1EB7AF4000DF0035 /* Themed Track */,
+				FE964CFE1EB7AF4000DF0035 /* Ambient Track */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -275,8 +295,8 @@
 		FEA3B4AC1EB8062400187EB0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				FEA3B4AD1EB8063700187EB0 /* SettingsCollectionViewCell.swift */,
-				FEA3B4AE1EB8063700187EB0 /* SettingsCollectionViewCell.xib */,
+				FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */,
+				FEAFDBB51F27D04C00194062 /* SettingsTableViewCell.xib */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -285,10 +305,20 @@
 			isa = PBXGroup;
 			children = (
 				FEBF1A811EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift */,
-				FEA3B4B41EB80E6900187EB0 /* DJAudioController.swift */,
+				FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */,
 				FE5504F11ED3738000C2722A /* DJCachingController.swift */,
+				FEFC7A291F37C13D003100E8 /* DebugController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FEAFDBB31F27C92C00194062 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FEAFDBAF1F27C92400194062 /* SettingsViewController.swift */,
+				FEAFDBB01F27C92400194062 /* SettingsViewController.xib */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,7 +356,7 @@
 				TargetAttributes = {
 					FE6E51081EABECCB00A62CCB = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 4XGWNN4LS9;
+						DevelopmentTeam = 55PAL6XTGT;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -356,13 +386,14 @@
 			files = (
 				FE6E51171EABECCB00A62CCB /* LaunchScreen.storyboard in Resources */,
 				FE6E51141EABECCB00A62CCB /* Assets.xcassets in Resources */,
-				FEA3B4B01EB8063700187EB0 /* SettingsCollectionViewCell.xib in Resources */,
 				FE6E51251EABEFF300A62CCB /* Podfile in Resources */,
 				FE964D021EB7B43600DF0035 /* FilsonSoftRegular.otf in Resources */,
 				FE964D011EB7B43600DF0035 /* FilsonSoft-Bold.otf in Resources */,
 				FEA3B4A71EB8039F00187EB0 /* SanFranciscoDisplay-Regular.otf in Resources */,
 				FEA3B4991EB7FAD600187EB0 /* MainPlayerViewController.xib in Resources */,
 				FE964CFD1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib in Resources */,
+				FEAFDBB71F27D04C00194062 /* SettingsTableViewCell.xib in Resources */,
+				FEAFDBB21F27C92400194062 /* SettingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,28 +453,37 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE964CFC1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift in Sources */,
-				FE3BB69E1EB9487000809F98 /* DJMediaPlayerControl.swift in Sources */,
-				FEDB63741EBD65CB00F8FDF2 /* DJCustomActivityView.swift in Sources */,
+				FEFC7A2C1F37C370003100E8 /* Dispatch+Convenience.swift in Sources */,
+				FE3BB69E1EB9487000809F98 /* AudioPlaybackProtocols.swift in Sources */,
 				FEA72AB71EDCDFCD00A2B76F /* AmbientTrackData.swift in Sources */,
-				FEA3B4B71EB80F0000187EB0 /* DummyDataSource.swift in Sources */,
 				FEA3B49F1EB8028B00187EB0 /* UIColor+Design.swift in Sources */,
+				FE30598C1EE5A4070010F242 /* DJStepperControl.swift in Sources */,
 				FEA3B4A51EB8033600187EB0 /* UIFont+Design.swift in Sources */,
-				FEA3B49C1EB8015800187EB0 /* Enums.swift in Sources */,
+				FE5E266C1F0AF06900B94E24 /* ClosureNames.swift in Sources */,
+				FE30598A1EE5A3EB0010F242 /* DJPlayPauseControl.swift in Sources */,
+				FEA3B49C1EB8015800187EB0 /* DJAssetNames.swift in Sources */,
+				FE3059881EE57A850010F242 /* DJControlSetCycler.swift in Sources */,
+				FE30598E1EE5A41D0010F242 /* DJCycleSwitchButton.swift in Sources */,
 				FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */,
-				FEA3B4AF1EB8063700187EB0 /* SettingsCollectionViewCell.swift in Sources */,
 				FE964CEF1EAC259F00DF0035 /* MainPlayerVC+GCKDeviceManagerDelegate.swift in Sources */,
 				FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */,
 				FEA3B4B21EB807E800187EB0 /* CellData.swift in Sources */,
-				FEA3B4B51EB80E6900187EB0 /* DJAudioController.swift in Sources */,
+				FEAFDBB61F27D04C00194062 /* SettingsTableViewCell.swift in Sources */,
+				FEA3B4B51EB80E6900187EB0 /* DJAudioPlaybackController.swift in Sources */,
 				FE3BB6A21EB9554500809F98 /* UIImage+Convenience.swift in Sources */,
 				FE618D171EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift in Sources */,
+				FEFC7A2A1F37C13D003100E8 /* DebugController.swift in Sources */,
 				FE6E510D1EABECCB00A62CCB /* AppDelegate.swift in Sources */,
 				FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */,
-				FEA3B4AA1EB8046E00187EB0 /* TrackListCollectionViewDataSource.swift in Sources */,
+				FE3059921EE5F62D0010F242 /* DJCyclableControl.swift in Sources */,
+				FEA3B4AA1EB8046E00187EB0 /* AmbientTrackDataSource.swift in Sources */,
+				FEAFDBB11F27C92400194062 /* SettingsViewController.swift in Sources */,
 				FEBF1A821EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift in Sources */,
 				FEA3B4A11EB8029900187EB0 /* UIColor+Convenience.swift in Sources */,
 				FE5504F21ED3738000C2722A /* DJCachingController.swift in Sources */,
 				FEA3B4A31EB802C300187EB0 /* Numeric+Convenience.swift in Sources */,
+				FEFC7A2E1F37D57F003100E8 /* DJViewController.swift in Sources */,
+				FE3059901EE5C07F0010F242 /* DJInfoSheetControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,7 +599,7 @@
 			baseConfigurationReference = 9303DDAE6753518BA0A520D8 /* Pods-RainCaster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4XGWNN4LS9;
+				DEVELOPMENT_TEAM = 55PAL6XTGT;
 				INFOPLIST_FILE = RainCaster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DesignerJeans.RainCaster;
@@ -573,7 +613,7 @@
 			baseConfigurationReference = 634002D169D85C96F267F6CF /* Pods-RainCaster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 4XGWNN4LS9;
+				DEVELOPMENT_TEAM = 55PAL6XTGT;
 				INFOPLIST_FILE = RainCaster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DesignerJeans.RainCaster;

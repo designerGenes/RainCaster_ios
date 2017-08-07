@@ -14,6 +14,9 @@ protocol AdoptiveCell {
 }
 
 
+// NOTE:
+// Cell Data can be either a Settings-type or Track-type
+
 class CellData: NSObject {
 	var title: String?
 	var assocColor: UIColor?
@@ -23,13 +26,7 @@ class CellData: NSObject {
 				ambientTrackCell.adopt(data: self)
 				return ambientTrackCell
 			}
-		} else if self is SettingsCellData {
-			if let settingsCell = Bundle.main.loadNibNamed("SettingsCollectionViewCell", owner: nil, options: nil)?.first as? SettingsCollectionViewCell {
-				settingsCell.adopt(data: self)
-				return settingsCell
-			}
-		}
-		
+		} 
 		
 		
 		return UICollectionViewCell()
