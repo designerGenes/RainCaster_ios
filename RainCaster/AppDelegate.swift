@@ -18,6 +18,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 
 	var window: UIWindow?
 	
+	// MARK: - utility methods
+	var mainPlayerVC: MainPlayerViewController? {
+		return window?.rootViewController as? MainPlayerViewController
+	}
+	
+	var settingsVC: SettingsViewController? {
+		return window?.rootViewController?.presentedViewController as? SettingsViewController
+	}
+	
+	static var shared: AppDelegate? {
+		return UIApplication.shared.delegate as? AppDelegate
+	}
 	
 	
 	// MARK: - GCKLoggerDelegate methods
@@ -27,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 	
 	
 	func logMessage(_ message: String, fromFunction function: String) {
-		print("Log: \(message)")
+//		print("Log: \(message)")
 	}
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -44,10 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 		
 		DJRemoteDataSourceController.sharedInstance.pullRemoteManifest() { res in
 			if let resJSON = res as? JSON {
-				print("Successfully pulled manifest from server")
+//				print("Successfully pulled manifest from server")
 				
 			}
 		}
+        
+        DJAudioPlaybackController.sharedInstance.remoteMediaClient?.stop()
 
 		return true
 	}
@@ -65,14 +79,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 	}
 
 	func applicationWillEnterForeground(_ application: UIApplication) {
-		DJAudioPlaybackController.sharedInstance.setGlobalAudioSession(to: true)
-		DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(false)
+		
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
-		
-		
-		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+		DJAudioPlaybackController.sharedInstance.setGlobalAudioSession(to: true)
+		DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(false)
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +27,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="244" height="97"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArD-eZ-LNu">
-                                <rect key="frame" x="84" y="16" width="136" height="25"/>
+                                <rect key="frame" x="96" y="16" width="136" height="25"/>
                                 <attributedString key="attributedText">
                                     <fragment content="lighthouse">
                                         <attributes>
@@ -40,7 +40,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqP-GE-IMn">
-                                <rect key="frame" x="49" y="47" width="171" height="32.5"/>
+                                <rect key="frame" x="61" y="47" width="171" height="32.5"/>
                                 <attributedString key="attributedText">
                                     <fragment content="downpour">
                                         <attributes>
@@ -55,7 +55,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ArD-eZ-LNu" secondAttribute="trailing" constant="24" id="3jN-qt-qRY"/>
+                            <constraint firstAttribute="trailing" secondItem="ArD-eZ-LNu" secondAttribute="trailing" constant="12" id="3jN-qt-qRY"/>
                             <constraint firstItem="jqP-GE-IMn" firstAttribute="trailing" secondItem="ArD-eZ-LNu" secondAttribute="trailing" id="ElL-sX-hWc"/>
                             <constraint firstItem="jqP-GE-IMn" firstAttribute="top" secondItem="ArD-eZ-LNu" secondAttribute="bottom" constant="6" id="dib-ra-SHc"/>
                             <constraint firstItem="ArD-eZ-LNu" firstAttribute="top" secondItem="hk0-Sy-wTD" secondAttribute="top" constant="16" id="oLm-aS-Paz"/>

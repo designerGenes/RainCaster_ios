@@ -16,40 +16,45 @@ class DJStepperControl: DJCyclableControl {
 		return out
 	}
 	
-	
-	
-	var currentValue: Int = 0 {
-		didSet {
-			//
-		}
-	}
-	
+	// MARK: - properties
+	var currentValue: Int = 10
 	let valueLabel = UILabel()
 	let stepperIncreaseButton = DJStepperControl.stepperButton(facingUp: true)
 	let stepperDecreaseButton = DJStepperControl.stepperButton()
 	
-
-	var numericalBounds: (Int, Int) = (0, 10)
+	var numericalBounds: (Int, Int) = (1, 10)
 	private var marginBetweenVerticalElements: CGFloat = 0
 	private var marginBetweenHorizontalElements: CGFloat = 0
 	
+	// MARK: - methods
 	func tappedIncreaseButton() {
-		currentValue = min(currentValue + 1, numericalBounds.1)
-		valueLabel.text = "\(currentValue)"
-		
+		trySetValue(to: currentValue + 1)
 	}
 	
 	func tappedDecreaseButton() {
-		currentValue = max(currentValue - 1, numericalBounds.0)
-		valueLabel.text = "\(currentValue)"
+		trySetValue(to: currentValue - 1)
+	}
+	
+	func trySetValue(to val: Int) {
+		if val <= 11 && val > 0 {
+            if val < 11 {
+                DJAudioPlaybackController.sharedInstance.hoursFadeDuration = val
+            }
+            DJAudioPlaybackController.sharedInstance.shouldLoop = val < 11
+            
+			currentValue = val
+			valueLabel.text = val < 11 ? "\(val)" : "INF"
+		}
 	}
 	
 	override func manifest(in view: UIView, hidden: Bool = false) {
 		controlComponents = [
 			valueLabel: (-marginBetweenHorizontalElements, 0),
-			stepperIncreaseButton: (marginBetweenHorizontalElements, -marginBetweenVerticalElements),
-			stepperDecreaseButton: (marginBetweenHorizontalElements, marginBetweenVerticalElements)
+			stepperIncreaseButton: (marginBetweenHorizontalElements * 1.2, -marginBetweenVerticalElements),
+			stepperDecreaseButton: (marginBetweenHorizontalElements * 1.2, marginBetweenVerticalElements)
 		]
+        trySetValue(to: DJAudioPlaybackController.sharedInstance.hoursFadeDuration)
+    
 		super.manifest(in: view, hidden: hidden)
 	}
 	
@@ -63,8 +68,8 @@ class DJStepperControl: DJCyclableControl {
 		stepperIncreaseButton.frame.size = CGSize(width: 20, height: 20)
 		stepperDecreaseButton.frame.size = stepperIncreaseButton.frame.size
 		
-		valueLabel.font = UIFont.filsonSoftBold(size: 110)
-		valueLabel.textColor = UIColor.white
+		valueLabel.font = UIFont.filsonSoftBold(size: 90)
+		valueLabel.textColor = UIColor.named(.whiteText)
 		valueLabel.textAlignment = .center
 		valueLabel.text = "\(currentValue)"
 		valueLabel.sizeToFit()

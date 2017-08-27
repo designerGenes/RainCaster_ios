@@ -17,7 +17,7 @@ class DJInfoSheetControl: DJCyclableControl {
 		headlineLabel.text = hdln
 		bodyTextLabel.text = body
 		
-		headlineLabel.font = UIFont.filsonSoftBold(size: 40)
+		headlineLabel.font = UIFont.filsonSoftBold(size: 30)
 		bodyTextLabel.font = UIFont.filsonSoftRegular(size: 20)
 		
 		
@@ -31,11 +31,16 @@ class DJInfoSheetControl: DJCyclableControl {
 			
 		}
 	}
+    
+    func set(hdln: String?, body: String?) {
+        headlineLabel.text = hdln
+        bodyTextLabel.text = body
+    }
 	
 	
 	override func manifest(in view: UIView, hidden: Bool) {
-		controlComponents = [headlineLabel: (0, -20),
-		                     bodyTextLabel: (0, 30)]
+		controlComponents = [headlineLabel: (0, -40),
+		                     bodyTextLabel: (0, 40)]
 		
 		
 		

@@ -15,6 +15,10 @@ extension MainPlayerViewController: GCKSessionManagerListener {
 		print("did start session")
 	}
 	
+    
+    func sessionManager(_ sessionManager: GCKSessionManager, session: GCKSession, didReceiveDeviceStatus statusText: String?) {
+        print(statusText ?? "unknown device status")
+    }
 	
 	func sessionManager(_ sessionManager: GCKSessionManager, willEnd session: GCKCastSession) {
 		print("will end cast session")

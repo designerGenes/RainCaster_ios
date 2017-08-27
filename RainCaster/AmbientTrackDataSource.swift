@@ -25,10 +25,7 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return 1
 	}
-	
-	
 
-	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
 		let lateralPadding = (collectionView.frame.width - cellWidth) / 2
 		return UIEdgeInsets(top: 24, left: lateralPadding, bottom: 8, right: lateralPadding)
@@ -47,12 +44,11 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let cellData = cellDataArr[indexPath.section]
-		if cellData is AmbientTrackData {
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackCell", for: indexPath) as! AmbientTrackCollectionViewCell
+		if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TrackCell", for: indexPath) as? AmbientTrackCollectionViewCell {
 			cell.adopt(data: cellData)
 			cell.manifest()
 			
-			print((cellData as? AmbientTrackData)?.sourceURL ?? "no source url")
+//			print((cellData as? AmbientTrackData)?.sourceURL ?? "no source url")
 			if DJAudioPlaybackController.sharedInstance.isFocusedOn(item: cellData as! AmbientTrackData) &&
 				DJAudioPlaybackController.sharedInstance.getAudioPlayerState() == .playing {
 					cell.controlCycler?.reflactState(playbackState: .playing)
@@ -62,18 +58,26 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 		}
 		return UICollectionViewCell()
 	}
+    
+    
 	
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		if let cell = cell as? AmbientTrackCollectionViewCell, let assocTrackData = cell.assocTrackData {
+            
+            // if visiting a cell with playback focus
 			if DJAudioPlaybackController.sharedInstance.isFocusedOn(item: assocTrackData) {
-				if let curItem = DJAudioPlaybackController.sharedInstance.audioPlayer.currentItem {
-					if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() == MediaPlayerState.playing {
-						cell.controlCycler?.reflactState(playbackState: .playing)
-						return
-					}
-				}
-			}
-			cell.controlCycler?.reflactState(playbackState: .suspended)
+                if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() == MediaPlayerState.playing {
+                    cell.controlCycler?.reflactState(playbackState: .playing)
+                    return
+                }
+                if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() != .buffering {
+                    cell.controlCycler?.reflactState(playbackState: .suspended)
+                }
+            } else {  // if visiting cell without AudioPlaybackController focus
+                
+                cell.controlCycler?.reflactState(playbackState: .suspended)
+            }
+
 		}
 		
 	}
@@ -96,7 +100,7 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 		if let trackArr = json.array {
 			for track in trackArr {
 				let newTrackData = AmbientTrackData(fromJSON: track)
-				print(newTrackData.title ?? "No track title")
+//				print(newTrackData.title ?? "No track title")
 				outList.append(newTrackData)
 			}
 		}
@@ -112,6 +116,13 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 		collectionView.register(UINib(nibName: "SettingsCollectionViewCell", bundle: Bundle.main), forCellWithReuseIdentifier: "SettingsCell")
 		collectionView.isPagingEnabled = true
 		self.collectionView = collectionView
+		
+		
+//		if cellDataArr.isEmpty {
+//			let alertData = CellData.alertCell(withTitle: "No data", color: UIColor.named(.space_beta))
+//			cellDataArr = [alertData]
+//			collectionView.reloadData()
+//		}
 	}
 	
 }

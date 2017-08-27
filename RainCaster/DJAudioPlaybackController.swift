@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import AVKit
 import GoogleCast
+import CoreGraphics
 
 class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionManagerListener, GCKRemoteMediaClientListener {
 	
@@ -21,13 +22,16 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	
 	weak var delegate: AudioPlaybackDelegate?
 	private var playbackTimeObserver: Any?
-	
+    private var beganPlayingTimeObserver: Any?
+    
 	var focusURL: URL?
 	var focusMediaInfo: GCKMediaInformation?
 	
+    var timeSpentPlayingCurrentTrack: Double = 0
+    
 	var shouldLoop: Bool = false
 	var shouldFadeOverTime: Bool = false
-	private var hoursFadeDuration: Int = 6
+	var hoursFadeDuration: Int = 10
 	private var silenceTimer: Timer?
 	
 	var remoteMediaClient: GCKRemoteMediaClient? {
@@ -41,13 +45,11 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	}
 	
 	func play() {
-		
 		remoteMediaClient?.play()
 		audioPlayer.play()
 	}
 	
 	func pause() {
-		
 		remoteMediaClient?.pause()
 		audioPlayer.pause()
 	}
@@ -66,16 +68,25 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		
 		if let delegate = delegate {
 			print("refocusing attention of AudioController")
+            hoursFadeDuration = 10
 			delegate.playbackStateBecame(state: .suspended)
 		}
+        
 		delegate = mediaPlayerControl
 	}
 	
 	// MARK: - GCKRemoteMediaClientListener methods
 	func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaStatus: GCKMediaStatus?) {
-		print("remote media client status became: \(mediaStatus?.playerState.rawValue)")
+		
 		if let mediaStatus = mediaStatus {
-			audioPlayer.isMuted = mediaStatus.volume > 0 && mediaStatus.playbackRate > 0
+			print("remote media client status became: \(mediaStatus.playerState.rawStringVal())")
+            if mediaStatus.playerState == .buffering {
+                delegate?.playerBecameStuckInBufferingState()
+            }
+            
+			if mediaStatus.playerState == .playing {
+				audioPlayer.isMuted = true
+			} 
 		}
 	}
 	
@@ -96,23 +107,24 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		if let focusMediaInfo = focusMediaInfo, let currentItem = audioPlayer.currentItem {
 			let currentPlayTime = currentItem.currentTime().seconds
 			if let remoteMediaClient = session.remoteMediaClient {
-				remoteMediaClient.add(self)
-				print("found remote media client")
-				let shouldAutoPlay: Bool = audioPlayer.rate > 0  // TODO: sophisticate
+				remoteMediaClient.add(self) // adds self as listener to several session-based notifications
+				let shouldAutoPlay: Bool = getAudioPlayerState() == .playing
+                
+                
+                
+                setSessionVolume(to: 0)
+                
 				remoteMediaClient.loadMedia(focusMediaInfo, autoplay: shouldAutoPlay, playPosition: currentPlayTime)
-			
 			}
 		}
 	}
-	
 	
 	
 	func sessionManager(_ sessionManager: GCKSessionManager, didResumeCastSession session: GCKCastSession) {
 		remoteMediaClient?.add(self)
 		if getAudioPlayerState() != .playing {
 			print("entered app from non-playing state")
-			remoteMediaClient?.pause()
-			
+//			remoteMediaClient?.pause()
 		}
 	}
 	
@@ -122,63 +134,54 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	
 	// starting a track for the first time, or while another track is playing
 	func loadTrack(from data: AmbientTrackData, immediately: Bool) {
-		print("loading track with url \(data.sourceURL?.absoluteString)")
+		print("loading track with url \(data.sourceURL?.absoluteString ?? "UNKNOWN")")
+        
+        delegate?.playerBecameStuckInBufferingState()
 		if let url = data.sourceURL {
-			let duration = data.hoursDuration ?? 0
-			let key = "\(AmbientTrackPlayerItem.namingConvention)\(data.title ?? "")"
-//			DJCachingController.cache.object(key) { (item: AmbientTrackPlayerItem?) in
-				DispatchQueue.main.async {
-					if immediately {
-						let newItem = AmbientTrackPlayerItem(url: url)
-						self.focusURL = url
-						if self.audioPlayer.currentItem != nil {
-							self.stopObserving(onlyRemoveTimeObserver: true)
-							
-						}
-						
-						self.audioPlayer.replaceCurrentItem(with: newItem)
-						self.beginObservingPlaybackTime(for: newItem)
-						self.audioPlayer.play()
-						
-						
-						let metaData = GCKMediaMetadata(metadataType: .generic)
-						metaData.setString(data.title ?? "unknown", forKey: kGCKMetadataKeyTitle)
-						let mediaInfo = GCKMediaInformation(
-							contentID: url.absoluteString,
-							streamType: .unknown,
-							contentType: "audio/mpg",
-							metadata: metaData,
-							streamDuration: Double(duration * 60 * 60),
-							customData: nil)
-						self.focusMediaInfo = mediaInfo
-//						self.audioPlayer.isMuted = false 
-						
-						if let session = GCKCastContext.sharedInstance().sessionManager.currentCastSession {
-							
-							print("found existing remote audio session.  taking control")
-//							self.audioPlayer.isMuted = true
-							session.remoteMediaClient?.add(self)
-							session.remoteMediaClient?.loadMedia(mediaInfo, autoplay: true, playPosition: 0)
-						}
-					}
-//				}
-			}
+            if immediately {
+                let newItem = AmbientTrackPlayerItem(url: url)
+
+                self.focusURL = url
+//                if self.audioPlayer.currentItem != nil {
+//                    self.stopObserving(onlyRemoveTimeObserver: true)
+//                }
+                
+                self.audioPlayer.replaceCurrentItem(with: newItem)
+                self.beginObservingPlaybackTime(for: newItem)
+                self.audioPlayer.play()
+                
+                if let mediaInfo = self.buildMediaInfo(forData: data) {
+                    self.focusMediaInfo = mediaInfo
+                    if let session = GCKCastContext.sharedInstance().sessionManager.currentCastSession {
+                        print("found existing remote audio session.  taking control")
+                        session.remoteMediaClient?.add(self)
+                        session.remoteMediaClient?.loadMedia(mediaInfo, autoplay: true, playPosition: 0)
+                        setSessionVolume(to: 0)
+                    }
+                }
+   
+                
+            }
 		}
 	}
 	
-	
-	
-	func beginObservingAudioPlayback() {
-		print("began observing playback status")
-		if audioPlayer.currentItem != nil {
-			stopObserving() // clean slate
+	func buildMediaInfo(forData data: AmbientTrackData) -> GCKMediaInformation? {
+		if let url = data.sourceURL, let title = data.title {
+			let metaData = GCKMediaMetadata(metadataType: .generic)
+			metaData.setString(title, forKey: kGCKMetadataKeyTitle)
+			let mediaInfo = GCKMediaInformation(
+				contentID: url.absoluteString,
+				streamType: .unknown,
+				contentType: "audio/mpg",
+				metadata: metaData,
+				streamDuration: Double(data.hoursDuration ?? 10),
+				customData: nil)
+			return mediaInfo
 		}
-		audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.rate), options: [.initial, .old, .new], context: nil)
-		audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.initial, .new], context: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(playbackDidFinish),
-		                                       name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: audioPlayer.currentItem)
-		GCKCastContext.sharedInstance().sessionManager.add(self)
+		return nil
 	}
+	
+
 	
 	func playbackDidFinish() {
 		print("playback has reached end of loaded track")
@@ -192,92 +195,86 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	
 	func playbackTimeBecame(seconds: Double) {
 		self.delegate?.didPlayTime(to: seconds)
-		if shouldFadeOverTime {
-			let computedVolume = max(0.5, 1 * (Double(hoursFadeDuration) / (seconds * 60)))
-			audioPlayer.setValue(computedVolume, forKey: #keyPath(AVPlayer.volume))
-		}
+//        print(seconds)
+//		if shouldFadeOverTime {
+//			let computedVolume = max(0.5, 1 * (Double(hoursFadeDuration) / (seconds * 60)))
+//			audioPlayer.setValue(computedVolume, forKey: #keyPath(AVPlayer.volume))
+//		}
 	}
+    
+    // observe the player.  should only happen once
+    func beginObservingAudioPlayerState() {
+        print("began observing PLAYER status")
+        //		if audioPlayer.currentItem != nil {
+        //			stopObserving() // clean slate
+        //		}
+        
+        audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.rate), options: [.old, .new], context: nil)
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(playbackDidFinish),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                               object: audioPlayer.currentItem)
+        GCKCastContext.sharedInstance().sessionManager.add(self)
+    }
 	
+    // observe the item being played.  happens every time focus changes
 	func beginObservingPlaybackTime(for item: AVPlayerItem) {
-//		print("began observing playback time")
-//		stopObserving(onlyRemoveTimeObserver: true)
-		playbackTimeObserver = audioPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 2), queue: playbackBGQueue, using: { [unowned self] time in
+		print("began observing PLAYER ITEM status")
+		
+        self.timeSpentPlayingCurrentTrack = 0
+        beganPlayingTimeObserver = audioPlayer.addBoundaryTimeObserver(forTimes: [NSValue(time:CMTimeMake(1, 10))], queue: playbackBGQueue, using: {
+            DispatchQueue.main.async {
+                self.delegate?.playbackStateBecame(state: .playing)
+            }
+        }) as? NSObjectProtocol
+        
+		playbackTimeObserver = audioPlayer.addPeriodicTimeObserver(forInterval: CMTimeMake(1, 1), queue: playbackBGQueue, using: { time in
 			DispatchQueue.main.async {
+                self.checkIfTimeToTurnOff()
 				self.playbackTimeBecame(seconds: time.seconds)
 			}
-		})
+		}) as? NSObjectProtocol
 		
-		item.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges), options: [.initial, .new], context: nil)
+        
+		item.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges), options: [.new], context: nil)
 	}
 	
 	
 	func stopObserving(onlyRemoveTimeObserver: Bool = false) {
-		// remove the time observer
+		// remove the time observer for an individual track
 		if playbackTimeObserver != nil {
-			audioPlayer.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges))
 			audioPlayer.removeTimeObserver(playbackTimeObserver)
-			playbackTimeObserver = nil
 		}
+        
+        if beganPlayingTimeObserver != nil {
+            audioPlayer.removeTimeObserver(beganPlayingTimeObserver)
+        }
+        
+        audioPlayer.currentItem?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.loadedTimeRanges))
 		
-		// remove everything else
+		// remove everything else.  this is for shutting down the whole plauyer
 		if !onlyRemoveTimeObserver {
+            print("stopping observation of player")
 			audioPlayer.removeObserver(self, forKeyPath: #keyPath(AVPlayer.rate))
-			audioPlayer.removeObserver(self, forKeyPath: #keyPath(AVPlayer.status))
-		}
+        } else {
+            print("stopping observation of player ITEM")
+        }
 		
 		NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: audioPlayer.currentItem)
 	}
 	
+    deinit {
+        stopObserving()
+    }
 	
-	
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
 		
-		if let keyPath = keyPath, let change = change, let newVal = change[.newKey] {
-			switch keyPath {
-			case #keyPath(AVPlayer.rate):
-				if let newVal = newVal as? Int {
-					let oldVal = (change[.oldKey] as? Int) ?? 0
-//					print("newVal: \(newVal) oldVal: \(oldVal)")
-					let playbackIsBuffering = self.isBuffering()
-					
-					// check for buffering state
-					
-					if newVal == 1 && !playbackIsBuffering { // attempting to play
-						DispatchQueue.main.async {
-							self.delegate?.playbackStateBecame(state: .playing)
-						}
-					} else if newVal == 0 && newVal != oldVal  { // suspended
-						self.delegate?.playbackStateBecame(state: .suspended)
-					}
-					
-					if playbackIsBuffering {
-						DispatchQueue.main.async {
-							self.delegate?.playbackStateBecame(state: .buffering)
-						}
-					}
-				}
-				
-			case #keyPath(AVAudioSession.outputVolume):
-				if let newVal = newVal as? Float {
-					setSessionVolume(to: newVal)
-				}
-				
-			case #keyPath(AVPlayer.status): break
-			case #keyPath(AVPlayerItem.loadedTimeRanges):
-				if let newVal = newVal as? [CMTimeRange]  {
-					for val in newVal {
-						
-					}
-				}
-			default: break
-			}
-		}
-	}
-	
 	func setSessionVolume(to volume: Float) {
 		if let remoteMediaClient = remoteMediaClient {
+            
+            
 			print("changing remote client volume to \(volume)")
 			remoteMediaClient.setStreamVolume(volume)
+
 		}
 	}
 	
@@ -340,13 +337,15 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	}
 	
 	func checkIfTimeToTurnOff() {
-		
+        if (timeSpentPlayingCurrentTrack * 60 * 60) >= Double(hoursFadeDuration) {
+            pause()
+        }
 	}
 	
 	
 	override init() {
 		super.init()
-		beginObservingAudioPlayback()
+		beginObservingAudioPlayerState()
 		let audioSession = AVAudioSession.sharedInstance()
 		audioSession.addObserver(self, forKeyPath: #keyPath(AVAudioSession.outputVolume), options: .new, context: nil)
 		

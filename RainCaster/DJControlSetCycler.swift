@@ -59,25 +59,31 @@ class DJControlSetCycler: NSObject, CycleSwitchButtonListener {
 	var listener: ControlCyclerListener?
 	weak var cell: AmbientTrackCollectionViewCell?
 	weak var switchButton: DJCycleSwitchButton?
+    weak var timeStepper: DJStepperControl?
 	var playPauseBtn: DJPlayPauseControl? {
 		return controls.filter({$0 is DJPlayPauseControl}).first as? DJPlayPauseControl
 	}
+
+    var infoSheetControl: DJInfoSheetControl? {
+        return controls.filter({$0 is DJInfoSheetControl}).first as? DJInfoSheetControl
+    }
 	
 	// MARK: - methods
 	func didTapSwitchButton() {
 		cycleToNextControlSet()
-		
 	}
 	
 	func die() {
 		for control in controls {
 			control.die()
 		}
+        
+        switchButton?.die()
 	}
 	
 	func reflactState(playbackState: MediaPlayerState) {
 		playPauseBtn?.setControlState(to: playbackState)
-		
+
 	}
 	
 	func manifest(in view: UIView, with controls: [DJCyclableControl]) {
@@ -96,6 +102,7 @@ class DJControlSetCycler: NSObject, CycleSwitchButtonListener {
 		
 		let nextStackPosition = currentStackIdx < controls.count - 1 ? currentStackIdx + 1 : 0
 		print("cycling to position \(nextStackPosition)")
+        
 
 		animateTransition(leavingControl: controls[currentStackIdx], arrivingControl: controls[nextStackPosition])
 		currentStackIdx = nextStackPosition
@@ -105,23 +112,25 @@ class DJControlSetCycler: NSObject, CycleSwitchButtonListener {
 	
 	func animateTransition(leavingControl: DJCyclableControl, arrivingControl: DJCyclableControl) {
 		// tmp
-//		switchButton?.isEnabled = false
-//		UIView.animate(withDuration: 0.25) {
-			for (view, _) in leavingControl.controlComponents {
-				view.isHidden = true
-			}
-//		}
+        let timeStepper = controls.filter({$0 is DJStepperControl}).first as? DJStepperControl
+        timeStepper?.trySetValue(to: DJAudioPlaybackController.sharedInstance.hoursFadeDuration)
+        
+        // LEAVING
+        for (view, _) in leavingControl.controlComponents {//.filter({!($0.key is UIActivityIndicatorView)}) {
+            view.isHidden = true
+        }
+
 	
-//		doAfter(time: 0.25) {
-//			UIView.animate(withDuration: 0.25) {
-			for (view, _) in arrivingControl.controlComponents {
-				view.isHidden = false
-			}
-//			}
-//			doAfter(time: 0.25) {
-//				self.switchButton?.isEnabled = true
-//			}
-//		}
+        // ARRIVING
+        for (view, _) in arrivingControl.controlComponents {
+            if let activityIndicatorView = view as? UIActivityIndicatorView {
+                if !activityIndicatorView.isAnimating {
+                    view.isHidden = true
+                }
+            } else {
+                view.isHidden = false
+            }
+        }
 	}
 	
 

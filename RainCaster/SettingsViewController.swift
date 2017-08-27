@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import MessageUI
+
+
 
 enum SettingsItem: String {
 	case feedback, share
@@ -22,7 +25,7 @@ enum SettingsItem: String {
 	
 }
 
-class SettingsViewController: DJViewController, UITableViewDelegate, UITableViewDataSource {
+class SettingsViewController: DJViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 	// MARK: - outlets
 	@IBOutlet weak var settingsTableView: UITableView!
 	@IBOutlet weak var exitButton: UIButton!
@@ -33,6 +36,10 @@ class SettingsViewController: DJViewController, UITableViewDelegate, UITableView
 	let items: [SettingsItem] = [SettingsItem.feedback, .aboutUs, .share]
 	private let cellSpacingHeight: CGFloat = 32
 	
+    // MARK: - MFMailComposeViewControllerDelegate methods
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 	
 	// MARK: - methods 
 	func tappedExitButton() {
@@ -42,10 +49,26 @@ class SettingsViewController: DJViewController, UITableViewDelegate, UITableView
 	
 	// MARK: - UITableViewDelegate methods
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		switch items[indexPath.row] {
-		case .feedback: break
-		case .aboutUs: break
-		case .share: break
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+		switch items[indexPath.section] {
+            
+		case .feedback:
+            let mailVC = MFMailComposeViewController()
+            mailVC.setSubject("Raincstr Feedback")
+            mailVC.setToRecipients(["jnationdesignerjeans@gmail.com"])
+            mailVC.setMessageBody("Hi!  Here's what I thought about Raincstr: <br>", isHTML: true)
+            mailVC.mailComposeDelegate = self
+            present(mailVC, animated: true, completion: nil)
+		case .aboutUs:
+            let alertController = UIAlertController(title: "About Us", message: "Raincstr is (c) 2017 by Jaden Nation", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+		case .share:
+            let activityViewController = UIActivityViewController(activityItems: ["Check out Raincstr on the App Store!"], applicationActivities: nil)
+            self.present(activityViewController, animated: true, completion: nil)
+            
 		}
 	}
 	
@@ -85,6 +108,7 @@ class SettingsViewController: DJViewController, UITableViewDelegate, UITableView
 		return UITableViewCell()
 	}
 	
+    
 	
 	
 	// MARK: - lifecycle methods

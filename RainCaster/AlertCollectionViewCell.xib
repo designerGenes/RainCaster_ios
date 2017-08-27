@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="FilsonSoft-Bold.otf">
+            <string>FilsonSoft-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AlertCollectionViewCell" customModule="RainCaster" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="283" height="356"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="283" height="356"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message test" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Wt-ga-Ucw">
+                        <rect key="frame" x="56.5" y="196" width="170" height="23"/>
+                        <fontDescription key="fontDescription" name="FilsonSoft-Bold" family="Filson Soft" pointSize="24"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cloud" translatesAutoresizingMaskIntoConstraints="NO" id="Na2-dn-a0B">
+                        <rect key="frame" x="51.5" y="33.5" width="180" height="180"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyW-vT-Cms">
+                        <rect key="frame" x="111.5" y="264" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="2Id-b3-MrE"/>
+                            <constraint firstAttribute="width" secondItem="xyW-vT-Cms" secondAttribute="height" multiplier="1:1" id="dgG-Qi-GVT"/>
+                        </constraints>
+                        <state key="normal" image="sync"/>
+                    </button>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.10980392156862745" green="0.11764705882352941" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Na2-dn-a0B" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="0s5-iP-6Jw"/>
+                <constraint firstItem="8Wt-ga-Ucw" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="5HB-rT-rai"/>
+                <constraint firstItem="8Wt-ga-Ucw" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.1" id="Jd1-lL-BkD"/>
+                <constraint firstItem="xyW-vT-Cms" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="Pde-WK-bVW"/>
+                <constraint firstItem="Na2-dn-a0B" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.2" id="bjY-EU-ddR"/>
+                <constraint firstAttribute="bottom" secondItem="xyW-vT-Cms" secondAttribute="bottom" constant="32" id="c78-G7-swa"/>
+                <constraint firstItem="8Wt-ga-Ucw" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" multiplier="0.6" id="nMc-RH-m07"/>
+            </constraints>
+            <size key="customSize" width="283" height="356"/>
+            <point key="canvasLocation" x="103.5" y="48"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="cloud" width="180" height="180"/>
+        <image name="sync" width="60" height="60"/>
+    </resources>
+</document>

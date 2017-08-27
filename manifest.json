@@ -1,0 +1,38 @@
+{
+  "product": "Track Manifest",
+  "releaseDate": "5.29.2017",
+  "version": "0.0.1",
+  "baseURL": "https://s3-us-west-2.amazonaws.com/raincasterapp/",
+  "items": [
+    {
+      "title": "Rainy Drive",
+      "category": "rain",
+      "description": "Waiting outside in the parking lot, reading a book while the wind blows.",
+      "url": "rain_car.mp3"
+    },
+    {
+      "title": "Solar Yacht",
+      "category": "space",
+      "description": "The ship has entered Earth's orbit.  Engines set to idle.",
+      "url": "space_yacht.mp3"
+    },
+    {
+      "title": "Hyperspace Passage",
+      "category": "space",
+      "description": "The trip to Ganymede will be uneventful.  Sleep is encouraged.",
+      "url": "space_hyperspace.mp3"
+    },
+    {
+      "title": "Lighthouse Downpour",
+      "category": "rain",
+      "description": "The clouds pulse but the lighthouse stands strong.",
+      "url": "rain_lighthouse.mp3"
+    },
+    {
+      "title": "Raining in Rio",
+      "category": "rain",
+      "description": "When the clouds let loose, the rainforest comes awake.",
+      "url": "rain_trees.mp3"
+    },
+  ]
+}

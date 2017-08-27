@@ -15,8 +15,9 @@ enum DJAssetName: String {
 	// media player
 	case suspended, playing, restart, upwardsArrow, downwardsArrow
 	case castButton, castButtonActive
-	case cycle0, cycle1, cycle2
+	case cycle0, cycle1
 	case back
+	case cloud, sync
 	// settings cell icon
 	case star, face, people
 	

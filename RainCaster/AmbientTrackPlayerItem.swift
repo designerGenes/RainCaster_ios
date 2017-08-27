@@ -11,17 +11,16 @@ import AVKit
 import AVFoundation
 import Cache
 
-class AmbientTrackPlayerItem: AVPlayerItem, Cachable {
+class AmbientTrackPlayerItem: AVPlayerItem, Cachable, AVAssetResourceLoaderDelegate {
 	// MARK: - properties
 	static let namingConvention: String = "ATPI-"
 	
 	static var cacheDirectoryURL: URL {
 		let docDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true).first!
 		return URL(fileURLWithPath: docDirectoryPath)
-		
 	}
 	
-	private var url: URL {
+	var url: URL {
 		let asset = self.asset as! AVURLAsset
 		return asset.url
 	}
@@ -30,19 +29,26 @@ class AmbientTrackPlayerItem: AVPlayerItem, Cachable {
 	var assetFileName = "\(AmbientTrackPlayerItem.namingConvention)UNDEF.mp4"
 	
 	// MARK: - Cachable methods
+	
+	// this method is intended to be called when 100% of the audio asset
+	// has been downloaded
 	func saveToCache(callback: @escaping(_ error: NSError?) -> Void) {
 		guard let asset = self.asset as? AVURLAsset else {
-			print("could not save")
+			print("could not save to cache: no URL asset")
 			return
 		}
+		
+		asset.resourceLoader.setDelegate(self, queue: DispatchQueue.main)
 		let fileName = "\(AmbientTrackPlayerItem.namingConvention)\(url.lastPathComponent)"
 		let fileURL = AmbientTrackPlayerItem.cacheDirectoryURL.appendingPathComponent(fileName)
-		
+//		print(fileURL.absoluteString)
 		let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality)
+		
 		exporter?.outputURL = fileURL
 		exporter?.outputFileType = AVFileTypeMPEG4
 		exporter?.exportAsynchronously {
 			if let error = exporter?.error as? NSError {
+				print("error exporting asset: \(error.localizedDescription)")
 				return callback(error)
 			}
 			print("track written to cache directory at \(fileURL.absoluteString)")

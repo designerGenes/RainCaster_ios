@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5220CD4F78B806719BD9EA88 /* Pods_RainCaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */; };
+		FE1120061F534ACA009AC55D /* SquareActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1120051F534ACA009AC55D /* SquareActivityIndicator.swift */; };
 		FE3059881EE57A850010F242 /* DJControlSetCycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059871EE57A850010F242 /* DJControlSetCycler.swift */; };
 		FE30598A1EE5A3EB0010F242 /* DJPlayPauseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */; };
 		FE30598C1EE5A4070010F242 /* DJStepperControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30598B1EE5A4070010F242 /* DJStepperControl.swift */; };
@@ -31,7 +32,7 @@
 		FE964D021EB7B43600DF0035 /* FilsonSoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = FE964D001EB7B43600DF0035 /* FilsonSoftRegular.otf */; };
 		FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4961EB7FAD600187EB0 /* MainPlayerViewController.swift */; };
 		FEA3B4991EB7FAD600187EB0 /* MainPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEA3B4971EB7FAD600187EB0 /* MainPlayerViewController.xib */; };
-		FEA3B49C1EB8015800187EB0 /* DJAssetNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B49B1EB8015800187EB0 /* DJAssetNames.swift */; };
+		FEA3B49C1EB8015800187EB0 /* DJAssetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B49B1EB8015800187EB0 /* DJAssetName.swift */; };
 		FEA3B49F1EB8028B00187EB0 /* UIColor+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B49E1EB8028B00187EB0 /* UIColor+Design.swift */; };
 		FEA3B4A11EB8029900187EB0 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4A01EB8029900187EB0 /* UIColor+Convenience.swift */; };
 		FEA3B4A31EB802C300187EB0 /* Numeric+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4A21EB802C300187EB0 /* Numeric+Convenience.swift */; };
@@ -46,17 +47,24 @@
 		FEAFDBB61F27D04C00194062 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */; };
 		FEAFDBB71F27D04C00194062 /* SettingsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDBB51F27D04C00194062 /* SettingsTableViewCell.xib */; };
 		FEBF1A821EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEBF1A811EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift */; };
+		FECB86CD1F3A55B5002DB2E6 /* AlertCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECB86CB1F3A55B5002DB2E6 /* AlertCollectionViewCell.swift */; };
+		FECB86CE1F3A55B5002DB2E6 /* AlertCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FECB86CC1F3A55B5002DB2E6 /* AlertCollectionViewCell.xib */; };
+		FECC4F6B1F392BBC00644DEA /* GCKMediaState+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECC4F6A1F392BBC00644DEA /* GCKMediaState+Convenience.swift */; };
+		FECC4F6F1F39331500644DEA /* DJAudioPlaybackController+Observe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECC4F6E1F39331500644DEA /* DJAudioPlaybackController+Observe.swift */; };
+		FECC4F751F3A4CA500644DEA /* AmbientTrackCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECC4F741F3A4CA500644DEA /* AmbientTrackCategory.swift */; };
 		FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */; };
 		FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */; };
 		FEFC7A2A1F37C13D003100E8 /* DebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A291F37C13D003100E8 /* DebugController.swift */; };
 		FEFC7A2C1F37C370003100E8 /* Dispatch+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */; };
 		FEFC7A2E1F37D57F003100E8 /* DJViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A2D1F37D57F003100E8 /* DJViewController.swift */; };
+		FEFC7A301F392511003100E8 /* FloatingTriangleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A2F1F392511003100E8 /* FloatingTriangleView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RainCaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		634002D169D85C96F267F6CF /* Pods-RainCaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.release.xcconfig"; sourceTree = "<group>"; };
 		9303DDAE6753518BA0A520D8 /* Pods-RainCaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.debug.xcconfig"; sourceTree = "<group>"; };
+		FE1120051F534ACA009AC55D /* SquareActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareActivityIndicator.swift; sourceTree = "<group>"; };
 		FE3059871EE57A850010F242 /* DJControlSetCycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJControlSetCycler.swift; sourceTree = "<group>"; };
 		FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJPlayPauseControl.swift; sourceTree = "<group>"; };
 		FE30598B1EE5A4070010F242 /* DJStepperControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJStepperControl.swift; sourceTree = "<group>"; };
@@ -84,7 +92,7 @@
 		FE964D001EB7B43600DF0035 /* FilsonSoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FilsonSoftRegular.otf; sourceTree = "<group>"; };
 		FEA3B4961EB7FAD600187EB0 /* MainPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPlayerViewController.swift; sourceTree = "<group>"; };
 		FEA3B4971EB7FAD600187EB0 /* MainPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainPlayerViewController.xib; sourceTree = "<group>"; };
-		FEA3B49B1EB8015800187EB0 /* DJAssetNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAssetNames.swift; sourceTree = "<group>"; };
+		FEA3B49B1EB8015800187EB0 /* DJAssetName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAssetName.swift; sourceTree = "<group>"; };
 		FEA3B49E1EB8028B00187EB0 /* UIColor+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Design.swift"; sourceTree = "<group>"; };
 		FEA3B4A01EB8029900187EB0 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
 		FEA3B4A21EB802C300187EB0 /* Numeric+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Numeric+Convenience.swift"; sourceTree = "<group>"; };
@@ -99,12 +107,18 @@
 		FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		FEAFDBB51F27D04C00194062 /* SettingsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsTableViewCell.xib; sourceTree = "<group>"; };
 		FEBF1A811EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJRemoteDataSourceController.swift; sourceTree = "<group>"; };
+		FECB86CB1F3A55B5002DB2E6 /* AlertCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCollectionViewCell.swift; sourceTree = "<group>"; };
+		FECB86CC1F3A55B5002DB2E6 /* AlertCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertCollectionViewCell.xib; sourceTree = "<group>"; };
+		FECC4F6A1F392BBC00644DEA /* GCKMediaState+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GCKMediaState+Convenience.swift"; sourceTree = "<group>"; };
+		FECC4F6E1F39331500644DEA /* DJAudioPlaybackController+Observe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DJAudioPlaybackController+Observe.swift"; sourceTree = "<group>"; };
+		FECC4F741F3A4CA500644DEA /* AmbientTrackCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackCategory.swift; sourceTree = "<group>"; };
 		FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Curve.swift"; sourceTree = "<group>"; };
 		FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Convenience.swift"; sourceTree = "<group>"; };
 		FEDB636F1EBD27E900F8FDF2 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphonesimulator/ChameleonFramework/ChameleonFramework.framework"; sourceTree = "<group>"; };
 		FEFC7A291F37C13D003100E8 /* DebugController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugController.swift; sourceTree = "<group>"; };
 		FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dispatch+Convenience.swift"; sourceTree = "<group>"; };
 		FEFC7A2D1F37D57F003100E8 /* DJViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJViewController.swift; sourceTree = "<group>"; };
+		FEFC7A2F1F392511003100E8 /* FloatingTriangleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatingTriangleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,10 +177,10 @@
 		FE6E510B1EABECCB00A62CCB /* RainCaster */ = {
 			isa = PBXGroup;
 			children = (
+				FECC4F731F3A4C9200644DEA /* Symbols */,
 				FEA3B4B31EB80E5F00187EB0 /* Controllers */,
 				FEA3B4A81EB8044F00187EB0 /* Data Sources */,
 				FE994B161EC133AB006A7D33 /* Models */,
-				FE6E511E1EABEDF300A62CCB /* Storyboards */,
 				FE6E51201EABEE0300A62CCB /* Supporting Files */,
 				FE6E511F1EABEDFC00A62CCB /* View Controllers */,
 				FE6E51211EABEE0900A62CCB /* Views */,
@@ -194,9 +208,9 @@
 		FE6E51201EABEE0300A62CCB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FE6E511E1EABEDF300A62CCB /* Storyboards */,
 				FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */,
 				FE6E51131EABECCB00A62CCB /* Assets.xcassets */,
-				FEA3B49B1EB8015800187EB0 /* DJAssetNames.swift */,
 				FEA3B49D1EB8017100187EB0 /* Extensions */,
 				FE6E51221EABEE1100A62CCB /* Fonts */,
 				FE6E51181EABECCB00A62CCB /* Info.plist */,
@@ -214,6 +228,7 @@
 				FE30598F1EE5C07F0010F242 /* DJInfoSheetControl.swift */,
 				FE30598B1EE5A4070010F242 /* DJStepperControl.swift */,
 				FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */,
+				FE1120051F534ACA009AC55D /* SquareActivityIndicator.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -233,6 +248,7 @@
 			children = (
 				FE964CFA1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift */,
 				FE964CFB1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib */,
+				FEFC7A2F1F392511003100E8 /* FloatingTriangleView.swift */,
 			);
 			name = "Ambient Track";
 			sourceTree = "<group>";
@@ -240,10 +256,10 @@
 		FE994B161EC133AB006A7D33 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FE3BB69D1EB9487000809F98 /* AudioPlaybackProtocols.swift */,
-				FE618D161EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift */,
-				FEA3B4B11EB807E800187EB0 /* CellData.swift */,
 				FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */,
+				FE618D161EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift */,
+				FE3BB69D1EB9487000809F98 /* AudioPlaybackProtocols.swift */,
+				FEA3B4B11EB807E800187EB0 /* CellData.swift */,
 				FEFC7A2D1F37D57F003100E8 /* DJViewController.swift */,
 			);
 			name = Models;
@@ -271,6 +287,7 @@
 				FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */,
 				FE5E266B1F0AF06900B94E24 /* ClosureNames.swift */,
 				FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */,
+				FECC4F6A1F392BBC00644DEA /* GCKMediaState+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +305,7 @@
 			children = (
 				FEA3B4AC1EB8062400187EB0 /* Settings */,
 				FE964CFE1EB7AF4000DF0035 /* Ambient Track */,
+				FECB86CA1F3A51CB002DB2E6 /* Alert */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -305,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				FEBF1A811EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift */,
-				FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */,
+				FECC4F6C1F3932F600644DEA /* AudioPlaybackController */,
 				FE5504F11ED3738000C2722A /* DJCachingController.swift */,
 				FEFC7A291F37C13D003100E8 /* DebugController.swift */,
 			);
@@ -319,6 +337,33 @@
 				FEAFDBB01F27C92400194062 /* SettingsViewController.xib */,
 			);
 			name = Settings;
+			sourceTree = "<group>";
+		};
+		FECB86CA1F3A51CB002DB2E6 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				FECB86CB1F3A55B5002DB2E6 /* AlertCollectionViewCell.swift */,
+				FECB86CC1F3A55B5002DB2E6 /* AlertCollectionViewCell.xib */,
+			);
+			name = Alert;
+			sourceTree = "<group>";
+		};
+		FECC4F6C1F3932F600644DEA /* AudioPlaybackController */ = {
+			isa = PBXGroup;
+			children = (
+				FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */,
+				FECC4F6E1F39331500644DEA /* DJAudioPlaybackController+Observe.swift */,
+			);
+			name = AudioPlaybackController;
+			sourceTree = "<group>";
+		};
+		FECC4F731F3A4C9200644DEA /* Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				FEA3B49B1EB8015800187EB0 /* DJAssetName.swift */,
+				FECC4F741F3A4CA500644DEA /* AmbientTrackCategory.swift */,
+			);
+			name = Symbols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,8 +401,8 @@
 				TargetAttributes = {
 					FE6E51081EABECCB00A62CCB = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = 55PAL6XTGT;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 5DYJ7634L5;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -386,6 +431,7 @@
 			files = (
 				FE6E51171EABECCB00A62CCB /* LaunchScreen.storyboard in Resources */,
 				FE6E51141EABECCB00A62CCB /* Assets.xcassets in Resources */,
+				FECB86CE1F3A55B5002DB2E6 /* AlertCollectionViewCell.xib in Resources */,
 				FE6E51251EABEFF300A62CCB /* Podfile in Resources */,
 				FE964D021EB7B43600DF0035 /* FilsonSoftRegular.otf in Resources */,
 				FE964D011EB7B43600DF0035 /* FilsonSoft-Bold.otf in Resources */,
@@ -406,13 +452,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RainCaster-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E4EA6A9534B76CE0518F37BC /* [CP] Copy Pods Resources */ = {
@@ -436,9 +485,24 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${PODS_ROOT}/google-cast-sdk/GoogleCastSDK-Public-3.5.0-Release/GoogleCast.framework",
+				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleCast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -452,19 +516,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FECB86CD1F3A55B5002DB2E6 /* AlertCollectionViewCell.swift in Sources */,
 				FE964CFC1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift in Sources */,
 				FEFC7A2C1F37C370003100E8 /* Dispatch+Convenience.swift in Sources */,
+				FEFC7A301F392511003100E8 /* FloatingTriangleView.swift in Sources */,
 				FE3BB69E1EB9487000809F98 /* AudioPlaybackProtocols.swift in Sources */,
+				FE1120061F534ACA009AC55D /* SquareActivityIndicator.swift in Sources */,
 				FEA72AB71EDCDFCD00A2B76F /* AmbientTrackData.swift in Sources */,
 				FEA3B49F1EB8028B00187EB0 /* UIColor+Design.swift in Sources */,
 				FE30598C1EE5A4070010F242 /* DJStepperControl.swift in Sources */,
 				FEA3B4A51EB8033600187EB0 /* UIFont+Design.swift in Sources */,
 				FE5E266C1F0AF06900B94E24 /* ClosureNames.swift in Sources */,
 				FE30598A1EE5A3EB0010F242 /* DJPlayPauseControl.swift in Sources */,
-				FEA3B49C1EB8015800187EB0 /* DJAssetNames.swift in Sources */,
+				FEA3B49C1EB8015800187EB0 /* DJAssetName.swift in Sources */,
 				FE3059881EE57A850010F242 /* DJControlSetCycler.swift in Sources */,
 				FE30598E1EE5A41D0010F242 /* DJCycleSwitchButton.swift in Sources */,
 				FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */,
+				FECC4F6B1F392BBC00644DEA /* GCKMediaState+Convenience.swift in Sources */,
 				FE964CEF1EAC259F00DF0035 /* MainPlayerVC+GCKDeviceManagerDelegate.swift in Sources */,
 				FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */,
 				FEA3B4B21EB807E800187EB0 /* CellData.swift in Sources */,
@@ -473,10 +541,12 @@
 				FE3BB6A21EB9554500809F98 /* UIImage+Convenience.swift in Sources */,
 				FE618D171EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift in Sources */,
 				FEFC7A2A1F37C13D003100E8 /* DebugController.swift in Sources */,
+				FECC4F6F1F39331500644DEA /* DJAudioPlaybackController+Observe.swift in Sources */,
 				FE6E510D1EABECCB00A62CCB /* AppDelegate.swift in Sources */,
 				FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */,
 				FE3059921EE5F62D0010F242 /* DJCyclableControl.swift in Sources */,
 				FEA3B4AA1EB8046E00187EB0 /* AmbientTrackDataSource.swift in Sources */,
+				FECC4F751F3A4CA500644DEA /* AmbientTrackCategory.swift in Sources */,
 				FEAFDBB11F27C92400194062 /* SettingsViewController.swift in Sources */,
 				FEBF1A821EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift in Sources */,
 				FEA3B4A11EB8029900187EB0 /* UIColor+Convenience.swift in Sources */,
@@ -599,11 +669,14 @@
 			baseConfigurationReference = 9303DDAE6753518BA0A520D8 /* Pods-RainCaster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 55PAL6XTGT;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 5DYJ7634L5;
 				INFOPLIST_FILE = RainCaster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DesignerJeans.RainCaster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.designerjeans.raincstr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4928dcb1-dccc-4cd8-b236-273b384fc1b4";
+				PROVISIONING_PROFILE_SPECIFIER = "Raincstr DEV";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -613,11 +686,14 @@
 			baseConfigurationReference = 634002D169D85C96F267F6CF /* Pods-RainCaster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 55PAL6XTGT;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 5DYJ7634L5;
 				INFOPLIST_FILE = RainCaster/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.DesignerJeans.RainCaster;
+				PRODUCT_BUNDLE_IDENTIFIER = com.designerjeans.raincstr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "31e96fa5-52a7-4f79-bf5b-13793d65ef03";
+				PROVISIONING_PROFILE_SPECIFIER = "Raincstr PROD";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

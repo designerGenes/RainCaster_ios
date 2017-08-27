@@ -44,8 +44,9 @@ class DJRemoteDataSourceController: NSObject {
 			
 			if let result = response.result.value {
 				let resultJSON = JSON(result)
-//				print("Manifest: ")
-//				print(resultJSON)
+				
+				AppDelegate.shared?.mainPlayerVC?.setHiddenControlVisibility(to: false)
+				
 				self.baseURLResourceString = resultJSON["baseURL"].string ?? self.baseURLResourceString
 				self.mostRecentManifestVersion = resultJSON["version"].string
 				

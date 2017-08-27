@@ -15,11 +15,11 @@ protocol CycleSwitchButtonListener: class {
 class DJCycleSwitchButton: DJCyclableControl {
 	private var button = UIButton()
 	private var bars = [UIView]()
-	private var barCount: Int = 3
+	private var barCount: Int = 2
 	var index: Int = 0
 	
 	weak var listener: CycleSwitchButtonListener?
-	private let cycleImgs = [UIImage(fromAssetNamed: .cycle0), UIImage(fromAssetNamed: .cycle1), UIImage(fromAssetNamed: .cycle2)]
+	private let cycleImgs = [UIImage(fromAssetNamed: .cycle0), UIImage(fromAssetNamed: .cycle1)]
 	
 	convenience init(withSize size: CGSize, withBarCount barCount: Int, listener: CycleSwitchButtonListener?) {
 		self.init(frame: .zero)
@@ -36,12 +36,8 @@ class DJCycleSwitchButton: DJCyclableControl {
 	}
 	
 	override func manifest(in view: UIView, hidden: Bool = false) {
-		
-		controlComponents = [button: (-(view.frame.width / 2) + frame.width, 0)]
-	
+		controlComponents = [button: (-100, 0)]
 		super.manifest(in: view)
-		button.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
-		button.widthAnchor.constraint(equalTo: button.heightAnchor).isActive = true
 		cycle(toIdx: index)
 	}
 	
