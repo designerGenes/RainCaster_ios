@@ -12,6 +12,7 @@ import AVFoundation
 import AVKit
 import SwiftyJSON
 import Alamofire
+import MediaPlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDiscoveryManagerListener, GCKSessionManagerListener {
@@ -27,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
 	var settingsVC: SettingsViewController? {
 		return window?.rootViewController?.presentedViewController as? SettingsViewController
 	}
+    
 	
 	static var shared: AppDelegate? {
 		return UIApplication.shared.delegate as? AppDelegate
@@ -34,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
     
     // MARK: - GCKDiscoveryManagerListener methods
     func didInsert(_ device: GCKDevice, at index: UInt) {
-        print("found a device")
+        
 
     }
     
@@ -46,21 +48,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
     
     
     func didUpdate(_ device: GCKDevice, at index: UInt) {
-        print("updated device at \(index)")
+//        print("updated device at \(index)")
         
     }
     
     func didUpdateDeviceList() {
-        if GCKCastContext.sharedInstance().discoveryManager.deviceCount > 0 {
-            print("showing cast button")
-            mainPlayerVC?.placeHolderCastButton.isHidden = true
-            mainPlayerVC?.castButton?.isHidden = false
-            
-        } else {
-            print("hiding cast button")
-            mainPlayerVC?.placeHolderCastButton.isHidden = false
-            mainPlayerVC?.castButton?.isHidden = true
-        }
+        let shouldShowButton = GCKCastContext.sharedInstance().discoveryManager.deviceCount > 0
+        mainPlayerVC?.placeHolderCastButton.isHidden = shouldShowButton
+        mainPlayerVC?.castButton?.isHidden = !shouldShowButton
+
         
     }
     
@@ -100,6 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
 		}
         
         DJAudioPlaybackController.sharedInstance.remoteMediaClient?.stop()
+        
 
 		return true
 	}

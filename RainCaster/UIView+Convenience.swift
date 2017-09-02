@@ -27,10 +27,20 @@ public extension UIView {
 		layer.position = position
 		layer.anchorPoint = anchorPoint
 	}
+    
+    func placeSubViewAtCenter(subview: UIView, withOffset offset: CGPoint = CGPoint.zero) {
+        if !subviews.contains(subview) {
+            addSubview(subview)
+        }
+        
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        subview.centerXAnchor.constraint(equalTo: centerXAnchor, constant: offset.x).isActive = true
+        subview.centerYAnchor.constraint(equalTo: centerYAnchor, constant: offset.y).isActive = true
+    }
 	
-	func coverSelfEntirely(with subview: UIView, useAsOverlay: Bool = false, withInset percentInset: CGFloat = 0) {
-		let xInset = frame.width * percentInset
-		let yInset = frame.height * percentInset
+	func coverSelfEntirely(with subview: UIView, useAsOverlay: Bool = false, withInset percentInset: CGPoint = CGPoint.zero) {
+		let xInset = frame.width * percentInset.x
+		let yInset = frame.height * percentInset.y
 		
 		if useAsOverlay {
 			if let superview = superview {

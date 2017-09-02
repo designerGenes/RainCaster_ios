@@ -43,7 +43,11 @@ extension DJAudioPlaybackController {
 				
 			case #keyPath(AVAudioSession.outputVolume):
 				if let newVal = newVal as? Float {
+                    DJVolumeWrapperView.sharedInstance.activate(lingerTime: 5)
+                    DJVolumeWrapperView.sharedInstance.setProgressBar(to: CGFloat(newVal))
 					setSessionVolume(to: newVal)
+                    
+                    DJVolumeWrapperView.sharedInstance.makeButtonReflectAudioState(muted: newVal <= 0)
 				}
 				
 			case #keyPath(AVPlayerItem.loadedTimeRanges):

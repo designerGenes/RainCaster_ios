@@ -10,6 +10,7 @@ import UIKit
 import GoogleCast
 import AVKit
 import AVFoundation
+import MediaPlayer
 
 
 class MainPlayerViewController: DJViewController {
@@ -25,6 +26,8 @@ class MainPlayerViewController: DJViewController {
     
 	private let topRowButtonsYConstant: CGFloat = 24
 	private var hiddenControls = [UIView]()
+    
+    
     
     var placeHolderCastButton = UIButton()
 	var castButton: GCKUICastButton?
@@ -154,6 +157,10 @@ class MainPlayerViewController: DJViewController {
 		
 		
 		setHiddenControlVisibility(to: false)
+        
+        let volumeView = MPVolumeView(frame: .zero)
+        volumeView.alpha = 0.0001
+        view.addSubview(volumeView)
 	}
 }
 

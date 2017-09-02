@@ -12,15 +12,15 @@ import GoogleCast
 
 extension MainPlayerViewController: GCKSessionManagerListener {
 	func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKSession) {
-		print("did start session")
+//		print("did start session")
 	}
 	
     
     func sessionManager(_ sessionManager: GCKSessionManager, session: GCKSession, didReceiveDeviceStatus statusText: String?) {
-        print(statusText ?? "unknown device status")
+//        print(statusText ?? "unknown device status")
     }
 	
 	func sessionManager(_ sessionManager: GCKSessionManager, willEnd session: GCKCastSession) {
-		print("will end cast session")
+//		print("will end cast session")
 	}
 }

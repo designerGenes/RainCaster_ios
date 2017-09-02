@@ -15,6 +15,7 @@ enum DJAssetName: String {
 	// media player
 	case suspended, playing, restart, upwardsArrow, downwardsArrow
 	case castButton, castButtonActive, castButtonInactive, castButtonWorking0, castButtonWorking1
+    case soundOutput, soundOutputMute // any better name?
 	case cycle0, cycle1
 	case back
 	case cloud, sync
