@@ -26,7 +26,7 @@ class MainPlayerViewController: DJViewController {
 	private let topRowButtonsYConstant: CGFloat = 24
 	private var hiddenControls = [UIView]()
     
-    private var placeHolderCastButton = UIButton()
+    var placeHolderCastButton = UIButton()
 	var castButton: GCKUICastButton?
 	let dataSource = AmbientTrackDataSource.sharedInstance
 	var manager: GCKDeviceManager?
@@ -118,17 +118,29 @@ class MainPlayerViewController: DJViewController {
 	}
 	
 	func setupCastButton() {
-
+        
+        placeHolderCastButton.setImage(UIImage(fromAssetNamed: .castButtonInactive), for: .normal)
+        
 		let castButton = GCKUICastButton()
 		self.castButton = castButton
-		view.addSubview(castButton)
-		castButton.tintColor = UIColor.named(.whiteText)
-		castButton.frame.size = settingsButton.frame.size
-		castButton.translatesAutoresizingMaskIntoConstraints = false
-		castButton.rightAnchor.constraint(equalTo: settingsButton.leftAnchor, constant: -24).isActive = true
-		castButton.centerYAnchor.constraint(equalTo: settingsButton.centerYAnchor).isActive = true
-		
-		castButton.setInactiveIcon(UIImage(fromAssetNamed: .castButton), activeIcon: UIImage(fromAssetNamed: .castButtonActive), animationIcons: [UIImage(fromAssetNamed: .castButton), UIImage(fromAssetNamed: .castButtonActive)])
+        
+        for button: UIButton in [placeHolderCastButton, castButton] {
+        
+            view.addSubview(button)
+            button.tintColor = UIColor.named(.whiteText)
+            button.frame.size = settingsButton.frame.size
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.rightAnchor.constraint(equalTo: settingsButton.leftAnchor, constant: -24).isActive = true
+            button.centerYAnchor.constraint(equalTo: settingsButton.centerYAnchor).isActive = true
+		}
+		castButton.setInactiveIcon(UIImage(fromAssetNamed: .castButton), activeIcon: UIImage(fromAssetNamed: .castButtonActive), animationIcons: [
+            UIImage(fromAssetNamed: .castButtonWorking0),
+            UIImage(fromAssetNamed: .castButtonWorking1),
+            UIImage(fromAssetNamed: .castButtonActive),
+            UIImage(fromAssetNamed: .castButtonWorking1),
+            UIImage(fromAssetNamed: .castButtonWorking0),
+            ])
+        
 	}
 	
 	override func viewDidLoad() {

@@ -14,10 +14,11 @@ import SwiftyJSON
 import Alamofire
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDiscoveryManagerListener, GCKSessionManagerListener {
 
 	var window: UIWindow?
-	
+    var contactAddress: String?
+    
 	// MARK: - utility methods
 	var mainPlayerVC: MainPlayerViewController? {
 		return window?.rootViewController as? MainPlayerViewController
@@ -30,6 +31,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 	static var shared: AppDelegate? {
 		return UIApplication.shared.delegate as? AppDelegate
 	}
+    
+    // MARK: - GCKDiscoveryManagerListener methods
+    func didInsert(_ device: GCKDevice, at index: UInt) {
+        print("found a device")
+
+    }
+    
+    func didRemoveDevice(at index: UInt) {
+        print("removed device at \(index)")
+        
+    }
+    
+    
+    
+    func didUpdate(_ device: GCKDevice, at index: UInt) {
+        print("updated device at \(index)")
+        
+    }
+    
+    func didUpdateDeviceList() {
+        if GCKCastContext.sharedInstance().discoveryManager.deviceCount > 0 {
+            print("showing cast button")
+            mainPlayerVC?.placeHolderCastButton.isHidden = true
+            mainPlayerVC?.castButton?.isHidden = false
+            
+        } else {
+            print("hiding cast button")
+            mainPlayerVC?.placeHolderCastButton.isHidden = false
+            mainPlayerVC?.castButton?.isHidden = true
+        }
+        
+    }
+    
+    func sessionManager(_ sessionManager: GCKSessionManager, didFailToStart session: GCKSession, withError error: Error) {
+        print("ERR!  failed to start session: \(error.localizedDescription)")
+        didUpdateDeviceList()
+    }
+    
 	
 	
 	// MARK: - GCKLoggerDelegate methods
@@ -47,7 +86,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 		GCKCastContext.setSharedInstanceWith(options)
 		GCKLogger.sharedInstance().delegate = self
 		
-		
+		GCKCastContext.sharedInstance().discoveryManager.add(self) // listen to device discovery
+        GCKCastContext.sharedInstance().sessionManager.add(self)
+        
 		window = UIWindow(frame: UIScreen.main.bounds)
 		if let mainPlayerVC = Bundle.main.loadNibNamed("MainPlayerViewController", owner: self, options: nil)?.first as? MainPlayerViewController {
 			window?.rootViewController = mainPlayerVC
@@ -55,10 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate {
 		}
 		
 		DJRemoteDataSourceController.sharedInstance.pullRemoteManifest() { res in
-			if let resJSON = res as? JSON {
-//				print("Successfully pulled manifest from server")
-				
-			}
+            self.contactAddress = res?["contactAddress"].string
 		}
         
         DJAudioPlaybackController.sharedInstance.remoteMediaClient?.stop()

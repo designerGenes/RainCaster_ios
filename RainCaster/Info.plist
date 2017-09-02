@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -27,6 +27,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>For better connectivity to your devices</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To better handle audio states</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To better handle user photo organization</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>FilsonSoft-Bold.otf</string>

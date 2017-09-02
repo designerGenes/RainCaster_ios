@@ -90,8 +90,25 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		}
 	}
 	
+    
 	
 	// MARK: - Session Manager delegate methods
+    func sessionManager(_ sessionManager: GCKSessionManager, session: GCKSession, didUpdate device: GCKDevice) {
+        print("session manager updated device")
+    }
+    
+    func sessionManager(_ sessionManager: GCKSessionManager, didSuspend session: GCKSession, with reason: GCKConnectionSuspendReason) {
+        print("session manager suspended session")
+    }
+    
+    func sessionManager(_ sessionManager: GCKSessionManager, session: GCKSession, didReceiveDeviceStatus statusText: String?) {
+        print("session manager received status: \(statusText ?? "unknown status")")
+    }
+    
+    func sessionManager(_ sessionManager: GCKSessionManager, didFailToStart session: GCKSession, withError error: Error) {
+        print("failed to start session")
+    }
+    
 	func sessionManager(_ sessionManager: GCKSessionManager, willEnd session: GCKSession) {
 		session.remoteMediaClient?.remove(self)
 		
@@ -101,6 +118,8 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		audioPlayer.isMuted = false
 		pause()
 	}
+    
+    
 	
 	
 	func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKSession) {
@@ -111,8 +130,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 				let shouldAutoPlay: Bool = getAudioPlayerState() == .playing
                 
                 
-                
-                setSessionVolume(to: 0)
+                setSessionVolume(to: self.audioPlayer.volume)
                 
 				remoteMediaClient.loadMedia(focusMediaInfo, autoplay: shouldAutoPlay, playPosition: currentPlayTime)
 			}
@@ -142,9 +160,6 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
                 let newItem = AmbientTrackPlayerItem(url: url)
 
                 self.focusURL = url
-//                if self.audioPlayer.currentItem != nil {
-//                    self.stopObserving(onlyRemoveTimeObserver: true)
-//                }
                 
                 self.audioPlayer.replaceCurrentItem(with: newItem)
                 self.beginObservingPlaybackTime(for: newItem)
@@ -156,7 +171,8 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
                         print("found existing remote audio session.  taking control")
                         session.remoteMediaClient?.add(self)
                         session.remoteMediaClient?.loadMedia(mediaInfo, autoplay: true, playPosition: 0)
-                        setSessionVolume(to: 0)
+                        
+//                        setSessionVolume(to: 0)
                     }
                 }
    
@@ -270,8 +286,6 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		
 	func setSessionVolume(to volume: Float) {
 		if let remoteMediaClient = remoteMediaClient {
-            
-            
 			print("changing remote client volume to \(volume)")
 			remoteMediaClient.setStreamVolume(volume)
 

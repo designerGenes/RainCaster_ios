@@ -56,7 +56,7 @@ class SettingsViewController: DJViewController, UITableViewDelegate, UITableView
 		case .feedback:
             let mailVC = MFMailComposeViewController()
             mailVC.setSubject("Raincstr Feedback")
-            mailVC.setToRecipients(["jnationdesignerjeans@gmail.com"])
+            mailVC.setToRecipients([ AppDelegate.shared?.contactAddress ?? "jnationdesignerjeans@gmail.com"])
             mailVC.setMessageBody("Hi!  Here's what I thought about Raincstr: <br>", isHTML: true)
             mailVC.mailComposeDelegate = self
             present(mailVC, animated: true, completion: nil)

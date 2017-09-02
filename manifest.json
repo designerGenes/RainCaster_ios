@@ -3,6 +3,7 @@
   "releaseDate": "5.29.2017",
   "version": "0.0.1",
   "baseURL": "https://s3-us-west-2.amazonaws.com/raincasterapp/",
+  "contactAddress": "jnationdesignerjeans@gmail.com",
   "items": [
     {
       "title": "Rainy Drive",
