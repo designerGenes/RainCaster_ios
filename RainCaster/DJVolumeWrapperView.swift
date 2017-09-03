@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleCast
 
 class DJVolumeWrapperView: UIView {
     // MARK: - properties
@@ -76,19 +77,30 @@ class DJVolumeWrapperView: UIView {
     }
     
     func toggleMuteVolume() {
-        
+        let playbackController = DJAudioPlaybackController.sharedInstance
         remainingSecondsBeforeFade += 2
+        let shouldMute = !playbackController.shouldBeMuted //(DJAudioPlaybackController.sharedInstance.lastKnownVolume > 0)
+        if GCKCastContext.sharedInstance().castState != .connected  {
+            
+            playbackController.audioPlayer.isMuted = shouldMute
+            
+        } else if let remoteMediaClient = playbackController.remoteMediaClient {
         
-        let shouldMute = DJAudioPlaybackController.sharedInstance.lastKnownVolume > 0 && !DJAudioPlaybackController.sharedInstance.audioPlayer.isMuted
+            remoteMediaClient.setStreamMuted(shouldMute)
+            remoteMediaClient.setStreamVolume(shouldMute ? 0 : playbackController.lastKnownVolume)
+        }
         
-        DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(shouldMute)
-        DJAudioPlaybackController.sharedInstance.audioPlayer.isMuted = shouldMute
+        
+        playbackController.shouldBeMuted = shouldMute
         makeButtonReflectAudioState(muted: shouldMute)
         
         progressBar.backgroundColor = shouldMute ? UIColor.named(.gray_2) : UIColor.named(.rain_blue)
-        if !shouldMute {
-            DJAudioPlaybackController.sharedInstance.setSessionVolume(to: DJAudioPlaybackController.sharedInstance.lastKnownVolume)
-        }
+//        if !shouldMute {
+//            DJAudioPlaybackController.sharedInstance.setSessionVolume(to: DJAudioPlaybackController.sharedInstance.lastKnownVolume)
+//        } else {
+//            let tmpVolume = DJAudioPlaybackController.sharedInstance.lastKnownVolume
+//            DJAudioPlaybackController.sharedInstance.setSessionVolume(to: 0)
+//        }
         
     }
     

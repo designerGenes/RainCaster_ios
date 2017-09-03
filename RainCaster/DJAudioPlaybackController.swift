@@ -35,6 +35,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	var hoursFadeDuration: Int = 10
 	private var silenceTimer: Timer?
     var lastKnownVolume: Float = 0 // for toggling
+    var shouldBeMuted: Bool = false
 	
 	var remoteMediaClient: GCKRemoteMediaClient? {
 		return GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient
@@ -81,7 +82,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	func remoteMediaClient(_ client: GCKRemoteMediaClient, didUpdate mediaStatus: GCKMediaStatus?) {
 		
 		if let mediaStatus = mediaStatus {
-			print("remote media client status became: \(mediaStatus.playerState.rawStringVal())")
+//			print("remote media client status became: \(mediaStatus.playerState.rawStringVal())")
             if mediaStatus.playerState == .buffering {
                 delegate?.playerBecameStuckInBufferingState()
             }
@@ -300,12 +301,13 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
     }
 	
 		
-	func setSessionVolume(to volume: Float = 0) {
+    func setSessionVolume(to volume: Float = 0, skipAlteringLastVolume: Bool = false) {
 		if let remoteMediaClient = remoteMediaClient {
 			print("changing remote client volume to \(volume)")
 			remoteMediaClient.setStreamVolume(volume)
-            
-            
+            if !skipAlteringLastVolume {
+                lastKnownVolume = volume
+            }
 		}
 	}
 	

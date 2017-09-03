@@ -46,6 +46,7 @@ extension DJAudioPlaybackController {
                     lastKnownVolume = newVal
                     DJVolumeWrapperView.sharedInstance.activate(lingerTime: 5)
                     DJVolumeWrapperView.sharedInstance.setProgressBar(to: CGFloat(newVal))
+                    
 					setSessionVolume(to: newVal)
                     
                     DJVolumeWrapperView.sharedInstance.makeButtonReflectAudioState(muted: newVal <= 0)
