@@ -26,14 +26,15 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
     
 	var focusURL: URL?
 	var focusMediaInfo: GCKMediaInformation?
-	
+    weak var focusTrackData: AmbientTrackData?
+    
     var timeSpentPlayingCurrentTrack: Double = 0
     
 	var shouldLoop: Bool = false
 	var shouldFadeOverTime: Bool = false
 	var hoursFadeDuration: Int = 10
 	private var silenceTimer: Timer?
-    
+    var lastKnownVolume: Float = 0 // for toggling
 	
 	var remoteMediaClient: GCKRemoteMediaClient? {
 		return GCKCastContext.sharedInstance().sessionManager.currentCastSession?.remoteMediaClient
@@ -92,15 +93,11 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	}
 	
     
+    
 	
 	// MARK: - Session Manager delegate methods
     
-    func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKCastSession) {
-        print("session began successfully")
-        let name = session.device.friendlyName ?? ""
-        
-        DJVolumeWrapperView.sharedInstance.setLabelText(to: name)
-    }
+    
     func sessionManager(_ sessionManager: GCKSessionManager, session: GCKSession, didUpdate device: GCKDevice) {
         print("session manager updated device")
         let name = device.friendlyName ?? ""
@@ -131,22 +128,27 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	}
     
     
+    func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKCastSession) {
+        
+        print("session began successfully")
+        let name = session.device.friendlyName ?? ""
+        DJVolumeWrapperView.sharedInstance.activate(lingerTime: 5)
+        DJVolumeWrapperView.sharedInstance.setProgressBar(to: CGFloat(session.currentDeviceVolume))
+        DJVolumeWrapperView.sharedInstance.setLabelText(to: name)
+        session.remoteMediaClient?.setStreamVolume(lastKnownVolume)
+        
+    }
 	
 	
 	func sessionManager(_ sessionManager: GCKSessionManager, didStart session: GCKSession) {
-        
-        
-        
-		if let focusMediaInfo = focusMediaInfo, let currentItem = audioPlayer.currentItem {
-			let currentPlayTime = currentItem.currentTime().seconds
+
 			if let remoteMediaClient = session.remoteMediaClient {
 				remoteMediaClient.add(self) // adds self as listener to several session-based notifications
-				let shouldAutoPlay: Bool = getAudioPlayerState() == .playing
-                
-                
-//                setSessionVolume(to: self.audioPlayer.volume)
-                
-				remoteMediaClient.loadMedia(focusMediaInfo, autoplay: shouldAutoPlay, playPosition: currentPlayTime)
+                if let focusMediaInfo = focusMediaInfo, let currentItem = audioPlayer.currentItem {
+                    let currentPlayTime = currentItem.currentTime().seconds
+                    let shouldAutoPlay: Bool = getAudioPlayerState() == .playing
+                    
+                    remoteMediaClient.loadMedia(focusMediaInfo, autoplay: shouldAutoPlay, playPosition: currentPlayTime)
 			}
 		}
 	}
@@ -172,7 +174,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		if let url = data.sourceURL {
             if immediately {
                 let newItem = AmbientTrackPlayerItem(url: url)
-
+                
                 self.focusURL = url
                 
                 self.audioPlayer.replaceCurrentItem(with: newItem)
@@ -302,7 +304,8 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		if let remoteMediaClient = remoteMediaClient {
 			print("changing remote client volume to \(volume)")
 			remoteMediaClient.setStreamVolume(volume)
-
+            
+            
 		}
 	}
 	
@@ -379,6 +382,8 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		
 		let silenceTimer = Timer(timeInterval: 1, target: self, selector: #selector(checkIfTimeToTurnOff), userInfo: nil, repeats: true)
 		self.silenceTimer = silenceTimer
+        
+        setSessionVolume(to: audioPlayer.volume)
         
 	}
 	

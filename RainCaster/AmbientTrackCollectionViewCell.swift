@@ -32,9 +32,7 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
     }
 	private var triangleViews = [FloatingTriangleView]()
 
-	override func layoutSubviews() {
-        controlCycler?.switchButton?.center = CGPoint(x: infoAreaView.bounds.minX + 16, y: infoAreaView.bounds.midY)
-        
+	override func layoutSubviews() {        
 		for triangle in triangleViews {
 			triangle.drawTriangleLayer(in: interactionAreaView)
 		}
@@ -149,7 +147,6 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
     
 		let controlSet: [DJCyclableControl] = [
 			DJPlayPauseControl(),
-//			DJStepperControl(marginBetweenVerticalElements: interactionAreaView.frame.height / 6, marginBetweenHorizontalElements: 60),
 			DJInfoSheetControl(withHeadline: assocTrackData?.title ?? "Fun Fact #44",
 			                   body: assocTrackData?.desc ?? "A large majority of fun facts are not, in fact, fun at all.")
 		]
@@ -159,13 +156,15 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
 		
 		layer.masksToBounds = true
 		layer.cornerRadius = 8
-		controlCycler = DJControlSetCycler()
-		let triggerSwitch = DJCycleSwitchButton(withSize: CGSize(width: 50, height: 50), withBarCount: controlSet.count, listener: controlCycler!)
-		triggerSwitch.manifest(in: infoAreaView, hidden: false)
-		controlCycler?.switchButton = triggerSwitch
-		controlCycler?.cell = self
-		controlCycler?.manifest(in: interactionAreaView, with: controlSet)
-
+		let controlCycler = DJControlSetCycler()
+        self.controlCycler = controlCycler
+        controlCycler.cell = self
+		let triggerSwitch = DJCycleSwitchButton(withOrbCount: controlSet.count, listener: controlCycler)
+    
+		controlCycler.switchButton = triggerSwitch
+        triggerSwitch.manifest(in: infoAreaView, hidden: false)
+		controlCycler.manifest(in: interactionAreaView, with: controlSet)
+        
         
 	}
 

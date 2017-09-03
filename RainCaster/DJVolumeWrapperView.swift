@@ -20,6 +20,7 @@ class DJVolumeWrapperView: UIView {
     private var progressBarWidthConstraint: NSLayoutConstraint?
     private var fadeTimer: Timer?
     private let maxOpacity: CGFloat = 0.75
+    
 
     // MARK: - methods
     func setProgressBar(to val: CGFloat) {
@@ -74,6 +75,23 @@ class DJVolumeWrapperView: UIView {
         soundIconButton.setImage(UIImage(fromAssetNamed: assetName), for: .normal)
     }
     
+    func toggleMuteVolume() {
+        
+        remainingSecondsBeforeFade += 2
+        
+        let shouldMute = DJAudioPlaybackController.sharedInstance.lastKnownVolume > 0 && !DJAudioPlaybackController.sharedInstance.audioPlayer.isMuted
+        
+        DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(shouldMute)
+        DJAudioPlaybackController.sharedInstance.audioPlayer.isMuted = shouldMute
+        makeButtonReflectAudioState(muted: shouldMute)
+        
+        progressBar.backgroundColor = shouldMute ? UIColor.named(.gray_2) : UIColor.named(.rain_blue)
+        if !shouldMute {
+            DJAudioPlaybackController.sharedInstance.setSessionVolume(to: DJAudioPlaybackController.sharedInstance.lastKnownVolume)
+        }
+        
+    }
+    
     func manifest() {
         // draw outer view
         if let window = AppDelegate.shared?.window {
@@ -99,7 +117,7 @@ class DJVolumeWrapperView: UIView {
             soundIconButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
             soundIconButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6).isActive = true
             soundIconButton.widthAnchor.constraint(equalTo: soundIconButton.heightAnchor).isActive = true
-            
+            soundIconButton.addTarget(self, action: #selector(toggleMuteVolume), for: .touchUpInside)
             
             activeCastClientNameLabel.font = UIFont.filsonSoftBold(size: 20)
             activeCastClientNameLabel.textAlignment = .center

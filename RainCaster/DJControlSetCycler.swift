@@ -93,6 +93,9 @@ class DJControlSetCycler: NSObject, CycleSwitchButtonListener {
 			control.manifest(in: view, hidden: setIdx >= currentStackIdx)
 			control.parentCycler = self
 		}
+        
+        
+        
 		
 	}
 	
@@ -101,7 +104,7 @@ class DJControlSetCycler: NSObject, CycleSwitchButtonListener {
 	func cycleToNextControlSet() {
 		
 		let nextStackPosition = currentStackIdx < controls.count - 1 ? currentStackIdx + 1 : 0
-		print("cycling to position \(nextStackPosition)")
+//		print("cycling to position \(nextStackPosition)")
         
 
 		animateTransition(leavingControl: controls[currentStackIdx], arrivingControl: controls[nextStackPosition])

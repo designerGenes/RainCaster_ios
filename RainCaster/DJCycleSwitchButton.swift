@@ -12,39 +12,103 @@ protocol CycleSwitchButtonListener: class {
 	func didTapSwitchButton()
 }
 
+class Orb: UIView {
+    var diameter: CGFloat = 0
+    init(diameter: CGFloat) {
+        super.init(frame: CGRect(origin: .zero, size: CGSize(width: diameter, height: diameter)))
+        self.diameter = diameter
+        layer.masksToBounds = true
+        layer.cornerRadius = frame.width / 2
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 class DJCycleSwitchButton: DJCyclableControl {
-	private var button = UIButton()
-	private var bars = [UIView]()
-	private var barCount: Int = 2
+	private var invisibleButton = UIButton()
+	private var orbs = [Orb]()
+	private var orbCount: Int = 2
+    private var widthConstraint: NSLayoutConstraint?
 	var index: Int = 0
 	
 	weak var listener: CycleSwitchButtonListener?
-	private let cycleImgs = [UIImage(fromAssetNamed: .cycle0), UIImage(fromAssetNamed: .cycle1)]
 	
-	convenience init(withSize size: CGSize, withBarCount barCount: Int, listener: CycleSwitchButtonListener?) {
+//    var assocCategory: AmbientTrackCategory? {
+//       return (listener as? DJControlSetCycler)?.cell?.assocTrackData?.category
+//    }
+    
+	convenience init(withOrbCount orbCount: Int, listener: CycleSwitchButtonListener?) {
 		self.init(frame: .zero)
-		frame.size = size
 		self.listener = listener
-		self.barCount = barCount
-		
-		button.addTarget(self, action: #selector(tappedButton), for: .touchUpInside)
+		self.orbCount = orbCount
 	}
+    
+    override func die() {
+        while !orbs.isEmpty {
+            orbs.removeFirst().removeFromSuperview()
+        }
+    }
 	
 	func tappedButton() {
 		listener?.didTapSwitchButton()
 		cycle(toIdx: index + 1)
 	}
 	
+    override func layoutSubviews() {
+        guard let superview = superview, let diameter: CGFloat = orbs.first?.diameter else {
+            return
+        }
+        let margin = diameter * 0.35
+        
+        let totalWidth: CGFloat = (margin * CGFloat(orbCount + 1)) + (diameter * CGFloat(orbCount))
+        widthConstraint?.constant = totalWidth
+
+        for z in 0..<orbs.count {
+            let computedX = (margin * CGFloat(z + 1)) + (diameter * CGFloat(z)) + diameter/2
+            orbs[z].center = CGPoint(x: computedX, y: superview.bounds.midY)
+        }
+
+        bringSubview(toFront: invisibleButton)
+    }
+    
+    
+    
 	override func manifest(in view: UIView, hidden: Bool = false) {
-		controlComponents = [button: (-100, 0)]
-		super.manifest(in: view)
-		cycle(toIdx: index)
+        view.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
+        heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        widthConstraint = widthAnchor.constraint(equalToConstant: 0)
+        widthConstraint?.isActive = true
+        
+        for z in 0..<orbCount {
+            let newOrb = Orb(diameter: 30)
+            orbs.append(newOrb)
+            addSubview(newOrb)
+        }
+        
+        coverSelfEntirely(with: invisibleButton)
+        invisibleButton.addTarget(self, action: #selector(tappedButton), for: .touchUpInside)
+        
+        if let category = (listener as? DJControlSetCycler)?.cell?.assocTrackData?.category {
+            cycle(toIdx: index, animated: false)
+        }
 	}
 	
-	func cycle(toIdx idx: Int) {
-		let idx = idx < cycleImgs.count ? idx : 0
+    func cycle(toIdx idx: Int, animated: Bool = true) {
+		let idx = idx < orbs.count ? idx : 0
 		self.index = idx
-		button.setImage(cycleImgs[idx], for: .normal)
+        
+		UIView.animate(withDuration: animated ? 0.25 : 0) {
+            for (z, orb) in self.orbs.enumerated() {
+                orb.backgroundColor = z == idx ? (self.listener as? DJControlSetCycler)?.cell?.assocTrackData?.category?.associatedColor() ?? UIColor.named(.gray_1) : UIColor.named(.gray_2)
+                orb.transform = z == idx ? CGAffineTransform.identity.scaledBy(x: 1.4, y: 1.4) : CGAffineTransform.identity.scaledBy(x: 0.75, y: 0.75)
+            }
+        }
 		
 	}
 	

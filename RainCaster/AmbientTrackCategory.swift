@@ -20,9 +20,9 @@ enum AmbientTrackCategory: String {
 	}
 	func associatedColor(beta: Bool = false) -> UIColor {
 		switch self {
-		case .rain: return beta ?  UIColor.named(.rain_blue) : UIColor.named(.rain_beta)
-		case .space: return beta ?  UIColor.named(.space_red) : UIColor.named(.space_beta)
-		case .other, .unknown: return beta ?  UIColor.named(.unknown_green) : UIColor.named(.nearly_black)
+		case .rain: return !beta ?  UIColor.named(.rain_blue) : UIColor.named(.rain_beta)
+		case .space: return !beta ?  UIColor.named(.space_red) : UIColor.named(.space_beta)
+		case .other, .unknown: return !beta ?  UIColor.named(.unknown_green) : UIColor.named(.nearly_black)
 		}
 	}
 	
