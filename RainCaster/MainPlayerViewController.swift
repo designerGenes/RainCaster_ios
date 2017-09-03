@@ -29,6 +29,7 @@ class MainPlayerViewController: DJViewController {
     
     
     
+    
     var placeHolderCastButton = UIButton()
 	var castButton: GCKUICastButton?
 	let dataSource = AmbientTrackDataSource.sharedInstance
@@ -46,6 +47,10 @@ class MainPlayerViewController: DJViewController {
 		print("GCK Cast session will start")
 	}
 
+   
+    
+
+    
 	
 	// MARK: - methods
 	func setupHiddenControls() {
@@ -161,6 +166,8 @@ class MainPlayerViewController: DJViewController {
         let volumeView = MPVolumeView(frame: .zero)
         volumeView.alpha = 0.0001
         view.addSubview(volumeView)
+        
+        
 	}
 }
 

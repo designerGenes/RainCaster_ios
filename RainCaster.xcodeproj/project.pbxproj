@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5220CD4F78B806719BD9EA88 /* Pods_RainCaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */; };
+		FE1B3D3D1F5BBC520096AB6B /* DJVideoBackgroundController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1B3D3C1F5BBC520096AB6B /* DJVideoBackgroundController.swift */; };
 		FE3059881EE57A850010F242 /* DJControlSetCycler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059871EE57A850010F242 /* DJControlSetCycler.swift */; };
 		FE30598A1EE5A3EB0010F242 /* DJPlayPauseControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */; };
 		FE30598C1EE5A4070010F242 /* DJStepperControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE30598B1EE5A4070010F242 /* DJStepperControl.swift */; };
@@ -21,6 +22,10 @@
 		FE6022C21F5B563400B419B6 /* DJVolumeWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6022C11F5B563400B419B6 /* DJVolumeWrapperView.swift */; };
 		FE618D131EC3AE7900BA7E46 /* Cache.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE618D121EC3AE7900BA7E46 /* Cache.framework */; };
 		FE618D171EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE618D161EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift */; };
+		FE67C1D91F5BCD3400070976 /* space0.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FE67C1D81F5BCD3400070976 /* space0.mp4 */; };
+		FE67C1DE1F5BD47900070976 /* rain1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FE67C1DC1F5BD47900070976 /* rain1.mp4 */; };
+		FE67C1E11F5BD5DB00070976 /* space1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FE67C1E01F5BD5DB00070976 /* space1.mp4 */; };
+		FE67C1E31F5BD61300070976 /* rain0.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = FE67C1E21F5BD61300070976 /* rain0.mp4 */; };
 		FE6E510D1EABECCB00A62CCB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */; };
 		FE6E51141EABECCB00A62CCB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE6E51131EABECCB00A62CCB /* Assets.xcassets */; };
 		FE6E51171EABECCB00A62CCB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE6E51151EABECCB00A62CCB /* LaunchScreen.storyboard */; };
@@ -64,6 +69,7 @@
 		0E1DA31A60FFF5C01FF5D9CA /* Pods_RainCaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RainCaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		634002D169D85C96F267F6CF /* Pods-RainCaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.release.xcconfig"; sourceTree = "<group>"; };
 		9303DDAE6753518BA0A520D8 /* Pods-RainCaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RainCaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RainCaster/Pods-RainCaster.debug.xcconfig"; sourceTree = "<group>"; };
+		FE1B3D3C1F5BBC520096AB6B /* DJVideoBackgroundController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJVideoBackgroundController.swift; sourceTree = "<group>"; };
 		FE3059871EE57A850010F242 /* DJControlSetCycler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJControlSetCycler.swift; sourceTree = "<group>"; };
 		FE3059891EE5A3EB0010F242 /* DJPlayPauseControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJPlayPauseControl.swift; sourceTree = "<group>"; };
 		FE30598B1EE5A4070010F242 /* DJStepperControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJStepperControl.swift; sourceTree = "<group>"; };
@@ -77,6 +83,10 @@
 		FE6022C11F5B563400B419B6 /* DJVolumeWrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJVolumeWrapperView.swift; sourceTree = "<group>"; };
 		FE618D121EC3AE7900BA7E46 /* Cache.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cache.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphoneos/Cache/Cache.framework"; sourceTree = "<group>"; };
 		FE618D161EC3B42B00BA7E46 /* AmbientTrackPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackPlayerItem.swift; sourceTree = "<group>"; };
+		FE67C1D81F5BCD3400070976 /* space0.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = space0.mp4; sourceTree = "<group>"; };
+		FE67C1DC1F5BD47900070976 /* rain1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rain1.mp4; sourceTree = "<group>"; };
+		FE67C1E01F5BD5DB00070976 /* space1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = space1.mp4; sourceTree = "<group>"; };
+		FE67C1E21F5BD61300070976 /* rain0.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = rain0.mp4; sourceTree = "<group>"; };
 		FE6E51091EABECCB00A62CCB /* RainCaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RainCaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE6E51131EABECCB00A62CCB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -155,6 +165,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FE1B3D391F5BB9F60096AB6B /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				FE67C1DC1F5BD47900070976 /* rain1.mp4 */,
+				FE67C1E21F5BD61300070976 /* rain0.mp4 */,
+				FE67C1E01F5BD5DB00070976 /* space1.mp4 */,
+				FE67C1D81F5BCD3400070976 /* space0.mp4 */,
+			);
+			name = Video;
+			sourceTree = "<group>";
+		};
 		FE6022C01F5B55BE00B419B6 /* Control Cycler */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +242,7 @@
 		FE6E51201EABEE0300A62CCB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FE1B3D391F5BB9F60096AB6B /* Video */,
 				FE6E511E1EABEDF300A62CCB /* Storyboards */,
 				FE6E510C1EABECCB00A62CCB /* AppDelegate.swift */,
 				FE6E51131EABECCB00A62CCB /* Assets.xcassets */,
@@ -334,6 +356,7 @@
 				FECC4F6C1F3932F600644DEA /* AudioPlaybackController */,
 				FE5504F11ED3738000C2722A /* DJCachingController.swift */,
 				FEFC7A291F37C13D003100E8 /* DebugController.swift */,
+				FE1B3D3C1F5BBC520096AB6B /* DJVideoBackgroundController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -437,13 +460,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE67C1E11F5BD5DB00070976 /* space1.mp4 in Resources */,
 				FE6E51171EABECCB00A62CCB /* LaunchScreen.storyboard in Resources */,
 				FE6E51141EABECCB00A62CCB /* Assets.xcassets in Resources */,
+				FE67C1DE1F5BD47900070976 /* rain1.mp4 in Resources */,
 				FECB86CE1F3A55B5002DB2E6 /* AlertCollectionViewCell.xib in Resources */,
 				FE6E51251EABEFF300A62CCB /* Podfile in Resources */,
 				FE964D021EB7B43600DF0035 /* FilsonSoftRegular.otf in Resources */,
 				FE964D011EB7B43600DF0035 /* FilsonSoft-Bold.otf in Resources */,
+				FE67C1D91F5BCD3400070976 /* space0.mp4 in Resources */,
 				FEA3B4A71EB8039F00187EB0 /* SanFranciscoDisplay-Regular.otf in Resources */,
+				FE67C1E31F5BD61300070976 /* rain0.mp4 in Resources */,
 				FEA3B4991EB7FAD600187EB0 /* MainPlayerViewController.xib in Resources */,
 				FE964CFD1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib in Resources */,
 				FEAFDBB71F27D04C00194062 /* SettingsTableViewCell.xib in Resources */,
@@ -539,6 +566,7 @@
 				FE3059881EE57A850010F242 /* DJControlSetCycler.swift in Sources */,
 				FE30598E1EE5A41D0010F242 /* DJCycleSwitchButton.swift in Sources */,
 				FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */,
+				FE1B3D3D1F5BBC520096AB6B /* DJVideoBackgroundController.swift in Sources */,
 				FECC4F6B1F392BBC00644DEA /* GCKMediaState+Convenience.swift in Sources */,
 				FE964CEF1EAC259F00DF0035 /* MainPlayerVC+GCKDeviceManagerDelegate.swift in Sources */,
 				FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */,

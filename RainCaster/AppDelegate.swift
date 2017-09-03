@@ -120,6 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		DJAudioPlaybackController.sharedInstance.setGlobalAudioSession(to: true)
 		DJAudioPlaybackController.sharedInstance.remoteMediaClient?.setStreamMuted(false)
+        
+        DJVideoBackgroundController.sharedInstance.bgPlayer.play()
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {

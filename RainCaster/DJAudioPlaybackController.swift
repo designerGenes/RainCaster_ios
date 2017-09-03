@@ -216,14 +216,16 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	
 
 	
-	func playbackDidFinish() {
-		print("playback has reached end of loaded track")
-		if shouldLoop {
-			print("looping back to start of loaded track")
-			restart()
-		} else {
-			// display reload screen
-		}
+    func playbackDidFinish(notification: NSNotification) {
+        if let currentItem = notification.object as? AVPlayerItem, currentItem == self.audioPlayer.currentItem {
+            print("playback has reached end of loaded track")
+            if shouldLoop {
+                print("looping back to start of loaded track")
+                restart()
+            } else {
+                // display reload screen
+            }
+        }
 	}
 	
 	func playbackTimeBecame(seconds: Double) {
@@ -244,7 +246,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
         
         audioPlayer.addObserver(self, forKeyPath: #keyPath(AVPlayer.rate), options: [.old, .new], context: nil)
     
-        NotificationCenter.default.addObserver(self, selector: #selector(playbackDidFinish),
+        NotificationCenter.default.addObserver(self, selector: #selector(playbackDidFinish(notification:)),
                                                name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
                                                object: audioPlayer.currentItem)
         GCKCastContext.sharedInstance().sessionManager.add(self)

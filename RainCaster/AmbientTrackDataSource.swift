@@ -63,14 +63,24 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		if let cell = cell as? AmbientTrackCollectionViewCell, let assocTrackData = cell.assocTrackData {
+            if let resString = assocTrackData.category?.assocResourceString() {
+                if let parentView = AppDelegate.shared?.mainPlayerVC?.view, DJVideoBackgroundController.sharedInstance.bgPlayer.currentItem == nil {
+                        DJVideoBackgroundController.sharedInstance.manifest(in: parentView)
+                        DJVideoBackgroundController.sharedInstance.queue(clipNamed: resString, playOnReady: true)
+                    
+                } else {
+                    DJVideoBackgroundController.sharedInstance.fadeIn(item2String: resString)
+                }
+                
+            }
+            
             
             // if visiting a cell with playback focus
 			if DJAudioPlaybackController.sharedInstance.isFocusedOn(item: assocTrackData) {
                 if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() == MediaPlayerState.playing {
                     cell.controlCycler?.reflactState(playbackState: .playing)
                     return
-                }
-                if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() != .buffering {
+                } else if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() != .buffering {
                     cell.controlCycler?.reflactState(playbackState: .suspended)
                 }
             } else {  // if visiting cell without AudioPlaybackController focus
