@@ -14,7 +14,7 @@ class DJPlayPauseControl: DJCyclableControl, AudioPlaybackDelegate {
 	private let playPauseButton = UIButton()
 	var intendedState: MediaPlayerState = .suspended
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-	
+    weak var parentCell: AmbientTrackCollectionViewCell?
 
 	// MARK: - AudioPlaybackDelegate methods
 	func playbackStateBecame(state: MediaPlayerState) {
@@ -34,13 +34,26 @@ class DJPlayPauseControl: DJCyclableControl, AudioPlaybackDelegate {
 	
 	
 	// MARK: - methods
+    init(cell: AmbientTrackCollectionViewCell) {
+        super.init(frame: CGRect.zero)
+        self.parentCell = cell
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    
 	override func manifest(in view: UIView, hidden: Bool = false) {
         
         activityIndicator.hidesWhenStopped = true
         
         
-		playPauseButton.frame.size = CGSize(width: 120, height: 120)
-        controlComponents = [playPauseButton: (0, 0), activityIndicator: (0, 0)]
+		
+        playPauseButton.imageView?.contentMode = .scaleAspectFit
+        let cellWidth = AmbientTrackDataSource.sharedInstance.cellWidth
+        controlComponents = [playPauseButton: CGPoint(x: (cellWidth / 2) - UIImage(fromAssetNamed: .playing).size.width / 1.8, y: 0),
+                             activityIndicator: CGPoint(x: (cellWidth / 2) - UIImage(fromAssetNamed: .playing).size.width / 1.8, y: 0)]
 		setControlState(to: .suspended)
 		playPauseButton.addTarget(self, action: #selector(toggleControlState), for: .touchUpInside)
 		super.manifest(in: view)
@@ -51,7 +64,7 @@ class DJPlayPauseControl: DJCyclableControl, AudioPlaybackDelegate {
 	func toggleControlState() {
 //		print("toggling control state")
         
-		if let assocTrackData = parentCycler?.cell?.assocTrackData {
+		if let assocTrackData = parentCell?.assocTrackData {
 			let audioController = DJAudioPlaybackController.sharedInstance
             
 			if audioController.isFocusedOn(item: assocTrackData) {  // if already focused
@@ -77,7 +90,7 @@ class DJPlayPauseControl: DJCyclableControl, AudioPlaybackDelegate {
 				print("\nreplacing existing track, or no track is loaded")
 				audioController.pause()
                 intendedState = .playing
-                if let parentCell = parentCycler?.cell {
+                if let parentCell = parentCell {
                     audioController.focusAttention(on: parentCell)
                 }
                 audioController.stopObserving(onlyRemoveTimeObserver: true)
@@ -91,9 +104,6 @@ class DJPlayPauseControl: DJCyclableControl, AudioPlaybackDelegate {
     
     // forcible switch, sent from external source
 	func setControlState(to state: MediaPlayerState) {
-        guard let parentCycler = parentCycler, parentCycler.controls[parentCycler.currentStackIdx] == self else {
-            return
-        }
 
 		var intendedStateImg: UIImage?
 		activityIndicator.stopAnimating()

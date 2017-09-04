@@ -38,14 +38,14 @@ class DJVideoBackgroundController: NSObject {
     private var containerView: DJVideoBackgroundContainerView?
     
     // MARK: - methods
-    func fadeIn(item2String: String, duration: Double = 0.5) {
+    func fadeIn(item2String: String, duration: Double = 0.25) {
         if let url = Bundle.main.url(forResource: item2String, withExtension: "mp4") {
             let item2 = AVPlayerItem(url: url)
             fadeIn(to: item2, duration: duration)
         }
     }
     
-    func fadeIn(to item2: AVPlayerItem, duration: Double = 0.5) {
+    func fadeIn(to item2: AVPlayerItem, duration: Double = 0.25) {
         let item1 = bgPlayer.currentItem
         if let mainView = containerView?.superview {
             

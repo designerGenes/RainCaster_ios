@@ -14,8 +14,8 @@ class DJInfoSheetControl: DJCyclableControl {
 	
 	convenience init(withHeadline hdln: String, body: String) {
 		self.init(frame: CGRect.zero)
-		headlineLabel.text = hdln
-		bodyTextLabel.text = body
+//		headlineLabel.text = hdln
+//		bodyTextLabel.text = body
 		
 		headlineLabel.font = UIFont.filsonSoftBold(size: 30)
 		bodyTextLabel.font = UIFont.filsonSoftRegular(size: 20)
@@ -28,7 +28,7 @@ class DJInfoSheetControl: DJCyclableControl {
 			label.lineBreakMode = .byWordWrapping
 			label.shadowColor = .black
 			label.shadowOffset = CGSize(width: 1, height: 1)
-			
+			label.isHidden = true // tmp
 		}
 	}
     
@@ -39,8 +39,8 @@ class DJInfoSheetControl: DJCyclableControl {
 	
 	
 	override func manifest(in view: UIView, hidden: Bool) {
-		controlComponents = [headlineLabel: (0, -40),
-		                     bodyTextLabel: (0, 40)]
+        controlComponents = [headlineLabel: CGPoint(x:0, y:-40),
+                             bodyTextLabel: CGPoint(x: 0, y: 40)]
 		
 		
 		

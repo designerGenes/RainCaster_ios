@@ -19,6 +19,9 @@ class Orb: UIView {
         self.diameter = diameter
         layer.masksToBounds = true
         layer.cornerRadius = frame.width / 2
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 2, height: 2)
+        
         
     }
     
@@ -27,34 +30,52 @@ class Orb: UIView {
     }
 }
 
-class DJCycleSwitchButton: DJCyclableControl {
+class DJCycleSwitchButton: DJCyclableControl, ControlSetCycler {
+
 	private var invisibleButton = UIButton()
 	private var orbs = [Orb]()
 	private var orbCount: Int = 2
     private var widthConstraint: NSLayoutConstraint?
-	var index: Int = 0
+
 	
-	weak var listener: CycleSwitchButtonListener?
-	
-//    var assocCategory: AmbientTrackCategory? {
-//       return (listener as? DJControlSetCycler)?.cell?.assocTrackData?.category
-//    }
+
+    weak var controlCycleListener: ControlCyclerListener?
+    var controlSetNames = [ControlSetName]()
+    var currentStackIdx: Int = 0
     
-	convenience init(withOrbCount orbCount: Int, listener: CycleSwitchButtonListener?) {
+    func cell() -> AmbientTrackCollectionViewCell? {
+        return checkIfParentIsCell(view: self)
+    }
+    
+    func checkIfParentIsCell(view: UIView?) -> AmbientTrackCollectionViewCell? {
+        guard let view = view else {
+            return nil
+        }
+        if let cell = view as? AmbientTrackCollectionViewCell {
+            return cell
+        }
+        return checkIfParentIsCell(view: view.superview)
+    }
+    
+    
+    
+    convenience init(withControls controls: [ControlSetName], listener: ControlCyclerListener?) {
 		self.init(frame: .zero)
-		self.listener = listener
-		self.orbCount = orbCount
+		self.controlCycleListener = listener
+        self.controlSetNames = controls
+		self.orbCount = controls.count
 	}
     
     override func die() {
         while !orbs.isEmpty {
             orbs.removeFirst().removeFromSuperview()
         }
+        
     }
 	
 	func tappedButton() {
-		listener?.didTapSwitchButton()
-		cycle(toIdx: index + 1)
+        
+		cycle(toIdx: currentStackIdx + 1)
 	}
 	
     override func layoutSubviews() {
@@ -94,19 +115,21 @@ class DJCycleSwitchButton: DJCyclableControl {
         coverSelfEntirely(with: invisibleButton)
         invisibleButton.addTarget(self, action: #selector(tappedButton), for: .touchUpInside)
         
-        if let category = (listener as? DJControlSetCycler)?.cell?.assocTrackData?.category {
-            cycle(toIdx: index, animated: false)
+        if let category = cell()?.assocTrackData?.category {
+            cycle(toIdx: currentStackIdx, animated: false)
         }
 	}
 	
     func cycle(toIdx idx: Int, animated: Bool = true) {
-		let idx = idx < orbs.count ? idx : 0
-		self.index = idx
+		let idx = idx < controlSetNames.count ? idx : 0
+		self.currentStackIdx = idx
+        controlCycleListener?.didCycle(toIdx: currentStackIdx, setName: controlSetNames[currentStackIdx])
         
 		UIView.animate(withDuration: animated ? 0.25 : 0) {
             for (z, orb) in self.orbs.enumerated() {
-                orb.backgroundColor = z == idx ? (self.listener as? DJControlSetCycler)?.cell?.assocTrackData?.category?.associatedColor() ?? UIColor.named(.gray_1) : UIColor.named(.gray_2)
+                orb.backgroundColor = z == idx ? self.cell()?.assocTrackData?.category?.associatedColor() ?? UIColor.named(.gray_1) : UIColor.named(.gray_2)
                 orb.transform = z == idx ? CGAffineTransform.identity.scaledBy(x: 1.4, y: 1.4) : CGAffineTransform.identity.scaledBy(x: 0.75, y: 0.75)
+                orb.layer.shadowOpacity = z == idx ? 0.9 : 0.4
             }
         }
 		

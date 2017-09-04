@@ -30,7 +30,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
     
     var timeSpentPlayingCurrentTrack: Double = 0
     
-	var shouldLoop: Bool = false
+	var shouldLoop: Bool = true
 	var shouldFadeOverTime: Bool = false
 	var hoursFadeDuration: Int = 10
 	private var silenceTimer: Timer?

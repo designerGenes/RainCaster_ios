@@ -51,8 +51,10 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 //			print((cellData as? AmbientTrackData)?.sourceURL ?? "no source url")
 			if DJAudioPlaybackController.sharedInstance.isFocusedOn(item: cellData as! AmbientTrackData) &&
 				DJAudioPlaybackController.sharedInstance.getAudioPlayerState() == .playing {
-					cell.controlCycler?.reflactState(playbackState: .playing)
+//					cell.controlCycler?.reflactState(playbackState: .playing)
 			}
+            
+            
 			
 			return cell
 		}
@@ -63,10 +65,11 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		if let cell = cell as? AmbientTrackCollectionViewCell, let assocTrackData = cell.assocTrackData {
-            if let resString = assocTrackData.category?.assocResourceString() {
+            
+            if let resString = cell.assocTrackData?.category?.assocResourceString() {
                 if let parentView = AppDelegate.shared?.mainPlayerVC?.view, DJVideoBackgroundController.sharedInstance.bgPlayer.currentItem == nil {
-                        DJVideoBackgroundController.sharedInstance.manifest(in: parentView)
-                        DJVideoBackgroundController.sharedInstance.queue(clipNamed: resString, playOnReady: true)
+                    DJVideoBackgroundController.sharedInstance.manifest(in: parentView)
+                    DJVideoBackgroundController.sharedInstance.queue(clipNamed: resString, playOnReady: true)
                     
                 } else {
                     DJVideoBackgroundController.sharedInstance.fadeIn(item2String: resString)
@@ -74,18 +77,17 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
                 
             }
             
-            
             // if visiting a cell with playback focus
 			if DJAudioPlaybackController.sharedInstance.isFocusedOn(item: assocTrackData) {
                 if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() == MediaPlayerState.playing {
-                    cell.controlCycler?.reflactState(playbackState: .playing)
+                    cell.playbackStateBecame(state: .playing)
                     return
                 } else if DJAudioPlaybackController.sharedInstance.getAudioPlayerState() != .buffering {
-                    cell.controlCycler?.reflactState(playbackState: .suspended)
+                    cell.playbackStateBecame(state: .suspended)
                 }
             } else {  // if visiting cell without AudioPlaybackController focus
                 
-                cell.controlCycler?.reflactState(playbackState: .suspended)
+                cell.playbackStateBecame(state: .suspended)
             }
 
 		}

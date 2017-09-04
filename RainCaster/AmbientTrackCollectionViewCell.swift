@@ -10,98 +10,103 @@ import UIKit
 import youtube_ios_player_helper
 
 
-class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegate, AdoptiveCell {
+
+class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegate, AdoptiveCell, ControlCyclerListener {
 	// MARK: - outlets
 	
-	@IBOutlet weak var titleBulkLabel: UILabel!
-	@IBOutlet weak var titleImpactLabel: UILabel!
+	var titleBulkLabel = UILabel()
+	var titleImpactLabel = UILabel()
 	@IBOutlet weak var interactionAreaView: UIView!
 	@IBOutlet weak var infoAreaView: UIView!
 	
 
 	// MARK: - properties
-	var controlCycler: DJControlSetCycler?
+    var colors = [ColorRole: UIColor]()
+
 	private var triangleView: UIView?
 	weak var assocTrackData: AmbientTrackData?
-    private var playPauseButton: DJPlayPauseControl? {
-        return controlCycler?.playPauseBtn
+    
+    var playPauseControl: DJPlayPauseControl?
+    var triggerSwitch: DJCycleSwitchButton?
+    
+	var triangleViews = [FloatingTriangleView]()
+    var controlSets = [ControlSetName: ControlSet]()
+    
+    // MARK: - control cycle listener methods
+    func didCycle(toIdx idx: Int, setName: ControlSetName?) {
+        if let setName = setName {
+            focusControlSetBecame(name: setName)
+        }
     }
     
-    private var triggerSwitch: DJCycleSwitchButton? {
-        return controlCycler?.switchButton
-    }
-	private var triangleViews = [FloatingTriangleView]()
-
 	override func layoutSubviews() {        
 		for triangle in triangleViews {
-			triangle.drawTriangleLayer(in: interactionAreaView)
+            triangle.layoutSubviews()
 		}
+
+        triangleViews.first?.layer.shadowOpacity = 0.65
+        triangleViews.first?.layer.shadowOffset = CGSize(width: 4, height: 8)
+        triangleViews.first?.layer.shadowColor = UIColor.black.cgColor
 	}
 	
 	func focusControlSetBecame(name: ControlSetName, instant: Bool = false) {
-		var colors = name.associatedColors()
-		let leftTriangle = FloatingTriangleView()
-		let rightTriangle = FloatingTriangleView()
-	
-		if name == .playbackTravel {
-			colors[.primary] = assocTrackData?.category?.associatedColor()
-			colors[.secondary] = assocTrackData?.category?.associatedColor(beta: true)
-		}
 		
-		leftTriangle.manifest(in: interactionAreaView, position: .left, color: colors[.primary]!)
-		rightTriangle.manifest(in: interactionAreaView, position: .right, color: colors[.secondary]!)
-		
-		if let playPauseBtn = controlCycler?.playPauseBtn {
-			bringSubview(toFront: playPauseBtn)
-		}
-		
-		let newTriangles: [FloatingTriangleView] = [leftTriangle, rightTriangle]
-		
-		var totalDelay: Double = 0
-		for (z, triangleGroup) in [self.triangleViews, newTriangles].enumerated() {
-			for (_, triangle) in triangleGroup.enumerated() {
-				let duration = instant ? 0 : 0.35
-				
-				DispatchQueue.main.asyncAfter(deadline: .now() + totalDelay) {
-					totalDelay += duration
-					
-					triangle.fade(out: z < 1, time: duration) { out in
-						if let out = out, out == true {
-							triangle.removeFromSuperview()
-						}
-					}
-				}
-			}
-		}
-		self.triangleViews = newTriangles
+        switch name {
+        case .playback:
+            
+            if triangleViews.count < 2 {
+            
+                triangleViews.append(contentsOf: [FloatingTriangleView(), FloatingTriangleView()])
+                colors[.primary] = assocTrackData?.category?.associatedColor()
+                colors[.secondary] = assocTrackData?.category?.associatedColor(beta: true)
+                triangleViews[0].manifest(in: interactionAreaView, position: .left, color: colors[.primary]!)
+                triangleViews[0].cellOwner = self
+                triangleViews[1].manifest(in: interactionAreaView, position: .right, color: colors[.secondary]!)
+                
+            } 
+            
+			
+            
+            triangleViews.first?.setTrackSettingsVisibility(to: false)
+            
 
-		
+            
+        case .settings:
+            triangleViews.first?.setTrackSettingsVisibility(to: true)
+            
+        }
+    
 	}
 
 	// MARK: - AudioPlaybackDelegate methods
 	func didFinishEntirePlayback() {
-		controlCycler?.playPauseBtn?.setControlState(to: .stopped)
+		playPauseControl?.setControlState(to: .stopped)
 	}
 
     func didPlayTime(to seconds: Double) {
-        if seconds > 0 && controlCycler?.playPauseBtn?.intendedState != .suspended {
-            controlCycler?.playPauseBtn?.setControlState(to: .playing)
+        if seconds > 0 && playPauseControl?.intendedState != .suspended {
+            playPauseControl?.setControlState(to: .playing)
         }
 	}
 
 	func playbackStateBecame(state: MediaPlayerState) {
-        controlCycler?.playPauseBtn?.setControlState(to: state)
+        playPauseControl?.setControlState(to: state)
 	}
     
     func playerBecameStuckInBufferingState() {
-        controlCycler?.playPauseBtn?.setControlState(to: .buffering)
+        playPauseControl?.setControlState(to: .buffering)
     }
 	
 	
 	
 	override func prepareForReuse() {
-		controlCycler?.die()
-		controlCycler = nil	
+        for control: DJCyclableControl? in [playPauseControl, triggerSwitch] {
+            control?.die()
+        }
+        titleImpactLabel.removeFromSuperview()
+        titleBulkLabel.removeFromSuperview()
+        
+//        for view in triangleViews {
 		super.prepareForReuse()
 	}
 	
@@ -119,11 +124,26 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
     // MARK: - AdoptiveCell methods
     
     func adopt(data: CellData) {
+        
+        
+        
+        for (z, label) in [titleBulkLabel, titleImpactLabel].enumerated() {
+            label.font = UIFont.filsonSoftBold(size: 30 + (CGFloat(z) * 10))
+            label.textColor = UIColor.named(.whiteText)
+            label.textAlignment = .right
+            addSubview(label)
+            label.translatesAutoresizingMaskIntoConstraints = false
+        }
+        
+        titleImpactLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        titleImpactLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
+        titleBulkLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
+        titleBulkLabel.bottomAnchor.constraint(equalTo: titleImpactLabel.topAnchor, constant: -8).isActive = true
+        
         guard let data = data as? AmbientTrackData else { return }
         interactionAreaView.backgroundColor = data.assocColor
         
-        controlCycler?.infoSheetControl?.set(hdln: data.title, body: data.desc)
-        
+    
         var titleArr = data.title?.components(separatedBy: " ")
         if titleArr != nil {
             let finalWord = titleArr!.removeLast()
@@ -134,7 +154,6 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
             }
             titleBulkLabel.text = titleString.lowercased()
             titleImpactLabel.text = finalWord.lowercased()
-            
         }
         
         
@@ -144,26 +163,26 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
     }
 	
 	func manifest() {
+        layer.masksToBounds = true
+        layer.cornerRadius = 8
+        infoAreaView.backgroundColor = UIColor.named(.nearly_black)
+        
+        
+        
+        let playPauseControl = DJPlayPauseControl(cell: self)
+        self.playPauseControl = playPauseControl
+
+        
+		
+		let triggerSwitch = DJCycleSwitchButton(withControls: [ControlSetName.playback, .settings], listener: self)
+        self.triggerSwitch = triggerSwitch
     
-		let controlSet: [DJCyclableControl] = [
-			DJPlayPauseControl(),
-			DJInfoSheetControl(withHeadline: assocTrackData?.title ?? "Fun Fact #44",
-			                   body: assocTrackData?.desc ?? "A large majority of fun facts are not, in fact, fun at all.")
-		]
 		
-		infoAreaView.backgroundColor = UIColor.named(.gray_0)
-		
-		
-		layer.masksToBounds = true
-		layer.cornerRadius = 8
-		let controlCycler = DJControlSetCycler()
-        self.controlCycler = controlCycler
-        controlCycler.cell = self
-		let triggerSwitch = DJCycleSwitchButton(withOrbCount: controlSet.count, listener: controlCycler)
-    
-		controlCycler.switchButton = triggerSwitch
+        playPauseControl.manifest(in: infoAreaView, hidden: false)
+        
         triggerSwitch.manifest(in: infoAreaView, hidden: false)
-		controlCycler.manifest(in: interactionAreaView, with: controlSet)
+		
+        
         
         
 	}

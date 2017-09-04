@@ -57,6 +57,7 @@
 		FECC4F6B1F392BBC00644DEA /* GCKMediaState+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECC4F6A1F392BBC00644DEA /* GCKMediaState+Convenience.swift */; };
 		FECC4F6F1F39331500644DEA /* DJAudioPlaybackController+Observe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECC4F6E1F39331500644DEA /* DJAudioPlaybackController+Observe.swift */; };
 		FECC4F751F3A4CA500644DEA /* AmbientTrackCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECC4F741F3A4CA500644DEA /* AmbientTrackCategory.swift */; };
+		FED4C96E1F5C879C00CE8ADC /* AmbientTrackCollectionViewCell+Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED4C96D1F5C879B00CE8ADC /* AmbientTrackCollectionViewCell+Settings.swift */; };
 		FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */; };
 		FEDB636E1EBD1E5D00F8FDF2 /* UIView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */; };
 		FEFC7A2A1F37C13D003100E8 /* DebugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFC7A291F37C13D003100E8 /* DebugController.swift */; };
@@ -122,6 +123,7 @@
 		FECC4F6A1F392BBC00644DEA /* GCKMediaState+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GCKMediaState+Convenience.swift"; sourceTree = "<group>"; };
 		FECC4F6E1F39331500644DEA /* DJAudioPlaybackController+Observe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DJAudioPlaybackController+Observe.swift"; sourceTree = "<group>"; };
 		FECC4F741F3A4CA500644DEA /* AmbientTrackCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackCategory.swift; sourceTree = "<group>"; };
+		FED4C96D1F5C879B00CE8ADC /* AmbientTrackCollectionViewCell+Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AmbientTrackCollectionViewCell+Settings.swift"; sourceTree = "<group>"; };
 		FEDB636B1EBD1D4200F8FDF2 /* CGFloat+Curve.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Curve.swift"; sourceTree = "<group>"; };
 		FEDB636D1EBD1E5D00F8FDF2 /* UIView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Convenience.swift"; sourceTree = "<group>"; };
 		FEDB636F1EBD27E900F8FDF2 /* ChameleonFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ChameleonFramework.framework; path = "../../../../../Library/Developer/Xcode/DerivedData/RainCaster-eqlwsavkfjddxkcxfworqahdrqtt/Build/Products/Debug-iphonesimulator/ChameleonFramework/ChameleonFramework.framework"; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				FE964CFA1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.swift */,
+				FED4C96D1F5C879B00CE8ADC /* AmbientTrackCollectionViewCell+Settings.swift */,
 				FE964CFB1EB7AF3D00DF0035 /* AmbientTrackCollectionViewCell.xib */,
 				FEFC7A2F1F392511003100E8 /* FloatingTriangleView.swift */,
 			);
@@ -559,6 +562,7 @@
 				FEA72AB71EDCDFCD00A2B76F /* AmbientTrackData.swift in Sources */,
 				FEA3B49F1EB8028B00187EB0 /* UIColor+Design.swift in Sources */,
 				FE30598C1EE5A4070010F242 /* DJStepperControl.swift in Sources */,
+				FED4C96E1F5C879C00CE8ADC /* AmbientTrackCollectionViewCell+Settings.swift in Sources */,
 				FEA3B4A51EB8033600187EB0 /* UIFont+Design.swift in Sources */,
 				FE5E266C1F0AF06900B94E24 /* ClosureNames.swift in Sources */,
 				FE30598A1EE5A3EB0010F242 /* DJPlayPauseControl.swift in Sources */,

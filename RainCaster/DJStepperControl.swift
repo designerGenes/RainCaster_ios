@@ -49,9 +49,9 @@ class DJStepperControl: DJCyclableControl {
 	
 	override func manifest(in view: UIView, hidden: Bool = false) {
 		controlComponents = [
-			valueLabel: (-marginBetweenHorizontalElements, 0),
-			stepperIncreaseButton: (marginBetweenHorizontalElements * 1.2, -marginBetweenVerticalElements),
-			stepperDecreaseButton: (marginBetweenHorizontalElements * 1.2, marginBetweenVerticalElements)
+            valueLabel: CGPoint(x: -marginBetweenHorizontalElements, y: 0),
+            stepperIncreaseButton: CGPoint(x: marginBetweenHorizontalElements * 1.2, y: -marginBetweenVerticalElements),
+            stepperDecreaseButton: CGPoint(x: marginBetweenHorizontalElements * 1.2, y: marginBetweenVerticalElements)
 		]
         trySetValue(to: DJAudioPlaybackController.sharedInstance.hoursFadeDuration)
     

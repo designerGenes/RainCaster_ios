@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
 	var window: UIWindow?
     var contactAddress: String?
     
+    
 	// MARK: - utility methods
 	var mainPlayerVC: MainPlayerViewController? {
 		return window?.rootViewController as? MainPlayerViewController

@@ -9,8 +9,7 @@
 import UIKit
 
 class DJCyclableControl: UIControl {
-	var controlComponents = [UIView: (CGFloat, CGFloat)]()
-	weak var parentCycler: DJControlSetCycler?
+	var controlComponents = [UIView: CGPoint]()
 	
 	func die() {
 		for control in controlComponents.keys {
@@ -19,18 +18,19 @@ class DJCyclableControl: UIControl {
 	}
 	
 	func manifest(in view: UIView, hidden: Bool = false) {
-		view.addSubview(self)
-		for (component, distancePair) in controlComponents {
-			view.addSubview(component)
-			component.isHidden = hidden
-			
-				
-			
-			component.translatesAutoresizingMaskIntoConstraints = false
-			component.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: distancePair.0).isActive = true
-			component.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: distancePair.1).isActive = true
-			
-		}
-	}
-	
+        let view = superview ?? view
+        view.addSubview(self)
+        for (component, distancePair) in controlComponents {
+            view.addSubview(component)
+            component.isHidden = hidden
+            
+                
+            
+            component.translatesAutoresizingMaskIntoConstraints = false
+            component.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: distancePair.x).isActive = true
+            component.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: distancePair.y).isActive = true
+            
+        }
+    }
 }
+

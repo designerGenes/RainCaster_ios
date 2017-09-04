@@ -25,41 +25,7 @@
                     </view>
                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="hk0-Sy-wTD">
                         <rect key="frame" x="0.0" y="0.0" width="244" height="97"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArD-eZ-LNu">
-                                <rect key="frame" x="122" y="16" width="110" height="20"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="lighthouse">
-                                        <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="21" name="FilsonSoft-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jqP-GE-IMn">
-                                <rect key="frame" x="91.5" y="42" width="140.5" height="27"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="downpour">
-                                        <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="28" name="FilsonSoft-Bold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ArD-eZ-LNu" secondAttribute="trailing" constant="12" id="3jN-qt-qRY"/>
-                            <constraint firstItem="jqP-GE-IMn" firstAttribute="trailing" secondItem="ArD-eZ-LNu" secondAttribute="trailing" id="ElL-sX-hWc"/>
-                            <constraint firstItem="jqP-GE-IMn" firstAttribute="top" secondItem="ArD-eZ-LNu" secondAttribute="bottom" constant="6" id="dib-ra-SHc"/>
-                            <constraint firstItem="ArD-eZ-LNu" firstAttribute="top" secondItem="hk0-Sy-wTD" secondAttribute="top" constant="16" id="oLm-aS-Paz"/>
-                        </constraints>
                     </view>
                 </subviews>
             </view>
@@ -79,8 +45,6 @@
             <connections>
                 <outlet property="infoAreaView" destination="hk0-Sy-wTD" id="iVP-Vg-TXv"/>
                 <outlet property="interactionAreaView" destination="d5z-Hf-Zhg" id="M6l-Ar-9xF"/>
-                <outlet property="titleBulkLabel" destination="ArD-eZ-LNu" id="P9W-2t-1vZ"/>
-                <outlet property="titleImpactLabel" destination="jqP-GE-IMn" id="g1i-Jn-Btf"/>
             </connections>
             <point key="canvasLocation" x="-42" y="55"/>
         </collectionViewCell>
