@@ -31,8 +31,14 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
     var timeSpentPlayingCurrentTrack: Double = 0
     
 	var shouldLoop: Bool = true
-	var shouldFadeOverTime: Bool = false
-	var hoursFadeDuration: Int = 10
+	var shouldFadeOverTime: Bool = true
+    var hoursFadeDuration: Int = 8 {
+        didSet {
+            if hoursFadeDuration > 9 {
+                hoursFadeDuration = 1
+            }
+        }
+    }
 	private var silenceTimer: Timer?
     var lastKnownVolume: Float = 0 // for toggling
     var shouldBeMuted: Bool = false
@@ -87,9 +93,9 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
                 delegate?.playerBecameStuckInBufferingState()
             }
             
-			if mediaStatus.playerState == .playing {
-				audioPlayer.isMuted = true
-			} 
+//			if mediaStatus.playerState == .playing {
+//				audioPlayer.isMuted = true
+//			} 
 		}
 	}
 	
@@ -133,10 +139,13 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
         
         print("session began successfully")
         let name = session.device.friendlyName ?? ""
+        
         DJVolumeWrapperView.sharedInstance.activate(lingerTime: 5)
         DJVolumeWrapperView.sharedInstance.setProgressBar(to: CGFloat(session.currentDeviceVolume))
+        session.setDeviceVolume(0.7)
+        
         DJVolumeWrapperView.sharedInstance.setLabelText(to: name)
-        session.remoteMediaClient?.setStreamVolume(lastKnownVolume)
+        session.remoteMediaClient?.setStreamVolume(audioPlayer.volume)
         
     }
 	
@@ -179,6 +188,7 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
                 self.focusURL = url
                 
                 self.audioPlayer.replaceCurrentItem(with: newItem)
+                
                 self.beginObservingPlaybackTime(for: newItem)
                 self.audioPlayer.play()
                 
@@ -230,11 +240,12 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 	
 	func playbackTimeBecame(seconds: Double) {
 		self.delegate?.didPlayTime(to: seconds)
-//        print(seconds)
-//		if shouldFadeOverTime {
-//			let computedVolume = max(0.5, 1 * (Double(hoursFadeDuration) / (seconds * 60)))
-//			audioPlayer.setValue(computedVolume, forKey: #keyPath(AVPlayer.volume))
-//		}
+        
+		if shouldFadeOverTime {
+			let computedVolume = 1 * ((seconds * 60) / Double(hoursFadeDuration * 60))
+            print("changed local volume to \(computedVolume)")
+			audioPlayer.setValue(computedVolume, forKey: #keyPath(AVPlayer.volume))
+		}
 	}
     
     // observe the player.  should only happen once
@@ -307,10 +318,12 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		if let remoteMediaClient = remoteMediaClient {
 			print("changing remote client volume to \(volume)")
 			remoteMediaClient.setStreamVolume(volume)
-            if !skipAlteringLastVolume {
-                lastKnownVolume = volume
-            }
+            
 		}
+        
+        if !skipAlteringLastVolume {
+            lastKnownVolume = volume
+        }
 	}
 	
 	
@@ -384,10 +397,9 @@ class DJAudioPlaybackController: NSObject, AudioPlayerControlType, GCKSessionMan
 		let audioSession = AVAudioSession.sharedInstance()
 		audioSession.addObserver(self, forKeyPath: #keyPath(AVAudioSession.outputVolume), options: .new, context: nil)
 		
-		let silenceTimer = Timer(timeInterval: 1, target: self, selector: #selector(checkIfTimeToTurnOff), userInfo: nil, repeats: true)
+		let silenceTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkIfTimeToTurnOff), userInfo: nil, repeats: true)
 		self.silenceTimer = silenceTimer
         
-        setSessionVolume(to: audioPlayer.volume)
         
 	}
 	

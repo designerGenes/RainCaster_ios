@@ -29,7 +29,7 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
     var playPauseControl: DJPlayPauseControl?
     var triggerSwitch: DJCycleSwitchButton?
     
-	var triangleViews = [FloatingTriangleView]()
+    var triangleViews = [CellPosition: FloatingTriangleView]()
     var controlSets = [ControlSetName: ControlSet]()
     
     // MARK: - control cycle listener methods
@@ -40,13 +40,13 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
     }
     
 	override func layoutSubviews() {        
-		for triangle in triangleViews {
+		for triangle in triangleViews.values {
             triangle.layoutSubviews()
 		}
-
-        triangleViews.first?.layer.shadowOpacity = 0.65
-        triangleViews.first?.layer.shadowOffset = CGSize(width: 4, height: 8)
-        triangleViews.first?.layer.shadowColor = UIColor.black.cgColor
+//
+//        triangleViews[.left]?.layer.shadowOpacity = 0.65
+//        triangleViews[.left]?.layer.shadowOffset = CGSize(width: 4, height: 8)
+//        triangleViews[.left]?.layer.shadowColor = UIColor.black.cgColor
 	}
 	
 	func focusControlSetBecame(name: ControlSetName, instant: Bool = false) {
@@ -54,25 +54,26 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
         switch name {
         case .playback:
             
-            if triangleViews.count < 2 {
-            
-                triangleViews.append(contentsOf: [FloatingTriangleView(), FloatingTriangleView()])
+            if triangleViews.keys.count < 2 {
+            triangleViews = Dictionary(keys: [CellPosition.left, .right], values: [FloatingTriangleView(), FloatingTriangleView()])
+                
+                
                 colors[.primary] = assocTrackData?.category?.associatedColor()
                 colors[.secondary] = assocTrackData?.category?.associatedColor(beta: true)
-                triangleViews[0].manifest(in: interactionAreaView, position: .left, color: colors[.primary]!)
-                triangleViews[0].cellOwner = self
-                triangleViews[1].manifest(in: interactionAreaView, position: .right, color: colors[.secondary]!)
+                triangleViews[.left]?.manifest(in: interactionAreaView, position: .left, color: colors[.primary]!)
+                triangleViews[.left]?.cellOwner = self
+                triangleViews[.right]?.manifest(in: interactionAreaView, position: .right, color: colors[.secondary]!)
                 
             } 
             
 			
             
-            triangleViews.first?.setTrackSettingsVisibility(to: false)
+            triangleViews[.left]?.setTrackSettingsVisibility(to: false)
             
 
             
         case .settings:
-            triangleViews.first?.setTrackSettingsVisibility(to: true)
+            triangleViews[.left]?.setTrackSettingsVisibility(to: true)
             
         }
     
@@ -87,6 +88,14 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
         if seconds > 0 && playPauseControl?.intendedState != .suspended {
             playPauseControl?.setControlState(to: .playing)
         }
+        
+        
+        if seconds > 5 {
+            let totalFadeSeconds: Double = Double(DJAudioPlaybackController.sharedInstance.hoursFadeDuration * 60 * 60)
+            let remainingFadeHours = Int((totalFadeSeconds - seconds) / 60 / 60)
+            
+            triangleViews[.left]?.settingsLabels.last?.text = "\(remainingFadeHours)"
+        }
 	}
 
 	func playbackStateBecame(state: MediaPlayerState) {
@@ -100,13 +109,19 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
 	
 	
 	override func prepareForReuse() {
-        for control: DJCyclableControl? in [playPauseControl, triggerSwitch] {
-            control?.die()
-        }
+        playbackStateBecame(state: .suspended)
+        didCycle(toIdx: 0, setName: .playback)
+        
         titleImpactLabel.removeFromSuperview()
         titleBulkLabel.removeFromSuperview()
+        triggerSwitch?.die()
         
-//        for view in triangleViews {
+        for triangleView in triangleViews.values {
+            
+            triangleView.removeFromSuperview()
+        }
+        
+        triangleViews.removeAll()
 		super.prepareForReuse()
 	}
 	
@@ -114,6 +129,7 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
 		super.awakeFromNib()
 		contentView.frame = bounds
 		contentView.autoresizingMask = [UIViewAutoresizing.flexibleHeight, .flexibleWidth]
+        
 		autoresizingMask = [UIViewAutoresizing.flexibleHeight, .flexibleWidth]
 		
 	}
@@ -128,14 +144,15 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
         
         
         for (z, label) in [titleBulkLabel, titleImpactLabel].enumerated() {
-            label.font = UIFont.filsonSoftBold(size: 30 + (CGFloat(z) * 10))
+            let fontSize: CGFloat = 30 + (CGFloat(z) * 10)
+            label.font = z < 1 ? UIFont.filsonSoftRegular(size: fontSize) : UIFont.filsonSoftBold(size: fontSize)
             label.textColor = UIColor.named(.whiteText)
             label.textAlignment = .right
             addSubview(label)
             label.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        titleImpactLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        titleImpactLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12).isActive = true
         titleImpactLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
         titleBulkLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
         titleBulkLabel.bottomAnchor.constraint(equalTo: titleImpactLabel.topAnchor, constant: -8).isActive = true
@@ -165,8 +182,11 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
 	func manifest() {
         layer.masksToBounds = true
         layer.cornerRadius = 8
+        contentView.layer.masksToBounds = true
+        contentView.layer.cornerRadius = 8
         infoAreaView.backgroundColor = UIColor.named(.nearly_black)
-        
+//        interactionAreaView.layer.masksToBounds = true
+//        interactionAreaView.layer.cornerRadius = 8
         
         
         let playPauseControl = DJPlayPauseControl(cell: self)

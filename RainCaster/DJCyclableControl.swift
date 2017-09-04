@@ -15,6 +15,7 @@ class DJCyclableControl: UIControl {
 		for control in controlComponents.keys {
 			control.removeFromSuperview()
 		}
+        removeFromSuperview()
 	}
 	
 	func manifest(in view: UIView, hidden: Bool = false) {

@@ -22,6 +22,7 @@ enum DJColor: String {
 	case gray_2 = "#595959"
 	case whiteText = "#F8F8F8"
 	
+    
 	
 	static func grayColors() -> [UIColor] {
 		return [DJColor.gray_0, .gray_1, .gray_2].map({UIColor.named($0)})

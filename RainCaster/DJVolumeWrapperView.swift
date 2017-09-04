@@ -95,13 +95,6 @@ class DJVolumeWrapperView: UIView {
         makeButtonReflectAudioState(muted: shouldMute)
         
         progressBar.backgroundColor = shouldMute ? UIColor.named(.gray_2) : UIColor.named(.rain_blue)
-//        if !shouldMute {
-//            DJAudioPlaybackController.sharedInstance.setSessionVolume(to: DJAudioPlaybackController.sharedInstance.lastKnownVolume)
-//        } else {
-//            let tmpVolume = DJAudioPlaybackController.sharedInstance.lastKnownVolume
-//            DJAudioPlaybackController.sharedInstance.setSessionVolume(to: 0)
-//        }
-        
     }
     
     func manifest() {

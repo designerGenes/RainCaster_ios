@@ -30,7 +30,11 @@ class Orb: UIView {
     }
 }
 
-class DJCycleSwitchButton: DJCyclableControl, ControlSetCycler {
+protocol AnimationCompletionListener: class {
+    func animationFinishedEntirely()
+}
+
+class DJCycleSwitchButton: DJCyclableControl, ControlSetCycler, AnimationCompletionListener {
 
 	private var invisibleButton = UIButton()
 	private var orbs = [Orb]()
@@ -119,12 +123,17 @@ class DJCycleSwitchButton: DJCyclableControl, ControlSetCycler {
             cycle(toIdx: currentStackIdx, animated: false)
         }
 	}
+    
+    func animationFinishedEntirely() {
+        invisibleButton.isEnabled = true
+    }
 	
     func cycle(toIdx idx: Int, animated: Bool = true) {
 		let idx = idx < controlSetNames.count ? idx : 0
 		self.currentStackIdx = idx
         controlCycleListener?.didCycle(toIdx: currentStackIdx, setName: controlSetNames[currentStackIdx])
         
+        invisibleButton.isEnabled = false
 		UIView.animate(withDuration: animated ? 0.25 : 0) {
             for (z, orb) in self.orbs.enumerated() {
                 orb.backgroundColor = z == idx ? self.cell()?.assocTrackData?.category?.associatedColor() ?? UIColor.named(.gray_1) : UIColor.named(.gray_2)

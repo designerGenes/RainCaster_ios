@@ -8,12 +8,15 @@
 
 import UIKit
 
+enum CellPosition: Int, Hashable {
+    case left, right
+}
+
 class FloatingTriangleView: UIView {
-	enum CellPosition: Int {
-		case left, right
-	}
+	
 	
 	// MARK: - properties
+    weak var animationListener: AnimationCompletionListener?
 	var triangleLayer: CAShapeLayer?
 	var position: CellPosition?
 	var color: UIColor?
@@ -22,27 +25,23 @@ class FloatingTriangleView: UIView {
     var settingsLabels = [UILabel]()
     var invisibleButtons = [UIButton]()
 	
+    let buttonTitles = ["loop", "fade", "\(DJAudioPlaybackController.sharedInstance.hoursFadeDuration)"]
 	
 	// MARK: - methods
     func manifestTrackSettingsBars() {
         if settingsBars.count < 3 {
-            let buttonTitles = ["loop", "fade"]
-            for z in 0..<3 {
-                
-                
-                
-                
+            
+            for z in 0..<buttonTitles.count{
                 let bar = CAShapeLayer()
                 let individualHeight: CGFloat = frame.height / 3
                 bar.path = UIBezierPath(rect: CGRect(origin: .zero, size: CGSize(width: frame.width, height: individualHeight))).cgPath
                 bar.opacity = 0
-                bar.fillColor = color?.darkenBy(percent: CGFloat(z + 1) * 0.25).cgColor
                 self.settingsBars.append(bar)
                 
                 layer.addSublayer(bar)
                 
                 
-                if z < 2 {
+                
                     let newLabel = UILabel()
                     newLabel.tag = z
                     newLabel.text = buttonTitles[z]
@@ -61,46 +60,77 @@ class FloatingTriangleView: UIView {
                     invisibleButton.addTarget(self, action: #selector(tappedTrackSettingsRow(sender:)), for: .touchUpInside)
                     invisibleButtons.append(invisibleButton)
                     addSubview(invisibleButton)
-                }
+                
             }
+            
+            
+            updateLabelAppearance()
         }
 
     }
     
     func updateLabelAppearance() {
         let goodColor = UIColor.named(.whiteText)
+        var conditionals = [DJAudioPlaybackController.sharedInstance.shouldLoop, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime]
         
-        for (z, label) in settingsLabels.enumerated() {
-            let badColor = UIColor.named(.nearly_black)
-            switch label.tag {
-            case 0:
-                label.textColor = (DJAudioPlaybackController.sharedInstance.shouldLoop ? goodColor : badColor)
-//                label.font = DJAudioPlaybackController.sharedInstance.shouldLoop ? UIFont.filsonSoftBold(size: 30) : UIFont.filsonSoftRegular(size: 30)
-            case 1:
-                label.textColor = (DJAudioPlaybackController.sharedInstance.shouldFadeOverTime ? goodColor : badColor)
-//                label.font = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime ? UIFont.filsonSoftBold(size: 30) : UIFont.filsonSoftRegular(size: 40)
-            default:
-                break
-            }
-            label.sizeToFit()
+        settingsLabels.last?.text = "\(DJAudioPlaybackController.sharedInstance.hoursFadeDuration)"
+        
+        for (z, bar) in settingsBars.enumerated() {
+            let badColor = UIColor.named(.nearly_black).darkenBy(percent: 0.15).cgColor
+            let isGood: Bool = conditionals[z]
+            
+            let label = settingsLabels[z]
+            label.alpha = isGood ? 1 : min(label.alpha, 0.25)
+            
+            bar.fillColor = !isGood ? badColor : color?.darkenBy(percent: CGFloat(z + 1) * 0.2).cgColor
+      
         }
+        
+        let desiredAlpha: CGFloat = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime ? 1 : 0
+        let delay: Double = desiredAlpha > 0 ? 0.35 : 0
+        if settingsLabels.last?.alpha != desiredAlpha {
+            
+            UIView.animate(withDuration: delay + 0.35, delay: delay, options: [], animations: {
+                self.settingsLabels.last?.alpha = desiredAlpha
+            }, completion: nil)
+        }
+        
+        
+        
     }
     
     func tappedTrackSettingsRow(sender: UIButton) {
         print("tapped \(sender.tag)")
+        
+        let label = settingsLabels[sender.tag]
+        
+        var xDiff: CGFloat = 0
+        let diff = AmbientTrackDataSource.sharedInstance.cellWidth * 0.1
         switch sender.tag {
         case 0:
             DJAudioPlaybackController.sharedInstance.shouldLoop = !DJAudioPlaybackController.sharedInstance.shouldLoop
+            xDiff = DJAudioPlaybackController.sharedInstance.shouldLoop ? -diff : diff
         case 1:
             DJAudioPlaybackController.sharedInstance.shouldFadeOverTime = !DJAudioPlaybackController.sharedInstance.shouldFadeOverTime
+            xDiff = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime ? -diff : diff
+            invisibleButtons.last?.isEnabled = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime
+            
+        case 2:
+            DJAudioPlaybackController.sharedInstance.hoursFadeDuration += 1
         default:
             break
         }
+        
+        UIView.animate(withDuration: 0.25) {
+            label.transform = label.transform.concatenating(CGAffineTransform(translationX: xDiff, y: 0))
+        }
+        
         updateLabelAppearance()
     }
     
     
-    func setTrackSettingsVisibility(to visible: Bool) {
+    func setTrackSettingsVisibility(to visible: Bool, immediate: Bool = false) {
+        animationListener = cellOwner?.triggerSwitch
         
         
         
@@ -111,7 +141,7 @@ class FloatingTriangleView: UIView {
         
         
         
-        
+        var totalDuration: Double = Double(settingsBars.count) * 0.25
         
         for (z, bar) in settingsBars.enumerated() {
             let desiredAlpha: Float = visible ? 1 : 0
@@ -121,18 +151,19 @@ class FloatingTriangleView: UIView {
                 
 
                 let opacityAnimation = CABasicAnimation(keyPath: "opacity")
-                opacityAnimation.duration = Double(z + 1) * 0.45
-                opacityAnimation.fromValue = desiredAlpha > 0 ? 0 : 1
+                opacityAnimation.duration = immediate ? 0 : Double(settingsBars.count) * 0.25
+                opacityAnimation.fromValue = bar.opacity
                 opacityAnimation.toValue = desiredAlpha
                 opacityAnimation.fillMode = kCAFillModeBackwards
+                opacityAnimation.autoreverses = false
                 opacityAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
-                opacityAnimation.beginTime = CACurrentMediaTime() + (Double(z) * 0.25)
+                opacityAnimation.beginTime = immediate ? 0 : CACurrentMediaTime() + (Double(z) * 0.25)
         
                 CATransaction.begin()
                 CATransaction.setDisableActions(true)
                 bar.opacity = visible ? 1 : 0
                 CATransaction.commit()
-                bar.add(opacityAnimation, forKey: "mOpacity")
+                bar.add(opacityAnimation, forKey: "Mopacity")
                 
                 
                 
@@ -145,20 +176,41 @@ class FloatingTriangleView: UIView {
         
         updateLabelAppearance()
         
-        let labelAnimationDelay: Double = visible ? 0.75 : 0
+        let labelAnimationDelay: Double = immediate ? 0 : visible ? 0.25 : 0
         
+        totalDuration += labelAnimationDelay
+        
+        let cellWidth: CGFloat = AmbientTrackDataSource.sharedInstance.cellWidth
+        
+        // move labels
         DispatchQueue.main.asyncAfter(deadline: .now() + labelAnimationDelay) {
             for (z, label) in self.settingsLabels.enumerated() {
-                let desiredXDelta: CGFloat = (self.bounds.width * (0.8 + (0.1 * CGFloat(z))) * (visible ?  -1 : 1))
-                UIView.animate(withDuration: 0.45) {
+
+                let conditionals = [DJAudioPlaybackController.sharedInstance.shouldLoop, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime]
                 
-                    
-                    label.transform = CGAffineTransform.identity.translatedBy(x: desiredXDelta, y: 0)
+                var desiredXDelta: CGFloat = -abs((cellWidth * 0.05) - label.frame.minX)
+                if conditionals[z] == false && label != self.settingsLabels.last {
+                    desiredXDelta += cellWidth * 0.1
                 }
+                
+                
+                totalDuration += 0.45
+                
+               
+                UIView.animate(withDuration: immediate ? 0 : 0.45 + (Double(z+1) * 0.12),
+                               delay: 0,
+                               options: [UIViewAnimationOptions.curveEaseIn],
+                               animations: {
+                    label.transform = visible ? CGAffineTransform.identity.translatedBy(x: desiredXDelta, y: 0) : CGAffineTransform.identity
+                }, completion: nil)
             }
         }
 
         
+        totalDuration = immediate ? 0 : totalDuration
+        doAfter(time: totalDuration, action: {
+            self.animationListener?.animationFinishedEntirely()
+        })
         
             
    }
@@ -243,13 +295,11 @@ class FloatingTriangleView: UIView {
 	func manifest(in view: UIView, position: CellPosition, color: UIColor) {
 		view.insertSubview(self, at: 0)
 		view.coverSelfEntirely(with: self)
-		
+		self.layer.masksToBounds = true
+        
 		self.position = position
         
 		self.color = color
-//        layoutSubviews()
-        
-		
 	}
 	
 }

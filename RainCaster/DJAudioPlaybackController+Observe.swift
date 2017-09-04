@@ -43,10 +43,12 @@ extension DJAudioPlaybackController {
 				
 			case #keyPath(AVAudioSession.outputVolume):
 				if let newVal = newVal as? Float {
+                    shouldFadeOverTime = false  // assume the user manually changed volume
                     lastKnownVolume = newVal
                     DJVolumeWrapperView.sharedInstance.activate(lingerTime: 5)
                     DJVolumeWrapperView.sharedInstance.setProgressBar(to: CGFloat(newVal))
                     
+                    print("remote volume changed to \(newVal)")
 					setSessionVolume(to: newVal)
                     
                     DJVolumeWrapperView.sharedInstance.makeButtonReflectAudioState(muted: newVal <= 0)

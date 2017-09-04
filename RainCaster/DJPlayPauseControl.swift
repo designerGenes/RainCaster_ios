@@ -52,8 +52,9 @@ class DJPlayPauseControl: DJCyclableControl, AudioPlaybackDelegate {
 		
         playPauseButton.imageView?.contentMode = .scaleAspectFit
         let cellWidth = AmbientTrackDataSource.sharedInstance.cellWidth
-        controlComponents = [playPauseButton: CGPoint(x: (cellWidth / 2) - UIImage(fromAssetNamed: .playing).size.width / 1.8, y: 0),
-                             activityIndicator: CGPoint(x: (cellWidth / 2) - UIImage(fromAssetNamed: .playing).size.width / 1.8, y: 0)]
+        let xMargin: CGFloat = (cellWidth / 2) - (UIImage(fromAssetNamed: .playing).size.width * 1.12)
+        controlComponents = [playPauseButton: CGPoint(x: xMargin, y: 0),
+                             activityIndicator: CGPoint(x: xMargin, y: 0)]
 		setControlState(to: .suspended)
 		playPauseButton.addTarget(self, action: #selector(toggleControlState), for: .touchUpInside)
 		super.manifest(in: view)

@@ -47,6 +47,7 @@
 		FEA3B4B21EB807E800187EB0 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B11EB807E800187EB0 /* CellData.swift */; };
 		FEA3B4B51EB80E6900187EB0 /* DJAudioPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */; };
 		FEA72AB71EDCDFCD00A2B76F /* AmbientTrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */; };
+		FEACB3E81F5D92470037529A /* Dictionary+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEACB3E71F5D92470037529A /* Dictionary+Zip.swift */; };
 		FEAFDBB11F27C92400194062 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFDBAF1F27C92400194062 /* SettingsViewController.swift */; };
 		FEAFDBB21F27C92400194062 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDBB01F27C92400194062 /* SettingsViewController.xib */; };
 		FEAFDBB61F27D04C00194062 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */; };
@@ -113,6 +114,7 @@
 		FEA3B4B11EB807E800187EB0 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAudioPlaybackController.swift; sourceTree = "<group>"; };
 		FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackData.swift; sourceTree = "<group>"; };
+		FEACB3E71F5D92470037529A /* Dictionary+Zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Zip.swift"; sourceTree = "<group>"; };
 		FEAFDBAF1F27C92400194062 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FEAFDBB01F27C92400194062 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				FE5E266B1F0AF06900B94E24 /* ClosureNames.swift */,
 				FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */,
 				FECC4F6A1F392BBC00644DEA /* GCKMediaState+Convenience.swift */,
+				FEACB3E71F5D92470037529A /* Dictionary+Zip.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				FE30598C1EE5A4070010F242 /* DJStepperControl.swift in Sources */,
 				FED4C96E1F5C879C00CE8ADC /* AmbientTrackCollectionViewCell+Settings.swift in Sources */,
 				FEA3B4A51EB8033600187EB0 /* UIFont+Design.swift in Sources */,
+				FEACB3E81F5D92470037529A /* Dictionary+Zip.swift in Sources */,
 				FE5E266C1F0AF06900B94E24 /* ClosureNames.swift in Sources */,
 				FE30598A1EE5A3EB0010F242 /* DJPlayPauseControl.swift in Sources */,
 				FEA3B49C1EB8015800187EB0 /* DJAssetName.swift in Sources */,

@@ -60,12 +60,16 @@ class DJVideoBackgroundController: NSObject {
                 replacementBGVideoController.containerView?.alpha = 1
             }, completion: { (done) in
                 doAfter(time: duration) {
-                    AppDelegate.shared?.mainPlayerVC?.collectionView.isUserInteractionEnabled = true
+                    
                     if let item1 = item1 {
                         self.stopListening(to: item1)
                     }
+                    
+                    
                     self.containerView?.removeFromSuperview()
                     DJVideoBackgroundController.sharedInstance = replacementBGVideoController
+                    DJVideoBackgroundController.sharedInstance.beginListening(to: item2)
+                    AppDelegate.shared?.mainPlayerVC?.collectionView.isUserInteractionEnabled = true
                 }
             })
         }
@@ -88,10 +92,11 @@ class DJVideoBackgroundController: NSObject {
         item?.removeObserver(self, forKeyPath: #keyPath(AVPlayerItem.status))
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: bgPlayer.currentItem)
+        bgPlayer.removeTimeObserver(beganPlayingTimeObserver)
     }
     
     deinit {
-        bgPlayer.removeTimeObserver(beganPlayingTimeObserver)
+        
     }
     
     func beginListening(to item: AVPlayerItem) {
@@ -107,18 +112,17 @@ class DJVideoBackgroundController: NSObject {
     }
     
     func playbackDidFinish(notification: NSNotification) {
-        if let currentItem = notification.object as? AVPlayerItem, currentItem == self.bgPlayer.currentItem {
+//        if let currentItem = notification.object as? AVPlayerItem, currentItem == self.bgPlayer.currentItem {
             DispatchQueue.main.async {
                 self.bgPlayer.seek(to: CMTime(seconds: 1, preferredTimescale: 10))
                 self.bgPlayer.play()
             }
-        }
+//        }
     }
     
     func queue(item: AVPlayerItem, playOnReady: Bool) {
         bgPlayer.replaceCurrentItem(with: item)
         
-        self.beginListening(to: item)
         if playOnReady {
             bgPlayer.play()
         }
@@ -128,6 +132,7 @@ class DJVideoBackgroundController: NSObject {
     func queue(clipNamed name: String, fileExtension: String = "mp4", playOnReady: Bool) {
         if let clipURL = Bundle.main.url(forResource: name, withExtension: fileExtension) {
             let clipItem = AVPlayerItem(url: clipURL)
+            beginListening(to: clipItem)
             self.queue(item: clipItem, playOnReady: playOnReady)
         }
     }

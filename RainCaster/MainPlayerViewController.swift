@@ -26,7 +26,7 @@ class MainPlayerViewController: DJViewController {
     
 	private let topRowButtonsYConstant: CGFloat = 24
 	private var hiddenControls = [UIView]()
-    
+    private var invisibleButtonOverLabel = UIButton()
     
     
     
@@ -48,7 +48,10 @@ class MainPlayerViewController: DJViewController {
 	}
 
    
-    
+    override func viewDidLayoutSubviews() {
+        invisibleButtonOverLabel.frame = logoLabel.frame.applying(CGAffineTransform(scaleX: 1.1, y: 1.1))
+        invisibleButtonOverLabel.center = logoLabel.center
+    }
 
     
 	
@@ -167,7 +170,32 @@ class MainPlayerViewController: DJViewController {
         volumeView.alpha = 0.0001
         view.addSubview(volumeView)
         
+        logoLabel.textColor = UIColor.named(.whiteText)
+        
+        
+        invisibleButtonOverLabel.addTarget(self, action: #selector(cycleLogoColor), for: .touchUpInside)
+        navigationContainerView.addSubview(invisibleButtonOverLabel)
+        
+        logoLabel.textColor = UIColor.named(.whiteText)
         
 	}
+    
+    
+    
+    
+    func cycleLogoColor() {
+        let colors: [UIColor] = [AmbientTrackCategory.space.associatedColor(), AmbientTrackCategory.rain.associatedColor(), AmbientTrackCategory.other.associatedColor(), UIColor.named(.whiteText)]
+        
+        
+        for z in 0..<colors.count {
+            if colors[z] == logoLabel.textColor {
+                let nextIdx = colors.count > z + 1 ? z + 1 : 0
+                logoLabel.textColor = colors[nextIdx]
+                break
+            }
+            
+        }
+        
+    }
 }
 
