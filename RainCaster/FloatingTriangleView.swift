@@ -131,8 +131,8 @@ class FloatingTriangleView: UIView {
         case 1:
             DJAudioPlaybackController.sharedInstance.shouldFadeOverTime = !DJAudioPlaybackController.sharedInstance.shouldFadeOverTime
             xDiff = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime ? -diff : diff
-            invisibleButtons.last?.isEnabled = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime
-            
+//            invisibleButtons.last?.isEnabled = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime
+			
         case 2:
             AmbientTrackDataSource.sharedInstance.collectionView?.minimize() {
                 
@@ -211,7 +211,7 @@ class FloatingTriangleView: UIView {
         DispatchQueue.main.asyncAfter(deadline: .now() + labelAnimationDelay) {
             for (z, label) in self.settingsLabels.enumerated() {
 
-                let conditionals = [DJAudioPlaybackController.sharedInstance.shouldLoop, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime]
+                let conditionals = [DJAudioPlaybackController.sharedInstance.shouldLoop, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime, true]
                 
                 var desiredXDelta: CGFloat = -abs((cellWidth * 0.05) - label.frame.minX)
                 if conditionals[z] == false && label != self.settingsLabels.last {
