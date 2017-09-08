@@ -18,6 +18,7 @@ enum DJAssetName: String {
     case soundOutput, soundOutputMute // any better name?
 	case cycle0, cycle1
 	case back
+    case hideButton
 	case cloud, sync
 	// settings cell icon
 	case star, face, people

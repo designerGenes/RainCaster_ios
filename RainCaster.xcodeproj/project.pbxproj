@@ -17,6 +17,7 @@
 		FE3059921EE5F62D0010F242 /* DJCyclableControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3059911EE5F62D0010F242 /* DJCyclableControl.swift */; };
 		FE3BB69E1EB9487000809F98 /* AudioPlaybackProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB69D1EB9487000809F98 /* AudioPlaybackProtocols.swift */; };
 		FE3BB6A21EB9554500809F98 /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */; };
+		FE3F7A471F5E563A0067E9B0 /* UICollectionView+CanMinimize.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3F7A461F5E563A0067E9B0 /* UICollectionView+CanMinimize.swift */; };
 		FE5504F21ED3738000C2722A /* DJCachingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5504F11ED3738000C2722A /* DJCachingController.swift */; };
 		FE5E266C1F0AF06900B94E24 /* ClosureNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE5E266B1F0AF06900B94E24 /* ClosureNames.swift */; };
 		FE6022C21F5B563400B419B6 /* DJVolumeWrapperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE6022C11F5B563400B419B6 /* DJVolumeWrapperView.swift */; };
@@ -48,6 +49,9 @@
 		FEA3B4B51EB80E6900187EB0 /* DJAudioPlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */; };
 		FEA72AB71EDCDFCD00A2B76F /* AmbientTrackData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */; };
 		FEACB3E81F5D92470037529A /* Dictionary+Zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEACB3E71F5D92470037529A /* Dictionary+Zip.swift */; };
+		FEACB3EA1F5E307C0037529A /* JSON+Cachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEACB3E91F5E307C0037529A /* JSON+Cachable.swift */; };
+		FEACB3EC1F5E3F2B0037529A /* Date+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEACB3EB1F5E3F2B0037529A /* Date+Convenience.swift */; };
+		FEACB3EE1F5E51CF0037529A /* MinimizedBarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEACB3ED1F5E51CF0037529A /* MinimizedBarControl.swift */; };
 		FEAFDBB11F27C92400194062 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFDBAF1F27C92400194062 /* SettingsViewController.swift */; };
 		FEAFDBB21F27C92400194062 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FEAFDBB01F27C92400194062 /* SettingsViewController.xib */; };
 		FEAFDBB61F27D04C00194062 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */; };
@@ -80,6 +84,7 @@
 		FE3059911EE5F62D0010F242 /* DJCyclableControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCyclableControl.swift; sourceTree = "<group>"; };
 		FE3BB69D1EB9487000809F98 /* AudioPlaybackProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlaybackProtocols.swift; sourceTree = "<group>"; };
 		FE3BB6A11EB9554500809F98 /* UIImage+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Convenience.swift"; sourceTree = "<group>"; };
+		FE3F7A461F5E563A0067E9B0 /* UICollectionView+CanMinimize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CanMinimize.swift"; sourceTree = "<group>"; };
 		FE5504F11ED3738000C2722A /* DJCachingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJCachingController.swift; sourceTree = "<group>"; };
 		FE5E266B1F0AF06900B94E24 /* ClosureNames.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureNames.swift; sourceTree = "<group>"; };
 		FE6022C11F5B563400B419B6 /* DJVolumeWrapperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJVolumeWrapperView.swift; sourceTree = "<group>"; };
@@ -115,6 +120,9 @@
 		FEA3B4B41EB80E6900187EB0 /* DJAudioPlaybackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJAudioPlaybackController.swift; sourceTree = "<group>"; };
 		FEA72AB61EDCDFCD00A2B76F /* AmbientTrackData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmbientTrackData.swift; sourceTree = "<group>"; };
 		FEACB3E71F5D92470037529A /* Dictionary+Zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Zip.swift"; sourceTree = "<group>"; };
+		FEACB3E91F5E307C0037529A /* JSON+Cachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Cachable.swift"; sourceTree = "<group>"; };
+		FEACB3EB1F5E3F2B0037529A /* Date+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Convenience.swift"; sourceTree = "<group>"; };
+		FEACB3ED1F5E51CF0037529A /* MinimizedBarControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MinimizedBarControl.swift; sourceTree = "<group>"; };
 		FEAFDBAF1F27C92400194062 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FEAFDBB01F27C92400194062 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		FEAFDBB41F27D04C00194062 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -263,6 +271,7 @@
 				FEA3B4AB1EB8061A00187EB0 /* Cells */,
 				FE6022C01F5B55BE00B419B6 /* Control Cycler */,
 				FE6022C11F5B563400B419B6 /* DJVolumeWrapperView.swift */,
+				FEACB3ED1F5E51CF0037529A /* MinimizedBarControl.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -324,6 +333,9 @@
 				FEFC7A2B1F37C370003100E8 /* Dispatch+Convenience.swift */,
 				FECC4F6A1F392BBC00644DEA /* GCKMediaState+Convenience.swift */,
 				FEACB3E71F5D92470037529A /* Dictionary+Zip.swift */,
+				FEACB3E91F5E307C0037529A /* JSON+Cachable.swift */,
+				FEACB3EB1F5E3F2B0037529A /* Date+Convenience.swift */,
+				FE3F7A461F5E563A0067E9B0 /* UICollectionView+CanMinimize.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -573,6 +585,7 @@
 				FEA3B49C1EB8015800187EB0 /* DJAssetName.swift in Sources */,
 				FE3059881EE57A850010F242 /* DJControlSetCycler.swift in Sources */,
 				FE30598E1EE5A41D0010F242 /* DJCycleSwitchButton.swift in Sources */,
+				FEACB3EC1F5E3F2B0037529A /* Date+Convenience.swift in Sources */,
 				FEA3B4981EB7FAD600187EB0 /* MainPlayerViewController.swift in Sources */,
 				FE1B3D3D1F5BBC520096AB6B /* DJVideoBackgroundController.swift in Sources */,
 				FECC4F6B1F392BBC00644DEA /* GCKMediaState+Convenience.swift in Sources */,
@@ -588,15 +601,18 @@
 				FE6E510D1EABECCB00A62CCB /* AppDelegate.swift in Sources */,
 				FEDB636C1EBD1D4200F8FDF2 /* CGFloat+Curve.swift in Sources */,
 				FE3059921EE5F62D0010F242 /* DJCyclableControl.swift in Sources */,
+				FEACB3EE1F5E51CF0037529A /* MinimizedBarControl.swift in Sources */,
 				FEA3B4AA1EB8046E00187EB0 /* AmbientTrackDataSource.swift in Sources */,
 				FECC4F751F3A4CA500644DEA /* AmbientTrackCategory.swift in Sources */,
 				FEAFDBB11F27C92400194062 /* SettingsViewController.swift in Sources */,
+				FE3F7A471F5E563A0067E9B0 /* UICollectionView+CanMinimize.swift in Sources */,
 				FEBF1A821EDCC9D5003FBC69 /* DJRemoteDataSourceController.swift in Sources */,
 				FEA3B4A11EB8029900187EB0 /* UIColor+Convenience.swift in Sources */,
 				FE5504F21ED3738000C2722A /* DJCachingController.swift in Sources */,
 				FEA3B4A31EB802C300187EB0 /* Numeric+Convenience.swift in Sources */,
 				FEFC7A2E1F37D57F003100E8 /* DJViewController.swift in Sources */,
 				FE6022C21F5B563400B419B6 /* DJVolumeWrapperView.swift in Sources */,
+				FEACB3EA1F5E307C0037529A /* JSON+Cachable.swift in Sources */,
 				FE3059901EE5C07F0010F242 /* DJInfoSheetControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

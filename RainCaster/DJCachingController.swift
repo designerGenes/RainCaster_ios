@@ -9,6 +9,10 @@
 import Foundation
 import Cache
 
+enum CacheKey: String {
+    case lastManifest
+}
+
 class DJCachingController: NSObject {
 	// MARK: - properties
 	static let basicCacheConfig = Config(
@@ -19,22 +23,25 @@ class DJCachingController: NSObject {
 		maxObjects: 10000)
 	
 	static let cache = Cache<AmbientTrackPlayerItem>(name: "AmbientTrackCache", config: DJCachingController.basicCacheConfig)
+    static let jsonCache = Cache<JSON>(name: "JSONCache", config: DJCachingController.basicCacheConfig)
 	static let keysCache = Cache<AmbientTrackPlayerItem>(name: "KeysCache", config: DJCachingController.basicCacheConfig)
 	
 	// MARK: - methods
-	static func cacheObj<T: Cachable>(obj: T, key: String, completion: BoolCallback?) {
+    static func cacheObj<T: Cachable>(obj: T, toCache cache: Cache<T>, key: String, completion: BoolCallback?) {
 		let expiry = DJCachingController.basicCacheConfig.expiry
-		DJCachingController.cache.add(key, object: obj, expiry: expiry) {
+        
+        
+		cache.add(key, object: obj, expiry: expiry) {
 			DJCachingController.keysCache.add(key, object: key, expiry: expiry) {
 				print("successfully cached with key \(key)")
 			}
 		}
 	}
 	
-	static func getObj<T: Cachable>(withKey key: String, completion: @escaping (T?) -> Void) {
+    static func getObj<T: Cachable>(withKey key: String, fromCache cache: Cache<T>, completion: @escaping (T?) -> Void) {
 		DJCachingController.ifCached(key: key) { isCached in
 			if isCached == true {
-				DJCachingController.cache.object(key) { (obj: T?) in
+				cache.object(key) { (obj: T?) in
 					completion(obj)
 					return
 				}
@@ -43,8 +50,8 @@ class DJCachingController: NSObject {
 		}
 	}
 	
-	static func removeObj(withKey key: String, completion: VoidCallback?) {
-		DJCachingController.cache.remove(key, completion: {
+    static func removeObj<T>(withKey key: String, fromCache cache: Cache<T>, completion: VoidCallback?) {
+		cache.remove(key, completion: {
 			DJCachingController.keysCache.remove(key) {
 				completion?()
 			}

@@ -116,7 +116,7 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 	
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if collectionView.indexPathsForVisibleItems.isEmpty && indexPath.section == 0 {
-            didFullyEnterCell(idxPath: indexPath)
+            didFullyEnterCell(idxPath: indexPath) // should only happen once
         }
         if let cell = cell as? AmbientTrackCollectionViewCell, let triggerSwitch = cell.triggerSwitch {
             if triggerSwitch.currentStackIdx > 0 {
@@ -141,22 +141,36 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
 		print("Unable to retrieve any track data.  Manifest is likely empty.")
 	}
 	
+    func absorbTrackData(fromDict dict: [String: Any]) {
+        absorbTrackData(fromJSON: JSON(dict))
+    }
+    
 	func absorbTrackData(fromJSON json: JSON) {
+        
+        print("absorbing track data from manifest")
+//        print(json)
 		var outList = [CellData]()
-		if let trackArr = json.array {
-			for track in trackArr {
+        
+        if let baseURL = json["baseURL"].string {
+            DJRemoteDataSourceController.sharedInstance.baseURLResourceString = baseURL
+        }
+        
+        
+		if let items = json["items"].array {
+			for track in items {
 				let newTrackData = AmbientTrackData(fromJSON: track)
 //				print(newTrackData.title ?? "No track title")
 				outList.append(newTrackData)
 			}
+            
+            cellDataArr = outList
+            collectionView?.reloadData()
+            AppDelegate.shared?.mainPlayerVC?.setHiddenControlVisibility(to: false)
 		}
-		cellDataArr = outList
 		
-		collectionView?.reloadData()
-        
-//        if let item = collectionView?.indexPathsForVisibleItems.first {
-//            didFullyEnterCell(idxPath: item)
-//        }
+		
+		
+
         
 	}
 	

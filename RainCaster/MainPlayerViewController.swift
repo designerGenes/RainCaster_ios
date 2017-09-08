@@ -57,21 +57,33 @@ class MainPlayerViewController: DJViewController {
 	
 	// MARK: - methods
 	func setupHiddenControls() {
+        let containerView = UIView()
+        
+        
 		let noDataLabel = UILabel()
 		noDataLabel.font = UIFont.filsonSoftBold(size: 30)
 		noDataLabel.textAlignment = .center
 		noDataLabel.lineBreakMode = .byWordWrapping
 		noDataLabel.numberOfLines = 0
 		noDataLabel.textColor = UIColor.named(.whiteText)
-		noDataLabel.text = "Unable to load data feed"
+		noDataLabel.text = "Loading..."
 		
+        let transformAnimation = CABasicAnimation(keyPath: "transform.scale")
+        transformAnimation.fromValue = 1
+        transformAnimation.toValue = 1.3
+        transformAnimation.duration = 0.65
+        transformAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transformAnimation.autoreverses = true
+        transformAnimation.repeatCount = HUGE
+        
+        
 		let activityIndicatorView = UIActivityIndicatorView()
 		activityIndicatorView.activityIndicatorViewStyle = .white
 		activityIndicatorView.hidesWhenStopped = true
 		activityIndicatorView.stopAnimating()
 		
 		let retryButtonContainerView = UIView()
-		retryButtonContainerView.backgroundColor = UIColor.named(.gray_1)
+		retryButtonContainerView.backgroundColor = UIColor.named(.nearly_black)
 		
 		let retryButton = UIButton()
 		retryButton.setTitle("retry", for: .normal)
@@ -86,6 +98,8 @@ class MainPlayerViewController: DJViewController {
 			hiddenControls.append(hiddenView)
 		}
 		
+        
+        
 		noDataLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -16).isActive = true
 		noDataLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5).isActive = true
 		retryButton.centerYAnchor.constraint(equalTo: retryButtonContainerView.centerYAnchor).isActive = true
@@ -94,10 +108,16 @@ class MainPlayerViewController: DJViewController {
 		retryButtonContainerView.heightAnchor.constraint(equalToConstant: 60).isActive = true
 		
 		activityIndicatorView.centerYAnchor.constraint(equalTo:retryButtonContainerView.centerYAnchor).isActive = true
+        
+        noDataLabel.layer.add(transformAnimation, forKey: "transform.scale")
 	}
 
 	
 	func setHiddenControlVisibility(to visible: Bool) {
+        if visible && hiddenControls.isEmpty {
+            setupHiddenControls()
+        }
+        
 		let hiddenActivityIndicator = hiddenControls.filter({$0 is UIActivityIndicatorView}).first as? UIActivityIndicatorView
 		
 		
@@ -118,14 +138,8 @@ class MainPlayerViewController: DJViewController {
 		retryButton?.isHidden = true
 		hiddenActivityIndicator?.startAnimating()
 		
-		DJRemoteDataSourceController.sharedInstance.pullRemoteManifest { resJSON in
-			doAfter(time: 0.25) {
-				let attemptFailed = resJSON == nil
-				retryButton?.isHidden = false
-				hiddenActivityIndicator?.stopAnimating()
-				self.setHiddenControlVisibility(to: attemptFailed)
-			}
-		}
+        AppDelegate.shared?.assembleAmbientTrackData(forcePull: true)
+
 	}
 	
 	func setupCastButton() {
@@ -156,7 +170,9 @@ class MainPlayerViewController: DJViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupHiddenControls()
+        view.backgroundColor = UIColor.named(.gray_0)
+        
+		
 		dataSource.adopt(collectionView: collectionView)
 		collectionView.reloadData()
 		GCKCastContext.sharedInstance().sessionManager.add(self)
@@ -164,7 +180,7 @@ class MainPlayerViewController: DJViewController {
 		navigationContainerView.backgroundColor = UIColor.named(.nearly_black)
 		
 		
-		setHiddenControlVisibility(to: false)
+		
         
         let volumeView = MPVolumeView(frame: .zero)
         volumeView.alpha = 0.0001

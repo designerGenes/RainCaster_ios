@@ -24,9 +24,11 @@ class FloatingTriangleView: UIView {
     weak var cellOwner: AmbientTrackCollectionViewCell?
     var settingsLabels = [UILabel]()
     var invisibleButtons = [UIButton]()
-	
+    var hideImageView: UIImageView?
     let buttonTitles = ["loop", "fade", "\(DJAudioPlaybackController.sharedInstance.hoursFadeDuration)"]
 	
+    
+    
 	// MARK: - methods
     func manifestTrackSettingsBars() {
         if settingsBars.count < 3 {
@@ -41,25 +43,41 @@ class FloatingTriangleView: UIView {
                 layer.addSublayer(bar)
                 
                 
+            
+                let newLabel = UILabel()
+                newLabel.tag = z
+                newLabel.text = buttonTitles[z]
+                newLabel.textAlignment = .left
+                newLabel.font = UIFont.filsonSoftRegular(size: 30)
+                newLabel.textColor = UIColor.named(.whiteText)
+                newLabel.sizeToFit()
+                newLabel.setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5))
+                addSubview(newLabel)
+                newLabel.center = CGPoint(x: bounds.maxX, y: (individualHeight) * (CGFloat(z)) + (individualHeight/2))
+                settingsLabels.append(newLabel)
+            
+            
+            if z == buttonTitles.count - 1 {
+                newLabel.isHidden = true
+                newLabel.text = ""
+                let hideImageView = UIImageView(image: UIImage(fromAssetNamed: .hideButton))
                 
-                    let newLabel = UILabel()
-                    newLabel.tag = z
-                    newLabel.text = buttonTitles[z]
-                    newLabel.textAlignment = .left
-                    newLabel.font = UIFont.filsonSoftRegular(size: 30)
-                    newLabel.textColor = UIColor.named(.whiteText)
-                    newLabel.sizeToFit()
-                    newLabel.setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5))
-                    addSubview(newLabel)
-                    newLabel.center = CGPoint(x: bounds.maxX, y: (individualHeight) * (CGFloat(z)) + (individualHeight/2))
-                    settingsLabels.append(newLabel)
-                    
-                    let invisibleButton = UIButton()
-                    invisibleButton.frame = CGRect(origin: CGPoint(x: 0, y: individualHeight * CGFloat(z)), size: CGSize(width: frame.width, height: individualHeight))
-                    invisibleButton.tag = z
-                    invisibleButton.addTarget(self, action: #selector(tappedTrackSettingsRow(sender:)), for: .touchUpInside)
-                    invisibleButtons.append(invisibleButton)
-                    addSubview(invisibleButton)
+                hideImageView.contentMode = .scaleAspectFit
+                self.hideImageView = hideImageView
+                addSubview(hideImageView)
+                hideImageView.frame.size = CGSize(width: individualHeight * 0.7, height: individualHeight * 0.7)
+                hideImageView.alpha = 0
+                hideImageView.setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5))
+                hideImageView.center = CGPoint(x: 0, y: newLabel.center.y)
+                
+            }
+                
+                let invisibleButton = UIButton()
+                invisibleButton.frame = CGRect(origin: CGPoint(x: 0, y: individualHeight * CGFloat(z)), size: CGSize(width: frame.width, height: individualHeight))
+                invisibleButton.tag = z
+                invisibleButton.addTarget(self, action: #selector(tappedTrackSettingsRow(sender:)), for: .touchUpInside)
+                invisibleButtons.append(invisibleButton)
+                addSubview(invisibleButton)
                 
             }
             
@@ -71,9 +89,9 @@ class FloatingTriangleView: UIView {
     
     func updateLabelAppearance() {
         let goodColor = UIColor.named(.whiteText)
-        var conditionals = [DJAudioPlaybackController.sharedInstance.shouldLoop, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime]
+        var conditionals = [DJAudioPlaybackController.sharedInstance.shouldLoop, DJAudioPlaybackController.sharedInstance.shouldFadeOverTime, false]
         
-        settingsLabels.last?.text = "\(DJAudioPlaybackController.sharedInstance.hoursFadeDuration)"
+        
         
         for (z, bar) in settingsBars.enumerated() {
             let badColor = UIColor.named(.nearly_black).darkenBy(percent: 0.15).cgColor
@@ -116,7 +134,10 @@ class FloatingTriangleView: UIView {
             invisibleButtons.last?.isEnabled = DJAudioPlaybackController.sharedInstance.shouldFadeOverTime
             
         case 2:
-            DJAudioPlaybackController.sharedInstance.hoursFadeDuration += 1
+            AmbientTrackDataSource.sharedInstance.collectionView?.minimize() {
+                
+            }
+//            DJAudioPlaybackContro/ller.sharedInstance.hoursFadeDuration += 1
         default:
             break
         }
@@ -142,9 +163,9 @@ class FloatingTriangleView: UIView {
         
         
         var totalDuration: Double = Double(settingsBars.count) * 0.25
-        
+        let desiredAlpha: Float = visible ? 1 : 0
         for (z, bar) in settingsBars.enumerated() {
-            let desiredAlpha: Float = visible ? 1 : 0
+            
             
             
             if bar.opacity != desiredAlpha {
@@ -168,6 +189,10 @@ class FloatingTriangleView: UIView {
                 
                 
             }
+        }
+        
+        UIView.animate(withDuration: 1) {
+            self.hideImageView?.alpha = visible ? 1 : 0
         }
         
         for button in invisibleButtons {
@@ -246,6 +271,10 @@ class FloatingTriangleView: UIView {
         }
         
         settingsLabels.map({bringSubview(toFront: $0)})
+        
+        if let hideImageView = hideImageView {
+            bringSubview(toFront: hideImageView)
+        }
         invisibleButtons.map({bringSubview(toFront: $0)})
 	}
 	

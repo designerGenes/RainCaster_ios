@@ -10,9 +10,10 @@ import UIKit
 import GoogleCast
 import AVFoundation
 import AVKit
-import SwiftyJSON
+//import SwiftyJSON
 import Alamofire
 import MediaPlayer
+import Cache
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDiscoveryManagerListener, GCKSessionManagerListener {
@@ -77,6 +78,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
 	func logMessage(_ message: String, fromFunction function: String) {
 //		print("Log: \(message)")
 	}
+    
+    func assembleAmbientTrackData(forcePull: Bool = false) {
+        if !forcePull {
+            DJCachingController.ifCached(key: CacheKey.lastManifest.rawValue, callback: { (cached) in
+                if cached == true {
+                    print("found cached manifest")
+                    DJCachingController.getObj(withKey: CacheKey.lastManifest.rawValue, fromCache: DJCachingController.jsonCache) { res in
+                        if let res = res, let resObj = res.object as? [String: Any] {
+                            self.contactAddress = resObj["contactAddress"] as? String
+                            if let releaseDateStr = resObj["releaseDate"] as? String {
+                                if let releaseDate = Date.fromString(str: releaseDateStr) {
+                                    let dayOfMilliseconds: Double = 24 * 60 * 60 * 1000
+                                    if abs(releaseDate.timeIntervalSince(Date())) > dayOfMilliseconds {
+                                        
+                                        
+                                        // force new data
+                                        return self.assembleAmbientTrackData(forcePull: true)
+                                    } else {
+                                        DispatchQueue.main.async {
+                                            AmbientTrackDataSource.sharedInstance.absorbTrackData(fromDict: resObj)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    return self.assembleAmbientTrackData(forcePull: true)
+                }
+            })
+        } else {
+            print("pulling new data")
+                mainPlayerVC?.setHiddenControlVisibility(to: true)
+                DJRemoteDataSourceController.sharedInstance.pullRemoteManifest() { res in
+                    
+                    if let res = res, let resDict = res.dictionaryObject {
+                        
+                        DispatchQueue.main.async {
+                            AmbientTrackDataSource.sharedInstance.absorbTrackData(fromDict: resDict)
+                        }
+                        
+                        
+                        self.contactAddress = resDict["contactAddress"] as? String
+                        DJCachingController.cacheObj(obj: JSON.dictionary(resDict), toCache: DJCachingController.jsonCache, key: CacheKey.lastManifest.rawValue, completion: { success in })
+                        
+                    }
+                    
+                }
+        }
+
+    }
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		let options = GCKCastOptions(receiverApplicationID: kGCKMediaDefaultReceiverApplicationID)
@@ -91,14 +143,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GCKLoggerDelegate, GCKDis
 			window?.rootViewController = mainPlayerVC
 			window?.makeKeyAndVisible()
 		}
-		
-		DJRemoteDataSourceController.sharedInstance.pullRemoteManifest() { res in
-            self.contactAddress = res?["contactAddress"].string
-		}
+        
+        
+        // check if date is recent, and if not, skip this and pull new
+        assembleAmbientTrackData()
+        
+	
         
         DJAudioPlaybackController.sharedInstance.remoteMediaClient?.stop()
         
-
+        
 		return true
 	}
 	

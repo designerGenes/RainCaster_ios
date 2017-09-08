@@ -92,10 +92,15 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
         
         if seconds > 5 {
             let totalFadeSeconds: Double = Double(DJAudioPlaybackController.sharedInstance.hoursFadeDuration * 60 * 60)
-            let remainingFadeHours = Int((totalFadeSeconds - seconds) / 60 / 60)
+            let remainingFadeHours = ((totalFadeSeconds - seconds) / 60 / 60).rounded()
             
-            triangleViews[.left]?.settingsLabels.last?.text = "\(remainingFadeHours)"
+            
+            
+            triangleViews[.left]?.settingsLabels.last?.text = "\(Int(remainingFadeHours))"
         }
+        
+        
+        
 	}
 
 	func playbackStateBecame(state: MediaPlayerState) {
@@ -115,6 +120,7 @@ class AmbientTrackCollectionViewCell: UICollectionViewCell, AudioPlaybackDelegat
         titleImpactLabel.removeFromSuperview()
         titleBulkLabel.removeFromSuperview()
         triggerSwitch?.die()
+        playPauseControl?.die()
         
         for triangleView in triangleViews.values {
             

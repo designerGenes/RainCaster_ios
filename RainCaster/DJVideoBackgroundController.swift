@@ -101,7 +101,7 @@ class DJVideoBackgroundController: NSObject {
     
     func beginListening(to item: AVPlayerItem) {
         beganPlayingTimeObserver = bgPlayer.addBoundaryTimeObserver(forTimes: [NSValue(time:CMTimeMake(1, 10))], queue: playbackBGQueue, using: {
-            print("began playing")
+//            print("began playing")
         }) as? NSObjectProtocol
         
         item.addObserver(self, forKeyPath: #keyPath(AVPlayerItem.status), options: [.new], context: nil)

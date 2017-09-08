@@ -28,6 +28,14 @@ public extension UIView {
 		layer.anchorPoint = anchorPoint
 	}
     
+    func takeScreenShot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0);
+        self.drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+    
     func placeSubViewAtCenter(subview: UIView, withOffset offset: CGPoint = CGPoint.zero) {
         if !subviews.contains(subview) {
             addSubview(subview)
