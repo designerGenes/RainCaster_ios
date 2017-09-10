@@ -1,39 +1,53 @@
 {
   "product": "Track Manifest",
-  "releaseDate": "5.29.2017",
-  "version": "0.0.1",
+  "releaseDate": "09.09.2017",
+  "version": "0.0.2",
   "baseURL": "https://s3-us-west-2.amazonaws.com/raincasterapp/",
+  "audioRoot": "audio",
   "contactAddress": "jnationdesignerjeans@gmail.com",
   "items": [
     {
       "title": "Rainy Drive",
       "category": "rain",
       "description": "Waiting outside in the parking lot, reading a book while the wind blows.",
-      "url": "rain_car.mp3"
+      "url": "rainRainyDrive_3h.mp3"
     },
     {
-      "title": "Solar Yacht",
-      "category": "space",
-      "description": "The ship has entered Earth's orbit.  Engines set to idle.",
-      "url": "space_yacht.mp3"
+      "title": "Gulf Thunder",
+      "category": "rain",
+      "description": "A storm in the Gulf sets the sky asunder.",
+      "url": "rainGulfThunder_3h.mp3"
     },
     {
       "title": "Hyperspace Passage",
       "category": "space",
       "description": "The trip to Ganymede will be uneventful.  Sleep is encouraged.",
-      "url": "space_hyperspace.mp3"
+      "url": "spaceHyperspace_3h.mp3"
     },
     {
-      "title": "Lighthouse Downpour",
+      "title": "Rainy Moor",
       "category": "rain",
-      "description": "The clouds pulse but the lighthouse stands strong.",
-      "url": "rain_lighthouse.mp3"
+      "description": "When the clouds let loose, the moors comes awake.",
+      "url": "rainRainyMoor_3h.mp3"
     },
     {
-      "title": "Raining in Rio",
-      "category": "rain",
-      "description": "When the clouds let loose, the rainforest comes awake.",
-      "url": "rain_trees.mp3"
+      "title": "Entering Orbit",
+      "category": "space",
+      "description": "Gravity will take us home.",
+      "url": "spaceEnteringOrbit_3h.mp3"
     },
+    {
+      "title": "Saturnalic Rings",
+      "category": "space",
+      "description": "Docks are full.  Take us around the planet a few times.",
+      "url": "spaceSaturnalicRings_3h.mp3"
+    },
+    {
+      "title": "The Edge",
+      "category": "space",
+      "description": "Time slows beyond this sector.  You could linger forever.",
+      "url": "spaceTheEdgex_3h.mp3"
+    },
+
   ]
 }

@@ -16,6 +16,7 @@ class DJRemoteDataSourceController: NSObject {
 	static var sharedInstance = DJRemoteDataSourceController()
 
 	var baseURLResourceString = "https://s3-us-west-2.amazonaws.com/raincasterapp/"
+    var audioRoot = "audio" // default
 	var mostRecentManifestVersion: String?
 	let permanentManifestURLString = "manifest.json"
 	
@@ -47,7 +48,7 @@ class DJRemoteDataSourceController: NSObject {
 				
 				AppDelegate.shared?.mainPlayerVC?.setHiddenControlVisibility(to: false)
 				
-				self.baseURLResourceString = resultJSON["baseURL"].string ?? self.baseURLResourceString
+				self.audioRoot = resultJSON["audioRoot"].string ?? self.audioRoot
 				self.mostRecentManifestVersion = resultJSON["version"].string
 				
 				let items = resultJSON["items"]

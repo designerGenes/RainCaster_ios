@@ -735,8 +735,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.designerjeans.raincstr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "74fa0e7e-c3e1-4845-99e9-19db828b9867";
-				PROVISIONING_PROFILE_SPECIFIER = "Raincstr DEV 0503";
+				PROVISIONING_PROFILE = "4928dcb1-dccc-4cd8-b236-273b384fc1b4";
+				PROVISIONING_PROFILE_SPECIFIER = "Raincstr DEV";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -752,8 +752,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.designerjeans.raincstr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "361ce9e0-a755-45e7-8ca5-981b365b91e0";
-				PROVISIONING_PROFILE_SPECIFIER = "Raincstr PROD 0503";
+				PROVISIONING_PROFILE = "31e96fa5-52a7-4f79-bf5b-13793d65ef03";
+				PROVISIONING_PROFILE_SPECIFIER = "Raincstr PROD";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
