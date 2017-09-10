@@ -150,11 +150,7 @@ class AmbientTrackDataSource: NSObject, UICollectionViewDataSource, UICollection
         print("absorbing track data from manifest")
 //        print(json)
 		var outList = [CellData]()
-        
-        if let baseURL = json["baseURL"].string {
-            DJRemoteDataSourceController.sharedInstance.baseURLResourceString = baseURL
-        }
-        
+
         
 		if let items = json["items"].array {
 			for track in items {

@@ -24,8 +24,9 @@ class AmbientTrackData: CellData {
 			category = AmbientTrackCategory(rawValue: rawCategory) ?? .unknown
 		}
 		if let resourceURLString = json["url"].string {
+            let dataSource = DJRemoteDataSourceController.sharedInstance
 			cacheTitle = resourceURLString
-			let fullURLString = "\(DJRemoteDataSourceController.sharedInstance.baseURLResourceString)\(resourceURLString)"
+			let fullURLString = "\(dataSource.baseURLResourceString)\(dataSource.audioRoot)/\(resourceURLString)"
 			sourceURL = URL(string: fullURLString)
 		}	
 	}
